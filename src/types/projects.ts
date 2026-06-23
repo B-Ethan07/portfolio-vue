@@ -23,12 +23,12 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["Flutter", "FastAPI", "AWS S3", "Firebase"],
     images: [
-      "/assets/img/irapp1.png",
-      "/assets/img/irapp2.png",
-      "/assets/img/irapp3.png",
-      "/assets/img/irapp4.png",
+      "@/assets/img/irapp1.png",
+      "@/assets/img/irapp2.png",
+      "@/assets/img/irapp3.png",
+      "@/assets/img/irapp4.png",
     ],
-    video: "/assets/img/irapp.mp4",
+    video: "@/assets/img/irapp.mp4",
     links: [],
     year: "Fev 2026 – Avr 2026",
     color: "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)",
@@ -53,7 +53,7 @@ export const PROJECTS: Project[] = [
       "Déploiement Vercel + optimisation SEO",
     ],
     tags: ["Next.js", "TypeScript", "Tailwind", "FastAPI"],
-    images: ["/assets/img/landing-runway1.webp"],
+    images: ["@/assets/img/landing-runway1.webp"],
     links: [
       {
         label: "Voir la landing",
@@ -86,10 +86,10 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["React", "TypeScript", "Express.js", "API REST"],
     images: [
-      "/assets/img/zenquest1.webp",
-      "/assets/img/zenquest2.jpg",
-      "/assets/img/zenquest3.jpg",
-      "/assets/img/zenquest4.jpg",
+      "@/assets/img/zenquest1.webp",
+      "@/assets/img/zenquest2.jpg",
+      "@/assets/img/zenquest3.jpg",
+      "@/assets/img/zenquest4.jpg",
     ],
     links: [
       {
@@ -129,10 +129,10 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["Flutter", "FastAPI", "Docker", "React"],
     images: [
-      "/assets/img/itsmetime4.jpg",
-      "/assets/img/itsmetime1.jpg",
-      "/assets/img/itsmetime2.jpg",
-      "/assets/img/itsmetime3.jpg",
+      "@/assets/img/itsmetime4.jpg",
+      "@/assets/img/itsmetime1.jpg",
+      "@/assets/img/itsmetime2.jpg",
+      "@/assets/img/itsmetime3.jpg",
     ],
     links: [],
     year: "Nov 2025 – Jan 2026",
@@ -159,10 +159,10 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["Angular", "Express.js", "MySQL", "Bootstrap"],
     images: [
-      "/assets/img/cinezone_1.jpg",
-      "/assets/img/cinezone_2.png",
-      "/assets/img/cinezone_3.png",
-      "/assets/img/cinezone_4.png",
+      "@/assets/img/cinezone_1.jpg",
+      "@/assets/img/cinezone_2.png",
+      "@/assets/img/cinezone_3.png",
+      "@/assets/img/cinezone_4.png",
     ],
     links: [
       {
@@ -202,9 +202,9 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["Symfony", "PHP", "Twig", "MySQL"],
     images: [
-      "/assets/img/factuzen1.png",
-      "/assets/img/factuzen2.png",
-      "/assets/img/factuzen3.png",
+      "@/assets/img/factuzen1.png",
+      "@/assets/img/factuzen2.png",
+      "@/assets/img/factuzen3.png",
     ],
     links: [
       {
@@ -238,9 +238,9 @@ export const PROJECTS: Project[] = [
     ],
     tags: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
     images: [
-      "/assets/img/projet2_1.png",
-      "/assets/img/projet2_2.png",
-      "/assets/img/projet2_3.png",
+      "@/assets/img/projet2_1.png",
+      "@/assets/img/projet2_2.png",
+      "@/assets/img/projet2_3.png",
     ],
     links: [
       {

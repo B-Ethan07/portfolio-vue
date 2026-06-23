@@ -8,7 +8,7 @@ export function useReveal() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+            entry.target.classList.add("visible", "is-visible");
             observer?.unobserve(entry.target);
           }
         });

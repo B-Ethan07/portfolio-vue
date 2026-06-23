@@ -159,8 +159,8 @@ const stackCards = [
         >
           <div
             class="project-card-img"
-            :class="HERO_PROJECTS[current].imgClass"
-            :style="HERO_PROJECTS[current].imgSrc ? { backgroundImage: `url(${HERO_PROJECTS[current].imgSrc})`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' } : {}"
+            :class="`project-card-img--${HERO_PROJECTS[current].type}`"
+            :style="HERO_PROJECTS[current].images?.[0] ? { backgroundImage: `url(${HERO_PROJECTS[current].images[0]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : { background: HERO_PROJECTS[current].color }"
           >
             <div class="project-card-overlay"></div>
             <span class="project-card-year">{{ HERO_PROJECTS[current].year }}</span>
@@ -172,12 +172,12 @@ const stackCards = [
               <span class="project-card-type">{{ HERO_PROJECTS[current].type }}</span>
             </div>
             <h2 class="project-card-title">{{ HERO_PROJECTS[current].title }}</h2>
-            <p class="project-card-desc">{{ HERO_PROJECTS[current].desc }}</p>
+            <p class="project-card-desc">{{ HERO_PROJECTS[current].description }}</p>
             <div class="card-tags">
               <span v-for="tag in HERO_PROJECTS[current].tags" :key="tag" class="card-tag">{{ tag }}</span>
             </div>
             <div class="project-card-footer">
-              <RouterLink :to="`/projects/${HERO_PROJECTS[current].projectId}`" class="project-card-link">
+              <RouterLink :to="`/projects/${HERO_PROJECTS[current].id}`" class="project-card-link">
                 Voir le projet <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </RouterLink>
               <div class="carousel-dots" role="tablist">

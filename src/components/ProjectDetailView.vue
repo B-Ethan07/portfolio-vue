@@ -10,6 +10,10 @@ const project = computed(() => PROJECTS.find((p) => p.id === route.params.id))
 
 const activeSlide = ref(0)
 
+function isVideo(source) {
+  return /\.(mp4|webm|ogg)$/i.test(source)
+}
+
 function prevSlide() {
   if (!project.value) return
   activeSlide.value = (activeSlide.value - 1 + project.value.images.length) % project.value.images.length
@@ -33,21 +37,21 @@ onMounted(() => {
 
     <article class="detail-wrap">
       <!-- Media carousel -->
-      <div class="detail-carousel" :class="project.carouselOrientation">
+      <div class="detail-carousel" :class="project.type === 'mobile' ? 'portrait' : 'landscape'">
         <div class="detail-slides">
           <template v-for="(media, i) in project.images" :key="i">
             <div v-show="i === activeSlide" class="detail-slide">
               <video
-                v-if="media.type === 'video'"
-                :src="media.src"
+                v-if="isVideo(media)"
+                :src="media"
                 class="detail-media"
                 controls
                 playsinline
               ></video>
               <img
                 v-else
-                :src="media.src"
-                :alt="media.alt"
+                :src="media"
+                :alt="project.title"
                 class="detail-media"
               />
             </div>
@@ -75,7 +79,7 @@ onMounted(() => {
       <div class="detail-info">
         <div :class="project.type === 'mobile' ? 'mobile-card-meta' : 'web-card-meta'" style="margin-bottom:16px">
           <span :class="project.type === 'mobile' ? 'mobile-badge' : 'web-badge'">{{ project.badge }}</span>
-          <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.stage }}</span>
+          <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.badgeStage }}</span>
         </div>
 
         <h1 class="detail-title">
@@ -83,7 +87,7 @@ onMounted(() => {
           {{ project.title }}
         </h1>
         <p class="detail-subtitle">{{ project.subtitle }}</p>
-        <p class="detail-desc">{{ project.longDesc }}</p>
+        <p class="detail-desc">{{ project.longDescription }}</p>
 
         <div class="detail-grid">
           <div>
@@ -101,10 +105,10 @@ onMounted(() => {
         </div>
 
         <div class="detail-actions">
-          <template v-for="link in project.links" :key="link.href">
+          <template v-for="link in project.links" :key="link.url">
             <a
-              :href="link.href"
-              :class="`btn-card-${link.style}`"
+              :href="link.url"
+              :class="`btn-card-${link.variant === 'primary' ? 'violet' : 'ghost'}`"
               target="_blank"
               rel="noopener"
             >

@@ -8,6 +8,10 @@ const props = defineProps({
 
 const activeSlide = ref(0)
 
+function isVideo(source) {
+  return /\.(mp4|webm|ogg)$/i.test(source)
+}
+
 function prevSlide() {
   activeSlide.value = (activeSlide.value - 1 + props.project.images.length) % props.project.images.length
 }
@@ -24,16 +28,16 @@ function nextSlide() {
         <template v-for="(media, i) in project.images" :key="i">
           <div v-show="i === activeSlide" class="slide-item">
             <video
-              v-if="media.type === 'video'"
-              :src="media.src"
+              v-if="isVideo(media)"
+              :src="media"
               class="slide-media"
               controls
               playsinline
             ></video>
             <img
               v-else
-              :src="media.src"
-              :alt="media.alt"
+              :src="media"
+              :alt="project.title"
               class="slide-media"
             />
           </div>
@@ -51,13 +55,13 @@ function nextSlide() {
     <div class="card-body-custom">
       <div :class="project.type === 'mobile' ? 'mobile-card-meta' : 'web-card-meta'">
         <span :class="project.type === 'mobile' ? 'mobile-badge' : 'web-badge'">{{ project.badge }}</span>
-        <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.stage }}</span>
+        <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.badgeStage }}</span>
       </div>
 
       <h4 class="card-project-title">
         <i :class="project.icon" aria-hidden="true"></i> {{ project.title }}
       </h4>
-      <p class="card-project-desc">{{ project.desc }}</p>
+      <p class="card-project-desc">{{ project.description }}</p>
 
       <ul class="card-features">
         <li v-for="f in project.features" :key="f">{{ f }}</li>
@@ -68,10 +72,10 @@ function nextSlide() {
       </div>
 
       <div class="card-actions">
-        <template v-for="link in project.links" :key="link.href">
+        <template v-for="link in project.links" :key="link.url">
           <a
-            :href="link.href"
-            :class="`btn-card-${link.style}`"
+            :href="link.url"
+            :class="`btn-card-${link.variant === 'primary' ? 'violet' : 'ghost'}`"
             target="_blank"
             rel="noopener"
             @click.stop
