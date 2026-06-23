@@ -465,8 +465,8 @@ const stackCards = [
 .project-card-year {
   position: absolute; top: 10px; right: 10px;
   font-family: var(--ff-mono); font-size: 0.58rem;
-  letter-spacing: 0.12em; color: #f4f4fb;
-  background: rgba(8,8,12,.72); border: 1px solid rgba(255,255,255,.2);
+  letter-spacing: 0.12em; color: var(--text);
+  background: var(--surface); border: 1px solid var(--border-md);
   padding: 3px 9px; border-radius: 100px;
 }
 
@@ -484,7 +484,7 @@ const stackCards = [
 
 .project-card-type {
   font-family: var(--ff-mono); font-size: 0.6rem;
-  color: rgba(245,245,252,.92); background: rgba(8,8,12,.72);
+  color: var(--text); background: var(--surface2);
   border: 1px solid rgba(255,255,255,.12);
   padding: 3px 8px; border-radius: 999px; letter-spacing: 0.05em;
 }
@@ -503,7 +503,7 @@ const stackCards = [
 }
 
 .project-card-desc {
-  font-size: 0.82rem; color: rgba(240,240,248,.9);
+  font-size: 0.82rem; color: var(--muted);
   line-height: 1.55; margin-bottom: 12px;
 }
 
