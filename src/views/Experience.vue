@@ -136,7 +136,7 @@ const timeline = [
   font-family: var(--ff-mono);
   font-size: 0.95rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text);
   margin: 0 0 6px;
   display: flex;
   align-items: center;
@@ -162,7 +162,7 @@ const timeline = [
   display: flex;
   gap: 8px;
   font-size: 0.84rem;
-  color: rgba(220, 220, 230, 0.7);
+  color: var(--muted);
   line-height: 1.5;
 }
 

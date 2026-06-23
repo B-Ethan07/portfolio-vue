@@ -37,8 +37,15 @@ useReveal()
 
 .all-projects {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  align-items: stretch;
+}
+
+.section-wrap {
+  width: 100%;
+  max-width: none;
+  padding: 80px 48px;
 }
 
 @media (max-width: 1024px) {

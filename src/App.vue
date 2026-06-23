@@ -5,6 +5,16 @@ import AppFooter from './components/AppFooter.vue'
 
 <template>
   <Navbar />
-  <RouterView />
+    <div class="app-content">
+      <RouterView />
+    </div>
   <AppFooter />
 </template>
+
+<style scoped>
+.app-content {
+  width: 100%;
+  max-width: 100%;
+  min-height: calc(100vh - 120px);
+}
+</style>

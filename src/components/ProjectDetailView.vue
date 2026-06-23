@@ -145,11 +145,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.detail-page {
-  min-height: 100vh;
-  background: var(--bg);
-  padding: 100px 48px 80px;
-}
 
 .back-link {
   display: inline-flex; align-items: center; gap: 8px;

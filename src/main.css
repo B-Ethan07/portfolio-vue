@@ -56,29 +56,30 @@
   --border:    rgba(0, 0, 0, 0.07);
   --border-md: rgba(0, 0, 0, 0.12);
 
-  --text:      #1a1a22;
-  --muted:     #888896;
+  /* TEXTE -> NOIR OK */
+  --text:      #0e0e12;
+  --muted:     #5a5a66;
 
-  --accent:         #b8a800;
-  --accent-glow:    rgba(184, 168, 0, 0.18);
-  --accent-subtle:  rgba(184, 168, 0, 0.07);
+  /* 🔥 JAUNE → VIOLET FONCÉ */
+  --accent:         #4c2aa8;
+  --accent-glow:    rgba(76, 42, 168, 0.18);
+  --accent-subtle:  rgba(76, 42, 168, 0.08);
 
-  --accent2:        #7c3aed;
-  --accent2-glow:   rgba(124, 58, 237, 0.18);
-  --accent2-subtle: rgba(124, 58, 237, 0.08);
+  --accent2:        #6d28d9;
+  --accent2-glow:   rgba(109, 40, 217, 0.18);
+  --accent2-subtle: rgba(109, 40, 217, 0.08);
 
-  --lavender:  #6d28d9;
+  --lavender:  #5b21b6;
   --danger:    #dc2626;
-
-  --dark-purple:   #ede9fe;
-  --light-purple:  #ddd6fe;
-  --accent-purple: #7c3aed;
 
   --scrollbar-bg: var(--bg);
   --nav-scrolled-bg: rgba(244, 244, 240, 0.9);
-  --hero-name-color: #0e0e12;
+
+  --hero-name-color: var(--text);
+
   --selection-bg: var(--accent);
-  --selection-color: #fff;
+  --selection-color: #ffffff;
+
   --modal-bg: #ffffff;
   --modal-header-bg: #f4f4f0;
 }
@@ -129,9 +130,9 @@ body {
 
 /* ─── SHARED SECTION STYLES ───────────────────────────────────── */
 .page-section {
-  padding: 120px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 80px 0;
 }
 
 .section-wrap {

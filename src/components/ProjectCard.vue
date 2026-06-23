@@ -102,7 +102,7 @@ function nextSlide() {
   border: 1px solid var(--border);
   background: var(--surface2);
 }
-
+ 
 /* Web card (vertical) */
 .web-card {
   flex-direction: column;
@@ -112,7 +112,7 @@ function nextSlide() {
   transform: translateY(-6px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
-
+ 
 /* Mobile card (horizontal) */
 .mobile-card {
   flex-direction: row;
@@ -123,7 +123,7 @@ function nextSlide() {
   transform: translateY(-6px);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
 }
-
+ 
 /* Carousels */
 .web-carousel {
   position: relative;
@@ -133,7 +133,7 @@ function nextSlide() {
   background: #0a0a0d;
   flex-shrink: 0;
 }
-
+ 
 .mobile-carousel {
   position: relative;
   width: 55%;
@@ -142,10 +142,10 @@ function nextSlide() {
   background: #07070d;
   flex-shrink: 0;
 }
-
+ 
 .slide-inner { width: 100%; height: 100%; position: relative; }
 .slide-item { width: 100%; height: 100%; }
-
+ 
 .slide-media {
   width: 100%;
   height: 100%;
@@ -153,7 +153,7 @@ function nextSlide() {
   object-position: center;
   display: block;
 }
-
+ 
 /* Controls */
 .ctrl {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -165,7 +165,7 @@ function nextSlide() {
 .project-card-wrapper:hover .ctrl { opacity: 1; }
 .ctrl.prev { left: 8px; }
 .ctrl.next { right: 8px; }
-
+ 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: inline-block;
@@ -180,23 +180,23 @@ function nextSlide() {
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z' fill='white'/%3e%3c/svg%3e");
 }
-
+ 
 /* Body */
 .card-body-custom {
   padding: 24px;
   display: flex; flex-direction: column; flex: 1;
 }
-
+ 
 .mobile-card .card-body-custom { padding: 20px; }
-
+ 
 .card-project-title {
   font-family: var(--ff-mono); font-size: 1.05rem; font-weight: 700;
   color: #fff; margin-bottom: 8px;
   display: flex; align-items: center; gap: 8px;
 }
-
+ 
 .card-project-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
-
+ 
 .card-features { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 6px; }
 .card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: rgba(220,220,230,.6); }
 .card-features li::before {
@@ -205,15 +205,15 @@ function nextSlide() {
   flex-shrink: 0; margin-top: 3px;
 }
 .web-card .card-features li::before { color: var(--lavender); }
-
+ 
 .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; margin-top: auto; padding-top: 16px; }
 .card-tag { font-family: var(--ff-mono); font-size: 0.7rem; padding: 3px 9px; background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 4px; color: var(--muted); }
-
+ 
 .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-
+ 
 /* Badges */
 .web-card-meta, .mobile-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-
+ 
 .web-badge {
   display: inline-flex; align-items: center; gap: 5px;
   font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -222,7 +222,7 @@ function nextSlide() {
 }
 .web-badge::before { font-family: 'Font Awesome 6 Free'; font-weight: 900; content: '\f0ac'; font-size: 0.55rem; }
 .web-badge-stage { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lavender); }
-
+ 
 .mobile-badge {
   display: inline-flex; align-items: center; gap: 5px;
   font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -231,7 +231,7 @@ function nextSlide() {
 }
 .mobile-badge::before { font-family: 'Font Awesome 6 Free'; font-weight: 900; content: '\f3cd'; font-size: 0.55rem; }
 .mobile-badge-stage { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-
+ 
 /* Buttons */
 .btn-card-violet {
   display: inline-flex; align-items: center; gap: 6px;
@@ -241,7 +241,7 @@ function nextSlide() {
   text-decoration: none; transition: background 0.2s, transform 0.2s;
 }
 .btn-card-violet:hover { background: rgba(139,92,246,.16); transform: translateY(-1px); color: var(--lavender); }
-
+ 
 .btn-card-ghost {
   display: inline-flex; align-items: center; gap: 6px;
   background: transparent; color: var(--text);
@@ -250,7 +250,7 @@ function nextSlide() {
   text-decoration: none; transition: border-color 0.2s, transform 0.2s, color 0.2s;
 }
 .btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: #fff; }
-
+ 
 .btn-card-expand {
   display: inline-flex; align-items: center; gap: 6px;
   background: transparent; color: var(--muted);
@@ -260,7 +260,7 @@ function nextSlide() {
   letter-spacing: 0.04em;
 }
 .btn-card-expand:hover { border-color: var(--accent); color: var(--accent); }
-
+ 
 @media (max-width: 1024px) {
   .mobile-card { flex-direction: column; }
   .mobile-carousel { width: 100%; height: 260px; }

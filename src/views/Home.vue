@@ -289,15 +289,19 @@ const stackCards = [
   display: inline-flex;
   align-items: center;
   gap: 8px;
+
   font-family: var(--ff-mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+
   color: var(--accent);
   background: var(--accent-subtle);
-  border: 1px solid rgba(212, 200, 74, 0.25);
+
+  border: 1px solid var(--border-md);
   padding: 6px 14px;
   border-radius: 100px;
+
   margin-bottom: 28px;
 }
 
@@ -317,16 +321,20 @@ const stackCards = [
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  color: #fff;
+
+  color: var(--hero-name-color);
   margin-bottom: 12px;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.45), 0 0 22px var(--accent-glow);
+
+  text-shadow:
+    0 10px 30px rgba(0,0,0,0.25),
+    0 0 18px var(--accent-glow);
 }
 .hero-name span { color: var(--accent); }
 
 .hero-title {
   font-family: var(--ff-mono);
   font-size: 0.95rem;
-  color: var(--lavender);
+  color: var(--muted);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -343,8 +351,13 @@ const stackCards = [
   padding: 10px 14px;
   transition: border-color 0.2s, transform 0.2s;
 }
-.stat-chip:hover { border-color: rgba(212,200,74,.32); transform: translateY(-2px); }
-.stat-chip--purple:hover { border-color: rgba(139,92,246,.32); }
+.stat-chip:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.stat-chip--purple:hover {
+  border-color: var(--accent2);
+}
 
 .stat-icon {
   width: 30px; height: 30px; border-radius: 8px;
@@ -375,7 +388,12 @@ const stackCards = [
   color: var(--lavender);
   margin-bottom: 8px;
 }
-.about-text { font-size: 0.9rem; color: rgba(220,220,230,.8); line-height: 1.65; }
+.about-text {
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.85;
+  line-height: 1.65;
+}
 .about-text strong { color: var(--accent); font-weight: 600; }
 
 /* CTA */
@@ -393,13 +411,21 @@ const stackCards = [
 }
 
 .preview-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--ff-mono); font-size: 0.68rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: #f5f2b3;
-  background: linear-gradient(90deg,rgba(212,200,74,.18) 0%,rgba(212,200,74,.06) 100%);
-  border: 1px solid rgba(212,200,74,.28);
-  padding: 6px 12px; border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: var(--text);
+  background: var(--surface);
+
+  border: 1px solid var(--border-md);
+  padding: 6px 12px;
+  border-radius: 999px;
 }
 
 .preview-dot {
@@ -464,9 +490,16 @@ const stackCards = [
 }
 
 .project-card-title {
-  font-family: var(--ff-head); font-size: 1.1rem; font-weight: 800;
-  color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.5);
-  line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 7px;
+  font-family: var(--ff-head);
+  font-size: 1.1rem;
+  font-weight: 800;
+
+  color: var(--text);
+
+  text-shadow: 0 2px 8px rgba(0,0,0,.15);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 7px;
 }
 
 .project-card-desc {
@@ -503,7 +536,6 @@ const stackCards = [
 .carousel-arrow:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.08); }
 
 /* ─── STACK ────────────────────────────────── */
-#stack { background: var(--surface2); }
 
 .stack-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
 
@@ -515,13 +547,28 @@ const stackCards = [
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .stack-card:hover { border-color: rgba(212,200,74,.28); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.35); }
-.stack-card-title { font-family: var(--ff-mono); font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.stack-card-title { font-family: var(--ff-mono); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
 .stack-card-desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
 .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .home-cta-row {
   display: flex; gap: 16px; flex-wrap: wrap;
   margin-top: 56px; justify-content: center;
+}
+
+.skill-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.82rem;
+  padding: 7px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
 }
 
 /* Responsive */
