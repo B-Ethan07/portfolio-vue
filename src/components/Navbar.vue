@@ -24,6 +24,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       <li><RouterLink to="/" @click="menuOpen = false">Accueil</RouterLink></li>
       <li><RouterLink to="/experience" @click="menuOpen = false">Expérience</RouterLink></li>
       <li><RouterLink to="/projects" @click="menuOpen = false">Projets</RouterLink></li>
+      <li><RouterLink to="/contact" @click="menuOpen = false">Contact</RouterLink></li>
     </ul>
 
     <div class="nav-actions">

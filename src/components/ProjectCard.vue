@@ -63,10 +63,6 @@ function nextSlide() {
       </h4>
       <p class="card-project-desc">{{ project.description }}</p>
 
-      <ul class="card-features">
-        <li v-for="f in project.features" :key="f">{{ f }}</li>
-      </ul>
-
       <div class="card-tags">
         <span v-for="tag in project.tags" :key="tag" class="card-tag">{{ tag }}</span>
       </div>

@@ -33,7 +33,7 @@ useReveal()
 </template>
 
 <style scoped>
-#projects { background: var(--surface); min-height: 100vh; }
+#projects { min-height: 100vh; }
 
 .all-projects {
   display: grid;

@@ -147,7 +147,6 @@ onMounted(() => {
 <style scoped>
 .detail-page {
   min-height: 100vh;
-  background: var(--bg);
   padding: 100px 48px 80px;
 }
 
@@ -193,7 +192,7 @@ onMounted(() => {
   cursor: pointer; z-index: 2;
   transition: background 0.2s;
 }
-.det-ctrl:hover { background: rgba(255,255,255,.08); }
+.det-ctrl:hover { background: var(--surface2); }
 .det-ctrl.prev { left: 14px; }
 .det-ctrl.next { right: 14px; }
 
