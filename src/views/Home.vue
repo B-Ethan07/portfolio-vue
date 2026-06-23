@@ -570,6 +570,11 @@ const stackCards = [
   gap: 8px;
   white-space: nowrap;
 }
+.section-wrap {
+  width: 100%;
+  max-width: none;
+  padding: 80px 48px;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {

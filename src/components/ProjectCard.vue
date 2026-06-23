@@ -191,14 +191,14 @@ function nextSlide() {
  
 .card-project-title {
   font-family: var(--ff-mono); font-size: 1.05rem; font-weight: 700;
-  color: #fff; margin-bottom: 8px;
+  color: var(--text); margin-bottom: 8px;
   display: flex; align-items: center; gap: 8px;
 }
  
 .card-project-desc { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.6; }
  
 .card-features { list-style: none; margin-bottom: 20px; display: flex; flex-direction: column; gap: 6px; }
-.card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: rgba(220,220,230,.6); }
+.card-features li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--muted); }
 .card-features li::before {
   font-family: 'Font Awesome 6 Free'; font-weight: 900;
   content: '\f061'; color: var(--accent); font-size: 0.68rem;
@@ -249,7 +249,7 @@ function nextSlide() {
   padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border-md);
   text-decoration: none; transition: border-color 0.2s, transform 0.2s, color 0.2s;
 }
-.btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: #fff; }
+.btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: var(--text); }
  
 .btn-card-expand {
   display: inline-flex; align-items: center; gap: 6px;

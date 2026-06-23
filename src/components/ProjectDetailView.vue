@@ -145,6 +145,11 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.detail-page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding: 100px 48px 80px;
+}
 
 .back-link {
   display: inline-flex; align-items: center; gap: 8px;
@@ -182,13 +187,13 @@ onMounted(() => {
 .det-ctrl {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 44px; height: 44px;
-  background: rgba(0,0,0,.75); border: 1px solid rgba(255,255,255,.15);
-  border-radius: 50%; color: #fff; font-size: 0.9rem;
+  background: var(--bg); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%; color: var(--text); font-size: 0.9rem;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; z-index: 2;
   transition: background 0.2s;
 }
-.det-ctrl:hover { background: rgba(0,0,0,.9); }
+.det-ctrl:hover { background: rgba(255,255,255,.08); }
 .det-ctrl.prev { left: 14px; }
 .det-ctrl.next { right: 14px; }
 
@@ -204,7 +209,7 @@ onMounted(() => {
   font-family: var(--ff-head);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--text);
   letter-spacing: -0.03em;
   margin-bottom: 8px;
   display: flex; align-items: center; gap: 12px;
@@ -243,7 +248,7 @@ onMounted(() => {
 }
 
 .detail-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.detail-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: rgba(220,220,230,.75); }
+.detail-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--muted); }
 .detail-features li::before {
   font-family: 'Font Awesome 6 Free'; font-weight: 900;
   content: '\f061'; color: var(--accent); font-size: 0.7rem;
@@ -280,7 +285,7 @@ onMounted(() => {
 }
 .other-card:hover { border-color: var(--accent); transform: translateX(4px); }
 .other-card-icon { font-size: 1.4rem; color: var(--accent); flex-shrink: 0; }
-.other-card-title { font-family: var(--ff-mono); font-size: 0.9rem; font-weight: 700; color: #fff; }
+.other-card-title { font-family: var(--ff-mono); font-size: 0.9rem; font-weight: 700; color: var(--text); }
 .other-card-sub { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
 .other-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; transition: color 0.2s; }
 .other-card:hover .other-arrow { color: var(--accent); }
@@ -302,7 +307,7 @@ onMounted(() => {
   padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border-md);
   text-decoration: none; transition: border-color 0.2s, transform 0.2s, color 0.2s;
 }
-.btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: #fff; }
+.btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: var(--text); }
 
 /* Badges */
 .web-card-meta, .mobile-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }

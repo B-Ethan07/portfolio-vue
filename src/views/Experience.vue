@@ -176,6 +176,12 @@ const timeline = [
   flex-shrink: 0;
 }
 
+.section-wrap {
+  width: 100%;
+  max-width: none;
+  padding: 80px 48px;
+}
+
 @media (max-width: 1024px) {
   .section-wrap { padding: 80px 24px; }
   .skills-timeline { padding-left: 22px; }
