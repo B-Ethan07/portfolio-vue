@@ -45,7 +45,7 @@ onUnmounted(() => clearInterval(autoTimer))
 
 const stackCards = [
   {
-    title: 'Mobile',
+    title: 'Développement Mobile',
     desc: 'Apps multiplateformes et natives.',
     tags: [
       { label: 'Flutter', icon: 'devicon-flutter-plain colored' },
@@ -53,33 +53,39 @@ const stackCards = [
     ],
   },
   {
-    title: 'Front-End',
-    desc: 'Interfaces modernes et performantes.',
+    title: 'Développement Front-End',
+    desc: 'Interfaces modernes, performantes et accessibles.',
     tags: [
       { label: 'React', icon: 'devicon-react-original colored' },
       { label: 'Angular', icon: 'devicon-angularjs-plain colored' },
+      { label: 'Vue.js', icon: 'devicon-vuejs-plain colored' },
+      { label: 'TypeScript', icon: 'devicon-typescript-plain colored' },
       { label: 'JavaScript', icon: 'devicon-javascript-plain colored' },
       { label: 'Tailwind', icon: 'devicon-tailwindcss-plain colored' },
     ],
   },
   {
-    title: 'Back-End',
-    desc: 'APIs robustes et scalables.',
+    title: 'Développement Back-End',
+    desc: 'Création d\'APIs robustes et scalables, architecture MVC et microservices.',
     tags: [
-      { label: 'FastAPI', icon: 'devicon-fastapi-plain colored' },
+      { label: 'Node.js', icon: 'devicon-nodejs-plain colored' },
       { label: 'Express.js', icon: 'devicon-express-original colored' },
       { label: 'PHP', icon: 'devicon-php-plain colored' },
       { label: 'Symfony', icon: 'devicon-symfony-original colored' },
+      { label: 'Python', icon: 'devicon-python-plain colored' },
+      { label: 'FastAPI', icon: 'devicon-fastapi-plain colored' },
     ],
   },
   {
     title: 'Data & Outils',
-    desc: 'Du stockage au delivery.',
+    desc: 'Des bases de données aux outils de déploiement et de maquettage.',
     tags: [
       { label: 'MongoDB', icon: 'devicon-mongodb-plain colored' },
       { label: 'SQL', icon: 'devicon-mysql-plain colored' },
       { label: 'Docker', icon: 'devicon-docker-plain colored' },
       { label: 'Git', icon: 'devicon-git-plain colored' },
+      { label: 'Linux', icon: 'devicon-linux-plain colored' },
+      { label: 'Figma', icon: 'devicon-figma-plain colored' }
     ],
   },
 ]
@@ -547,8 +553,8 @@ const stackCards = [
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .stack-card:hover { border-color: rgba(212,200,74,.28); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.35); }
-.stack-card-title { font-family: var(--ff-mono); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.stack-card-desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 14px; }
+.stack-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.stack-card-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
 .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .home-cta-row {
@@ -558,11 +564,11 @@ const stackCards = [
 
 .skill-tag {
   font-family: var(--ff-mono);
-  font-size: 0.82rem;
-  padding: 7px 14px;
+  font-size: 0.75rem;
+  padding: 5px 12px;
   background: var(--surface2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 10px;
   color: var(--muted);
   transition: border-color 0.2s, color 0.2s;
   display: inline-flex;
