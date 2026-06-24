@@ -5,68 +5,61 @@ useReveal()
 </script>
 
 <template>
-  <section id="contact" >
-    <div class="page-section section-wrap">
-      <div class="section-header reveal">
-        <span class="section-num">04</span>
-        <div class="section-title-block">
-          <p class="section-label">Contact</p>
-          <h2 class="section-title">
-            Travaillons<br /><em>ensemble</em>
-          </h2>
-        </div>
-      </div>
-
-      <div class="contact-wrap reveal">
-        <div>
-          <h3 class="contact-heading">
-            Une idée ?<br />Un <em>projet</em> ?
-          </h3>
-
-          <p class="contact-sub">
-            N'hésitez pas à me contacter, je suis ouvert aux opportunités et collaborations.
-          </p>
-
-          <div class="contact-links">
-            <a
-              href="https://github.com/B-Ethan07"
-              class="contact-link"
-              target="_blank"
-            >
-              <span class="contact-link-left">
-                <span class="contact-link-icon">
-                  <i class="fa-brands fa-github"></i>
-                </span>
-                GitHub · B-Ethan07
-              </span>
-              <span class="contact-link-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/ethan-boulard-4b1112364/"
-              class="contact-link"
-              target="_blank"
-            >
-              <span class="contact-link-left">
-                <span class="contact-link-icon">
-                  <i class="fa-brands fa-linkedin-in"></i>
-                </span>
-                LinkedIn · Ethan Boulard
-              </span>
-              <span class="contact-link-arrow">
-                <i class="fa-solid fa-arrow-right"></i>
-              </span>
-            </a>
+  <section id="contact">
+    <div class="page-section contact-hero">
+      <div class="section-wrap">
+        <div class="section-header reveal">
+          <div class="section-title-block">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">
+              Travaillons<br /><em>ensemble</em>
+            </h2>
           </div>
         </div>
 
-        <div class="contact-right">
-          <div class="contact-deco">
-            <span>LET'S</span>
-            <span class="accent-word">BUILD</span>
-            <span>IT.</span>
+        <div class="contact-wrap reveal">
+          <div>
+            <h3 class="contact-heading">
+              Une idée ?<br />Un <em>projet</em> ?
+            </h3>
+
+            <p class="contact-sub">
+              N'hésitez pas à me contacter, je suis ouvert aux opportunités et collaborations.
+            </p>
+
+            <div class="contact-links">
+              <a href="https://github.com/B-Ethan07" class="contact-link" target="_blank">
+                <span class="contact-link-left">
+                  <span class="contact-link-icon">
+                    <i class="fa-brands fa-github"></i>
+                  </span>
+                  GitHub · B-Ethan07
+                </span>
+                <span class="contact-link-arrow">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+
+              <a href="https://www.linkedin.com/in/ethan-boulard-4b1112364/" class="contact-link" target="_blank">
+                <span class="contact-link-left">
+                  <span class="contact-link-icon">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </span>
+                  LinkedIn · Ethan Boulard
+                </span>
+                <span class="contact-link-arrow">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <div class="contact-deco">
+              <span>LET'S</span>
+              <span class="accent-word">BUILD</span>
+              <span>IT.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -131,7 +124,8 @@ useReveal()
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: var(--text); /* ✅ FIX IMPORTANT */
+  color: var(--text);
+  /* ✅ FIX IMPORTANT */
   margin-bottom: 16px;
   line-height: 1.05;
 }

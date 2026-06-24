@@ -59,6 +59,7 @@ const stackCards = [
       { label: 'React', icon: 'devicon-react-original colored' },
       { label: 'Angular', icon: 'devicon-angularjs-plain colored' },
       { label: 'Vue.js', icon: 'devicon-vuejs-plain colored' },
+      { label: 'Next.js', icon: 'devicon-nextjs-plain colored' },
       { label: 'TypeScript', icon: 'devicon-typescript-plain colored' },
       { label: 'JavaScript', icon: 'devicon-javascript-plain colored' },
       { label: 'Tailwind', icon: 'devicon-tailwindcss-plain colored' },
@@ -156,18 +157,10 @@ const stackCards = [
           </div>
         </div>
 
-        <div
-          class="project-card"
-          @touchstart="onTouchStart"
-          @touchend="onTouchEnd"
-          @mouseenter="clearInterval(autoTimer)"
-          @mouseleave="resetAuto"
-        >
-          <div
-            class="project-card-img"
-            :class="`project-card-img--${HERO_PROJECTS[current].type}`"
-            :style="HERO_PROJECTS[current].images?.[0] ? { backgroundImage: `url(${HERO_PROJECTS[current].images[0]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : { background: HERO_PROJECTS[current].color }"
-          >
+        <div class="project-card" @touchstart="onTouchStart" @touchend="onTouchEnd"
+          @mouseenter="clearInterval(autoTimer)" @mouseleave="resetAuto">
+          <div class="project-card-img" :class="`project-card-img--${HERO_PROJECTS[current].type}`"
+            :style="HERO_PROJECTS[current].images?.[0] ? { backgroundImage: `url(${HERO_PROJECTS[current].images[0]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : { background: HERO_PROJECTS[current].color }">
             <div class="project-card-overlay"></div>
             <span class="project-card-year">{{ HERO_PROJECTS[current].year }}</span>
           </div>
@@ -187,16 +180,8 @@ const stackCards = [
                 Voir le projet <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </RouterLink>
               <div class="carousel-dots" role="tablist">
-                <button
-                  v-for="(_, i) in HERO_PROJECTS"
-                  :key="i"
-                  class="carousel-dot"
-                  :class="{ active: i === current }"
-                  role="tab"
-                  :aria-label="`Projet ${i + 1}`"
-                  :aria-selected="i === current"
-                  @click="goTo(i)"
-                ></button>
+                <button v-for="(_, i) in HERO_PROJECTS" :key="i" class="carousel-dot" :class="{ active: i === current }"
+                  role="tab" :aria-label="`Projet ${i + 1}`" :aria-selected="i === current" @click="goTo(i)"></button>
               </div>
             </div>
           </div>
@@ -226,12 +211,8 @@ const stackCards = [
       </div>
 
       <div class="stack-grid">
-        <article
-          v-for="(card, i) in stackCards"
-          :key="card.title"
-          class="stack-card reveal"
-          :class="`reveal-delay-${i + 1}`"
-        >
+        <article v-for="(card, i) in stackCards" :key="card.title" class="stack-card reveal"
+          :class="`reveal-delay-${i + 1}`">
           <h3 class="stack-card-title">{{ card.title }}</h3>
           <p class="stack-card-desc">{{ card.desc }}</p>
           <div class="stack-tags">
@@ -285,7 +266,9 @@ const stackCards = [
 .hero-left::before {
   content: '';
   position: absolute;
-  left: 0; top: 6px; bottom: 6px;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
   width: 2px;
   background: var(--accent);
   box-shadow: 0 0 16px var(--accent-glow);
@@ -319,7 +302,17 @@ const stackCards = [
   animation: pulse 2s infinite;
 }
 
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
 
 .hero-name {
   font-family: var(--ff-head);
@@ -332,10 +325,13 @@ const stackCards = [
   margin-bottom: 12px;
 
   text-shadow:
-    0 10px 30px rgba(0,0,0,0.25),
+    0 10px 30px rgba(0, 0, 0, 0.25),
     0 0 18px var(--accent-glow);
 }
-.hero-name span { color: var(--accent); }
+
+.hero-name span {
+  color: var(--accent);
+}
 
 .hero-title {
   font-family: var(--ff-mono);
@@ -347,36 +343,75 @@ const stackCards = [
 }
 
 /* Stat chips */
-.hero-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.hero-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
 
 .stat-chip {
-  display: flex; align-items: center; gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   background: var(--surface);
   border: 1px solid var(--border-md);
   border-radius: 12px;
   padding: 10px 14px;
   transition: border-color 0.2s, transform 0.2s;
 }
+
 .stat-chip:hover {
   border-color: var(--accent);
   transform: translateY(-2px);
 }
+
 .stat-chip--purple:hover {
   border-color: var(--accent2);
 }
 
 .stat-icon {
-  width: 30px; height: 30px; border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   background: var(--accent-subtle);
-  border: 1px solid rgba(212,200,74,.18);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--accent); font-size: 0.78rem; flex-shrink: 0;
+  border: 1px solid rgba(212, 200, 74, .18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-size: 0.78rem;
+  flex-shrink: 0;
 }
-.stat-icon--purple { background: var(--accent2-subtle); border-color: rgba(139,92,246,.18); color: var(--lavender); }
 
-.stat-text { display: flex; flex-direction: column; gap: 2px; }
-.stat-val { font-family: var(--ff-mono); font-size: 0.8rem; font-weight: 600; color: var(--text); line-height: 1.1; white-space: nowrap; }
-.stat-label { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; }
+.stat-icon--purple {
+  background: var(--accent2-subtle);
+  border-color: rgba(139, 92, 246, .18);
+  color: var(--lavender);
+}
+
+.stat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-val {
+  font-family: var(--ff-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.stat-label {
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  color: var(--muted);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
 
 /* Hero about */
 .hero-about {
@@ -386,6 +421,7 @@ const stackCards = [
   padding: 16px 18px 16px 22px;
   margin-bottom: 28px;
 }
+
 .about-eyebrow {
   font-family: var(--ff-mono);
   font-size: 0.62rem;
@@ -394,26 +430,42 @@ const stackCards = [
   color: var(--lavender);
   margin-bottom: 8px;
 }
+
 .about-text {
   font-size: 0.9rem;
   color: var(--text);
   opacity: 0.85;
   line-height: 1.65;
 }
-.about-text strong { color: var(--accent); font-weight: 600; }
+
+.about-text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
 
 /* CTA */
-.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
 /* Hero carousel col */
 .hero-carousel-col {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
 .carousel-header {
-  display: flex; align-items: center; justify-content: space-between;
-  width: 100%; max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
 }
 
 .preview-badge {
@@ -435,64 +487,120 @@ const stackCards = [
 }
 
 .preview-dot {
-  width: 6px; height: 6px; border-radius: 999px;
-  background: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
 }
 
-.carousel-counter { font-family: var(--ff-mono); font-size: 0.65rem; color: var(--muted); }
-.carousel-counter span { color: var(--accent); }
+.carousel-counter {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  color: var(--muted);
+}
+
+.carousel-counter span {
+  color: var(--accent);
+}
 
 /* Project card */
 .project-card {
-  width: 100%; max-width: 400px;
+  width: 100%;
+  max-width: 400px;
   background: var(--surface);
   border: 1px solid var(--border-md);
-  border-radius: 20px; overflow: hidden;
+  border-radius: 20px;
+  overflow: hidden;
   transition: border-color 0.3s, transform 0.3s;
-  display: flex; flex-direction: column;
-  position: relative; cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
 }
-.project-card:hover { border-color: rgba(212,200,74,.28); transform: translateY(-3px); }
+
+.project-card:hover {
+  border-color: rgba(212, 200, 74, .28);
+  transform: translateY(-3px);
+}
 
 .project-card-img {
-  position: relative; height: auto; aspect-ratio: 16/9;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  position: relative;
+  height: auto;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.project-card-img--runway   { background: linear-gradient(135deg,#0d0914 0%,#1a1030 100%); }
-.project-card-img--zen      { background: linear-gradient(135deg,#071014 0%,#0b2018 100%); }
-.project-card-img--cinezone { background: linear-gradient(135deg,#140a0a 0%,#1c0c20 100%); }
+
+.project-card-img--runway {
+  background: linear-gradient(135deg, #0d0914 0%, #1a1030 100%);
+}
+
+.project-card-img--zen {
+  background: linear-gradient(135deg, #071014 0%, #0b2018 100%);
+}
+
+.project-card-img--cinezone {
+  background: linear-gradient(135deg, #140a0a 0%, #1c0c20 100%);
+}
 
 .project-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom,transparent 45%,rgba(7,7,13,.75) 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 45%, rgba(7, 7, 13, .75) 100%);
   pointer-events: none;
 }
 
 .project-card-year {
-  position: absolute; top: 10px; right: 10px;
-  font-family: var(--ff-mono); font-size: 0.58rem;
-  letter-spacing: 0.12em; color: var(--text);
-  background: var(--surface); border: 1px solid var(--border-md);
-  padding: 3px 9px; border-radius: 100px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-md);
+  padding: 3px 9px;
+  border-radius: 100px;
 }
 
 .project-card-body {
-  position: absolute; left: 0; right: 0; bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 16px 18px 18px;
-  opacity: 0; transform: translateY(10px);
-  background: linear-gradient(180deg,rgba(14,14,18,.2) 0%,rgba(14,14,18,.92) 45%,rgba(14,14,18,.98) 100%);
+  opacity: 0;
+  transform: translateY(10px);
+  background: linear-gradient(180deg, rgba(14, 14, 18, .2) 0%, rgba(14, 14, 18, .92) 45%, rgba(14, 14, 18, .98) 100%);
   backdrop-filter: blur(6px);
   transition: opacity 0.2s, transform 0.2s;
 }
-.project-card:hover .project-card-body { opacity: 1; transform: translateY(0); }
 
-.project-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.project-card:hover .project-card-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
 
 .project-card-type {
-  font-family: var(--ff-mono); font-size: 0.6rem;
-  color: var(--text); background: var(--surface2);
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 3px 8px; border-radius: 999px; letter-spacing: 0.05em;
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  color: var(--text);
+  background: var(--surface2);
+  border: 1px solid rgba(255, 255, 255, .12);
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
 }
 
 .project-card-title {
@@ -502,48 +610,103 @@ const stackCards = [
 
   color: var(--text);
 
-  text-shadow: 0 2px 8px rgba(0,0,0,.15);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .15);
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin-bottom: 7px;
 }
 
 .project-card-desc {
-  font-size: 0.82rem; color: var(--muted);
-  line-height: 1.55; margin-bottom: 12px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 12px;
 }
 
-.project-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.project-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
 
 .project-card-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--ff-mono); font-size: 0.65rem;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--accent); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
   transition: opacity 0.2s;
 }
-.project-card-link:hover { opacity: 0.7; color: var(--accent); }
+
+.project-card-link:hover {
+  opacity: 0.7;
+  color: var(--accent);
+}
 
 /* Dots */
-.carousel-dots { display: flex; gap: 6px; align-items: center; }
-.carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); border: none; padding: 0; cursor: pointer; transition: background 0.25s, width 0.25s, border-radius 0.25s; flex-shrink: 0; }
-.carousel-dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.25s, width 0.25s, border-radius 0.25s;
+  flex-shrink: 0;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  width: 20px;
+  border-radius: 3px;
+}
 
 /* Arrows */
-.carousel-arrows { display: flex; gap: 10px; }
+.carousel-arrows {
+  display: flex;
+  gap: 10px;
+}
+
 .carousel-arrow {
-  width: 38px; height: 38px; border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   border: 1px solid var(--border-md);
-  background: var(--surface); color: var(--muted);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 0.78rem;
+  background: var(--surface);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.78rem;
   transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
-.carousel-arrow:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.08); }
+
+.carousel-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.08);
+}
 
 /* ─── STACK ────────────────────────────────── */
 
-.stack-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
 
 .stack-card {
   background: var(--surface);
@@ -552,14 +715,38 @@ const stackCards = [
   padding: 22px 20px;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
-.stack-card:hover { border-color: rgba(212,200,74,.28); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.35); }
-.stack-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-.stack-card-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 14px; }
-.stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.stack-card:hover {
+  border-color: rgba(212, 200, 74, .28);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+}
+
+.stack-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.stack-card-desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.stack-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
 .home-cta-row {
-  display: flex; gap: 16px; flex-wrap: wrap;
-  margin-top: 56px; justify-content: center;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 56px;
+  justify-content: center;
 }
 
 .skill-tag {
@@ -576,6 +763,7 @@ const stackCards = [
   gap: 8px;
   white-space: nowrap;
 }
+
 .section-wrap {
   width: 100%;
   max-width: none;
@@ -584,26 +772,85 @@ const stackCards = [
 
 /* Responsive */
 @media (max-width: 1024px) {
-  #hero { grid-template-columns: 1fr; padding: 100px 32px 80px; gap: 48px; }
-  .hero-left::before { display: none; }
-  .hero-left { padding-left: 0; }
-  .hero-carousel-col { width: 100%; }
-  .carousel-header { max-width: 100%; width: 100%; }
-  .project-card { max-width: 100%; }
-  .stack-grid { grid-template-columns: repeat(2,1fr); }
+  #hero {
+    grid-template-columns: 1fr;
+    padding: 100px 32px 80px;
+    gap: 48px;
+  }
+
+  .hero-left::before {
+    display: none;
+  }
+
+  .hero-left {
+    padding-left: 0;
+  }
+
+  .hero-carousel-col {
+    width: 100%;
+  }
+
+  .carousel-header {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .project-card {
+    max-width: 100%;
+  }
+
+  .stack-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 480px) {
-  #hero { padding: 90px 18px 72px; gap: 40px; }
-  .hero-stats { flex-direction: column; gap: 8px; }
-  .stat-chip { width: 100%; }
-  .hero-about { padding: 14px 14px 14px 18px; }
-  .hero-cta { flex-direction: column; gap: 10px; }
-  .btn-primary-custom, .btn-ghost { width: 100%; justify-content: center; }
-  .stack-grid { grid-template-columns: 1fr; }
+  #hero {
+    padding: 90px 18px 72px;
+    gap: 40px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stat-chip {
+    width: 100%;
+  }
+
+  .hero-about {
+    padding: 14px 14px 14px 18px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-primary-custom,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
 @media (min-width: 1440px) {
-  #hero { padding: 140px 80px 120px; gap: 80px; }
-  .project-card { max-width: 520px; }
-  .carousel-header { max-width: 520px; }
+  #hero {
+    padding: 140px 80px 120px;
+    gap: 80px;
+  }
+
+  .project-card {
+    max-width: 520px;
+  }
+
+  .carousel-header {
+    max-width: 520px;
+  }
 }
 </style>
