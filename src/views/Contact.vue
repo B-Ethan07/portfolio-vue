@@ -232,4 +232,54 @@ useReveal()
 .contact-deco .accent-word {
   -webkit-text-stroke-color: var(--accent-glow);
 }
+
+/* ─────────────────────────── RESPONSIVE ─────────────────────────── */
+@media (max-width: 900px) {
+  .section-wrap {
+    padding: 60px 24px;
+  }
+
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 40px 28px;
+    text-align: left;
+  }
+
+  .contact-right {
+    align-items: flex-start;
+    order: -1;
+  }
+
+  .contact-deco {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .contact-heading {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-wrap {
+    padding: 28px 20px;
+    border-radius: var(--radius-sm);
+  }
+
+  .contact-link {
+    padding: 14px 16px;
+    font-size: 0.85rem;
+  }
+
+  .contact-link-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  .contact-sub {
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+  }
+}
 </style>
