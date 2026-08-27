@@ -55,9 +55,9 @@ export const PROJECTS: Project[] = [
     tags: ["Next.js", "TypeScript", "Tailwind", "FastAPI"],
     images: [
       "/assets/img/landing-runway1.webp",
-      "/assets/img/landing-runway2.webp",
-      "/assets/img/landing-runway3.webp",
-      "/assets/img/landing-runway4.webp",
+      "/assets/img/landing-runway2.jpg",
+      "/assets/img/landing-runway3.jpg",
+      "/assets/img/landing-runway4.jpg",
     ],
     links: [
       {
@@ -71,8 +71,8 @@ export const PROJECTS: Project[] = [
     color: "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)",
   },
   {
-    id: "inside-runway-app",
-    slug: "inside-runway-app",
+    id: "inside-runway-crm",
+    slug: "inside-runway-crm",
     title: "INSIDE RUNWAY",
     subtitle: "CRM React B2B",
     type: "web",
