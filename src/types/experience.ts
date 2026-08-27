@@ -2,6 +2,17 @@ import type { TimelineItem, StackCard } from "@/types";
 
 export const TIMELINE: TimelineItem[] = [
   {
+    date: "Aout 2026",
+    title: "Certification Cisco - Cybersecurity",
+    icon: "fa-solid fa-certificate",
+    stack: "Cybersecurity, Network Security, Penetration Testing",
+    bullets: [
+      "Formation complète sur les aspects de la cybersécurité.",
+      "Apprentissage des techniques de sécurité réseau.",
+      "Pratique des tests d'intrusion et d'analyse des vulnérabilités.",
+    ],
+  },
+  {
     date: "Fev 2026 – Avr 2026",
     title: "Developpeur Full-Stack · INSIDE RUNWAY",
     icon: "fa-solid fa-briefcase",
