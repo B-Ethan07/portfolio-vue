@@ -57,7 +57,6 @@ export const PROJECTS: Project[] = [
       "/assets/img/landing-runway1.webp",
       "/assets/img/landing-runway2.jpg",
       "/assets/img/landing-runway3.jpg",
-      "/assets/img/landing-runway4.jpg",
     ],
     links: [
       {
