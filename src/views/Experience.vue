@@ -4,6 +4,17 @@ useReveal()
 
 const timeline = [
   {
+    date: "Aout 2026",
+    title: "Certification Cisco - Cybersecurity",
+    icon: "fa-solid fa-certificate",
+    stack: "Cybersecurity, Network Security, Penetration Testing",
+    bullets: [
+      "Formation complète sur les aspects de la cybersécurité.",
+      "Apprentissage des techniques de sécurité réseau.",
+      "Pratique des tests d'intrusion et d'analyse des vulnérabilités.",
+    ],
+  },
+  {
     date: 'Fev 2026 - Avr 2026',
     icon: 'fa-solid fa-briefcase',
     title: 'Developpeur Full-Stack — INSIDE RUNWAY',
@@ -62,11 +73,7 @@ const timeline = [
         </div>
 
         <div class="skills-timeline reveal">
-          <div
-            v-for="item in timeline"
-            :key="item.title"
-            class="skills-timeline-item"
-          >
+          <div v-for="item in timeline" :key="item.title" class="skills-timeline-item">
             <span class="skills-timeline-date">{{ item.date }}</span>
             <h3 class="skills-timeline-title">
               <i :class="item.icon" aria-hidden="true"></i>
@@ -87,7 +94,10 @@ const timeline = [
 </template>
 
 <style scoped>
-.exp-hero { background: var(--bg); min-height: 100vh; }
+.exp-hero {
+  background: var(--bg);
+  min-height: 100vh;
+}
 
 .skills-timeline {
   position: relative;
@@ -99,7 +109,9 @@ const timeline = [
 .skills-timeline::before {
   content: '';
   position: absolute;
-  left: 11px; top: 6px; bottom: 6px;
+  left: 11px;
+  top: 6px;
+  bottom: 6px;
   width: 1px;
   background: var(--border-md);
 }
@@ -115,8 +127,10 @@ const timeline = [
 .skills-timeline-item::before {
   content: '';
   position: absolute;
-  left: -21px; top: 20px;
-  width: 9px; height: 9px;
+  left: -21px;
+  top: 20px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--accent-subtle);
@@ -183,7 +197,12 @@ const timeline = [
 }
 
 @media (max-width: 1024px) {
-  .section-wrap { padding: 80px 24px; }
-  .skills-timeline { padding-left: 22px; }
+  .section-wrap {
+    padding: 80px 24px;
+  }
+
+  .skills-timeline {
+    padding-left: 22px;
+  }
 }
 </style>
