@@ -53,7 +53,12 @@ export const PROJECTS: Project[] = [
       "Déploiement Vercel + optimisation SEO",
     ],
     tags: ["Next.js", "TypeScript", "Tailwind", "FastAPI"],
-    images: ["/assets/img/landing-runway1.webp"],
+    images: [
+      "/assets/img/landing-runway1.webp",
+      "/assets/img/landing-runway2.webp",
+      "/assets/img/landing-runway3.webp",
+      "/assets/img/landing-runway4.webp",
+    ],
     links: [
       {
         label: "Voir la landing",
@@ -62,6 +67,38 @@ export const PROJECTS: Project[] = [
         variant: "primary",
       },
     ],
+    year: "Fev 2026 – Avr 2026",
+    color: "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)",
+  },
+  {
+    id: "inside-runway-app",
+    slug: "inside-runway-app",
+    title: "INSIDE RUNWAY",
+    subtitle: "CRM React B2B",
+    type: "web",
+    badge: "Site web",
+    badgeStage: "B2B · 2026",
+    icon: "fa-solid fa-shirt",
+    description:
+      "CRM React/FastAPI B2B pour styliste, gestion de projets, livraisons et communication entre stylistes et marques.",
+    longDescription:
+      "CRM React/FastAPI B2B reliant stylistes et marques pour faciliter la gestion de projets, livraisons et communications au quotidien.",
+    features: [
+      "Posts, collections et flux média",
+      "Logique métier avancée : projet, livraison, agenda",
+      "Notifications push, messagerie et authentification",
+      "Stockage média cloud (AWS S3)",
+      "Architecture scalable et navigation fluide",
+    ],
+    tags: ["React", "TypeScript", "FastAPI", "AWS S3", "Docker"],
+    images: [
+      "/assets/img/IR.webp",
+      "/assets/img/IR2.webp",
+      "/assets/img/IR3.webp",
+      "/assets/img/IR4.webp",
+    ],
+    video: "/assets/img/irapp.mp4",
+    links: [],
     year: "Fev 2026 – Avr 2026",
     color: "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)",
   },
