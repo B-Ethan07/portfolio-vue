@@ -9,8 +9,6 @@ const timeline = [
     icon: "fa-solid fa-graduation-cap",
     stack:
       "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
-    description:
-      "Diplome obtenu après une formation intensive de 6 mois en développement web et web mobile.",
     bullets: [
       "Maîtrise des technologies front-end et back-end.",
       "Réalisation de projets concrets et collaboratifs.",

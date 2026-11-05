@@ -9,7 +9,7 @@ export const PROJECTS: Project[] = [
     type: "web",
     badge: "Bot, Twitch",
     badgeStage: "Novembre 2026",
-    icon: "fa-solid fa-twitch",
+    icon: "fa-brands fa-twitch",
     description:
       "Bot Twitch qui permet aux viewers de proposer des musiques dans le chat.",
     longDescription:
