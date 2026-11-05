@@ -2,6 +2,22 @@ import type { TimelineItem, StackCard } from "@/types";
 
 export const TIMELINE: TimelineItem[] = [
   {
+    date: "Octobre 2026",
+    title: "Diplome Développeur·se Web et Web Mobile",
+    icon: "fa-solid fa-graduation-cap",
+    stack:
+      "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
+    description:
+      "Diplome obtenu après une formation intensive de 6 mois en développement web et web mobile.",
+    bullets: [
+      "Maîtrise des technologies front-end et back-end.",
+      "Réalisation de projets concrets et collaboratifs.",
+      "Acquisition de compétences en gestion de projet et travail en équipe.",
+      "Développement de compétences en communication et en résolution de problèmes.",
+      "Modélisation de Base de Données et création d'API REST.",
+    ],
+  },
+  {
     date: "Aout 2026",
     title: "Certification Cisco - Cybersecurity",
     icon: "fa-solid fa-certificate",
@@ -41,7 +57,8 @@ export const TIMELINE: TimelineItem[] = [
     date: "Avril 2025 — Novembre 2025",
     title: "Développeur d'Application Mobile · M2i Formation Lyon",
     icon: "fa-solid fa-graduation-cap",
-    stack: "Flutter, Kotlin, Firebase",
+    stack:
+      "HTML, CSS, JavaScript, React, Node.js, Express, PHP, Angular, MySQL, Git, MongoDB, SGDB, RGPD, RGAA, SEO, UI/UX, Responsive Design, Accessibilité, Performance Web",
     description:
       "Formation professionnalisante orientée mobile et application.",
   },
