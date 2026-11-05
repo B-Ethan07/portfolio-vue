@@ -4,6 +4,22 @@ useReveal()
 
 const timeline = [
   {
+    date: "Octobre 2026",
+    title: "Diplome Développeur Web et Web Mobile",
+    icon: "fa-solid fa-graduation-cap",
+    stack:
+      "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
+    description:
+      "Diplome obtenu après une formation intensive de 6 mois en développement web et web mobile.",
+    bullets: [
+      "Maîtrise des technologies front-end et back-end.",
+      "Réalisation de projets concrets et collaboratifs.",
+      "Acquisition de compétences en gestion de projet et travail en équipe.",
+      "Développement de compétences en communication et en résolution de problèmes.",
+      "Modélisation de Base de Données et création d'API REST.",
+    ],
+  },
+  {
     date: "Aout 2026",
     title: "Certification Cisco - Cybersecurity",
     icon: "fa-solid fa-certificate",
@@ -17,7 +33,7 @@ const timeline = [
   {
     date: 'Fev 2026 - Avr 2026',
     icon: 'fa-solid fa-briefcase',
-    title: 'Developpeur Full-Stack — INSIDE RUNWAY',
+    title: 'Developpeur Full-Stack - INSIDE RUNWAY',
     stack: 'Flutter, React, FastApi, NextJs',
     items: [
       "App mobile Flutter: developpement de A a Z d'une application mobile multiplateforme sur la base du CRM de la marque (architecture, navigation, gestion d'etat, implementation des fonctionnalites, AWS S3).",
@@ -29,7 +45,7 @@ const timeline = [
   {
     date: 'Nov 2025 - Jan 2026',
     icon: 'fa-solid fa-mobile-screen',
-    title: "Developpeur Mobile, Front-end — IT'S ME TIME",
+    title: "Developpeur Mobile, Front-end - IT'S ME TIME",
     stack: 'Flutter, React',
     items: [
       'Developpement et integration de nouvelles fonctionnalites en Flutter.',
@@ -40,7 +56,7 @@ const timeline = [
     ],
   },
   {
-    date: 'Avril 2025 — Novembre 2025',
+    date: 'Avril 2025 - Novembre 2025',
     icon: 'fa-solid fa-graduation-cap',
     title: 'Développeur d\'Application Mobile · M2i Formation Lyon',
     stack: 'Flutter, Kotlin, Firebase',
@@ -48,7 +64,7 @@ const timeline = [
     text: 'Formation professionnalisante orientée mobile et application.',
   },
   {
-    date: 'Début 2024 — Aujourd\'hui',
+    date: 'Début 2024 - Aujourd\'hui',
     icon: 'fa-solid fa-book-open',
     title: 'Autodidacte',
     stack: 'Flutter, Angular, React',
