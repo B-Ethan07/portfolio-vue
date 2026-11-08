@@ -162,13 +162,13 @@ const stackCards = [
           <div class="project-card-img" :class="`project-card-img--${HERO_PROJECTS[current].type}`"
             :style="HERO_PROJECTS[current].images?.[0] ? { backgroundImage: `url(${HERO_PROJECTS[current].images[0]})`, backgroundSize: 'cover', backgroundPosition: 'center' } : { background: HERO_PROJECTS[current].color }">
             <div class="project-card-overlay"></div>
+            <span class="project-card-type">{{ HERO_PROJECTS[current].type }}</span>
             <span class="project-card-year">{{ HERO_PROJECTS[current].year }}</span>
           </div>
 
           <div class="project-card-body">
             <div class="project-card-meta">
               <span class="web-badge">{{ HERO_PROJECTS[current].badge }}</span>
-              <span class="project-card-type">{{ HERO_PROJECTS[current].type }}</span>
             </div>
             <h2 class="project-card-title">{{ HERO_PROJECTS[current].title }}</h2>
             <p class="project-card-desc">{{ HERO_PROJECTS[current].description }}</p>
@@ -553,18 +553,29 @@ const stackCards = [
   pointer-events: none;
 }
 
+/* Type (top-left) + année (top-right) : même ligne */
+.project-card-type,
 .project-card-year {
   position: absolute;
   top: 10px;
-  right: 10px;
+  z-index: 1;
   font-family: var(--ff-mono);
   font-size: 0.58rem;
   letter-spacing: 0.12em;
+  line-height: 1.4;
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border-md);
   padding: 3px 9px;
   border-radius: 100px;
+}
+
+.project-card-type {
+  left: 10px;
+}
+
+.project-card-year {
+  right: 10px;
 }
 
 .project-card-body {
@@ -590,17 +601,6 @@ const stackCards = [
   align-items: center;
   gap: 10px;
   margin-bottom: 9px;
-}
-
-.project-card-type {
-  font-family: var(--ff-mono);
-  font-size: 0.6rem;
-  color: var(--text);
-  background: var(--surface2);
-  border: 1px solid rgba(255, 255, 255, .12);
-  padding: 3px 8px;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
 }
 
 .project-card-title {
