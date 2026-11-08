@@ -6,8 +6,7 @@ export const PROJECTS: Project[] = [
     slug: "bot-twitch",
     title: "Bot Twitch",
     subtitle: "Bot pour streamer Twitch",
-    type: "web",
-    badge: "Bot, Twitch",
+    type: "bot/script",
     badgeStage: "Novembre 2026",
     icon: "fa-brands fa-twitch",
     description:
@@ -44,8 +43,7 @@ export const PROJECTS: Project[] = [
     slug: "arcasolis-app",
     title: "ArcaSolis",
     subtitle: "App mobile & Desktop Flutter",
-    type: "web",
-    badge: "App mobile, Desktop",
+    type: "desktop/mobile",
     badgeStage: "Oct 2026",
     icon: "fa-solid fa-mobile-screen-button",
     description: "Application Flutter pour tracker ses films et ses séries",
@@ -76,7 +74,6 @@ export const PROJECTS: Project[] = [
     title: "INSIDE RUNWAY",
     subtitle: "App mobile Flutter B2B",
     type: "mobile",
-    badge: "App mobile",
     badgeStage: "B2B · 2026",
     icon: "fa-solid fa-shirt",
     description:
@@ -108,7 +105,6 @@ export const PROJECTS: Project[] = [
     title: "INSIDE RUNWAY · Landing",
     subtitle: "Refonte landing page B2B",
     type: "web",
-    badge: "Site web",
     badgeStage: "B2B · 2026",
     icon: "fa-solid fa-globe",
     description:
@@ -143,8 +139,7 @@ export const PROJECTS: Project[] = [
     slug: "inside-runway-crm",
     title: "INSIDE RUNWAY",
     subtitle: "CRM React B2B",
-    type: "web",
-    badge: "Site web",
+    type: "fullstack",
     badgeStage: "B2B · 2026",
     icon: "fa-solid fa-shirt",
     description:
@@ -175,8 +170,7 @@ export const PROJECTS: Project[] = [
     slug: "zenquest",
     title: "ZenQuest",
     subtitle: "SPA suivi quotidien",
-    type: "web",
-    badge: "Site web",
+    type: "fullstack",
     badgeStage: "React/TS · Express.js",
     icon: "fa-solid fa-heart-pulse",
     description:
@@ -219,7 +213,6 @@ export const PROJECTS: Project[] = [
     title: "IT'S ME TIME",
     subtitle: "App de coloriage Flutter",
     type: "mobile",
-    badge: "App mobile",
     badgeStage: "Stage · 2026",
     icon: "fa-solid fa-palette",
     description:
@@ -249,7 +242,6 @@ export const PROJECTS: Project[] = [
     title: "CineZone",
     subtitle: "Plateforme fullstack de films",
     type: "fullstack",
-    badge: "Site web",
     badgeStage: "Projet fullstack",
     icon: "fa-solid fa-film",
     description:
@@ -291,8 +283,7 @@ export const PROJECTS: Project[] = [
     slug: "factuzen",
     title: "FactuZen",
     subtitle: "App de gestion de facturation",
-    type: "web",
-    badge: "Site web",
+    type: "fullstack",
     badgeStage: "Projet Symfony",
     icon: "fa-solid fa-file-invoice",
     description:
@@ -327,8 +318,7 @@ export const PROJECTS: Project[] = [
     slug: "educeasy",
     title: "Educ'Easy",
     subtitle: "Blog pour parents",
-    type: "web",
-    badge: "Site web",
+    type: "fullstack",
     badgeStage: "Blog web",
     icon: "fa-solid fa-newspaper",
     description:
