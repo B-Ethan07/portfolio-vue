@@ -9,7 +9,7 @@ const timeline = [
     icon: "fa-solid fa-graduation-cap",
     stack:
       "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
-    bullets: [
+    items: [
       "Maîtrise des technologies front-end et back-end.",
       "Réalisation de projets concrets et collaboratifs.",
       "Acquisition de compétences en gestion de projet et travail en équipe.",
@@ -22,7 +22,7 @@ const timeline = [
     title: "Certification Cisco - Cybersecurity",
     icon: "fa-solid fa-certificate",
     stack: "Cybersecurity, Network Security, Penetration Testing",
-    bullets: [
+    items: [
       "Formation complète sur les aspects de la cybersécurité.",
       "Apprentissage des techniques de sécurité réseau.",
       "Pratique des tests d'intrusion et d'analyse des vulnérabilités.",

@@ -31,8 +31,8 @@ export const PROJECTS: Project[] = [
       "SQLite",
     ],
     images: [
-      "/assets/img/twitchbot5.png",
-      "/assets/img/twitchbot4.png",
+      "/assets/img/twitchbot7.png",
+      "/assets/img/twitchbot8.png",
       "/assets/img/twitchbot6.png",
     ],
     links: [],
