@@ -361,5 +361,5 @@ export const PROJECTS: Project[] = [
 ];
 
 export const HERO_PROJECTS = PROJECTS.filter((p) =>
-  ["inside-runway-landing", "zenquest", "cinezone"].includes(p.id),
+  ["bot-twitch", "inside-runway-landing", "arcasolis-app"].includes(p.id),
 );
