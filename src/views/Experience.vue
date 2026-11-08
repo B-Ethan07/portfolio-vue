@@ -8,7 +8,7 @@ const timeline = [
     title: "Diplome Développeur Web et Web Mobile",
     icon: "fa-solid fa-graduation-cap",
     stack:
-      "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
+      "Développement Web Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, CI/CD, Git, Déploiement, Sécurité, Tests, SEO",
     items: [
       "Maîtrise des technologies front-end et back-end.",
       "Réalisation de projets concrets et collaboratifs.",
@@ -42,7 +42,7 @@ const timeline = [
   },
   {
     date: 'Nov 2025 - Jan 2026',
-    icon: 'fa-solid fa-mobile-screen',
+    icon: 'fa-solid fa-briefcase',
     title: "Developpeur Mobile, Front-end - IT'S ME TIME",
     stack: 'Flutter, React',
     items: [
