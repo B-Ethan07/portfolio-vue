@@ -77,11 +77,10 @@ const timeline = [
     <section class="page-section exp-hero">
       <div class="section-wrap">
         <div class="section-header reveal">
-          <span class="section-num">01</span>
           <div class="section-title-block">
             <p class="section-label">Formation & Experience</p>
             <h2 class="section-title">
-              Parcours <em>complet</em><br />et maîtrisé
+              Mon <em>Parcours</em>
             </h2>
           </div>
         </div>

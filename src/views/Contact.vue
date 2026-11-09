@@ -8,19 +8,13 @@ useReveal()
   <section id="contact">
     <div class="page-section contact-hero">
       <div class="section-wrap">
-        <div class="section-header reveal">
-          <div class="section-title-block">
-            <p class="section-label">Contact</p>
-            <h2 class="section-title">
-              Travaillons<br /><em>ensemble</em>
-            </h2>
-          </div>
-        </div>
-
         <div class="contact-wrap reveal">
           <div>
+            <div class="section-title-block">
+              <p class="section-label">Contact</p>
+            </div>
             <h3 class="contact-heading">
-              Une idée ?<br />Un <em>projet</em> ?
+              Travaillons <em>ensemble</em>
             </h3>
 
             <p class="contact-sub">

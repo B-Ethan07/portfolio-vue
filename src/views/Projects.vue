@@ -11,21 +11,15 @@ useReveal()
     <section id="projects" class="page-section">
       <div class="section-wrap">
         <div class="section-header reveal">
-          <span class="section-num">03</span>
           <div class="section-title-block">
             <p class="section-label">Mes projets</p>
-            <h2 class="section-title">Ce que j'ai<br /><em>construit</em></h2>
+            <h2 class="section-title">Mes <em>Réalisations</em></h2>
           </div>
         </div>
 
         <div class="all-projects">
-          <ProjectCard
-            v-for="(project, i) in PROJECTS"
-            :key="project.id"
-            :project="project"
-            class="reveal"
-            :class="`reveal-delay-${(i % 3) + 1}`"
-          />
+          <ProjectCard v-for="(project, i) in PROJECTS" :key="project.id" :project="project" class="reveal"
+            :class="`reveal-delay-${(i % 3) + 1}`" />
         </div>
       </div>
     </section>
@@ -33,7 +27,9 @@ useReveal()
 </template>
 
 <style scoped>
-#projects { min-height: 100vh; }
+#projects {
+  min-height: 100vh;
+}
 
 .all-projects {
   display: grid;
@@ -49,7 +45,12 @@ useReveal()
 }
 
 @media (max-width: 1024px) {
-  .all-projects { grid-template-columns: 1fr; }
-  .section-wrap { padding: 80px 24px; }
+  .all-projects {
+    grid-template-columns: 1fr;
+  }
+
+  .section-wrap {
+    padding: 80px 24px;
+  }
 }
 </style>
