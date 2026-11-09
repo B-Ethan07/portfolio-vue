@@ -1,105 +1,126 @@
 <script setup>
 import { useReveal } from '../composables/useReveal'
+
 useReveal()
 
-const timeline = [
+// Contenu volontairement court : 1 titre, 1 lieu, des tags, 3 points max.
+const experience = [
   {
-    date: "Octobre 2026",
-    title: "Diplome Développeur Web et Web Mobile",
-    icon: "fa-solid fa-graduation-cap",
-    stack:
-      "Développement Web Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, CI/CD, Git, Déploiement, Sécurité, Tests, SEO",
+    date: 'Fév – Avr 2026',
+    title: 'Développeur full-stack',
+    org: 'INSIDE RUNWAY',
+    tags: ['Flutter', 'React', 'FastAPI', 'Next.js'],
     items: [
-      "Maîtrise des technologies front-end et back-end.",
-      "Réalisation de projets concrets et collaboratifs.",
-      "Acquisition de compétences en gestion de projet et travail en équipe.",
-      "Développement de compétences en communication et en résolution de problèmes.",
-      "Modélisation de Base de Données et création d'API REST.",
+      "App mobile Flutter développée de A à Z, en autonomie : architecture, navigation, état, AWS S3.",
+      'Landing page Next.js : design et UI/UX.',
+      'CRM React : contribution et traduction FR/EN.',
     ],
   },
   {
-    date: "Aout 2026",
-    title: "Certification Cisco - Cybersecurity",
-    icon: "fa-solid fa-certificate",
-    stack: "Cybersecurity, Network Security, Penetration Testing",
+    date: 'Nov 2025 – Jan 2026',
+    title: 'Développeur mobile, front-end',
+    org: "IT'S ME TIME",
+    tags: ['Flutter', 'React'],
     items: [
-      "Formation complète sur les aspects de la cybersécurité.",
-      "Apprentissage des techniques de sécurité réseau.",
-      "Pratique des tests d'intrusion et d'analyse des vulnérabilités.",
+      'Nouvelles fonctionnalités Flutter, dont un module de dessin libre.',
+      'Refonte UI/UX : écrans, ergonomie, fluidité de navigation.',
+      "Intégration d'API REST avec le développeur backend.",
     ],
   },
+  // TODO : ajoute ici ton parcours d'éducateur (poste, structure, dates)
+  // { date: '…', title: 'Éducateur', org: '…', tags: [], items: ['…'] },
+]
+
+const formation = [
   {
-    date: 'Fev 2026 - Avr 2026',
-    icon: 'fa-solid fa-briefcase',
-    title: 'Developpeur Full-Stack - INSIDE RUNWAY',
-    stack: 'Flutter, React, FastApi, NextJs',
-    items: [
-      "App mobile Flutter: developpement de A a Z d'une application mobile multiplateforme sur la base du CRM de la marque (architecture, navigation, gestion d'etat, implementation des fonctionnalites, AWS S3).",
-      'Travail en autonomie sur l\'ensemble du front-end mobile.',
-      'Landing page NextJs: realisation du design et UI/UX.',
-      'CRM React: contribution au developpement du CRM React et traduction FR/EN.',
-    ],
+    date: 'Oct 2026',
+    title: 'Diplôme Développeur Web et Web Mobile',
+    tags: ['Front-End', 'Back-End', 'API REST', 'Bases de données', 'CI/CD', 'Tests'],
+    text: "Projets concrets et collaboratifs, modélisation de bases de données, création d'API REST.",
   },
   {
-    date: 'Nov 2025 - Jan 2026',
-    icon: 'fa-solid fa-briefcase',
-    title: "Developpeur Mobile, Front-end - IT'S ME TIME",
-    stack: 'Flutter, React',
-    items: [
-      'Developpement et integration de nouvelles fonctionnalites en Flutter.',
-      "Conception et implementation d'un module de dessin libre.",
-      "Amelioration de l'UI/UX: optimisation des ecrans, ergonomie et fluidite de navigation.",
-      'Integration d\'API REST et gestion des appels asynchrones (HTTP, JSON).',
-      'Collaboration etroite avec le developpeur backend.',
-    ],
+    date: 'Août 2026',
+    title: 'Certification Cisco · Cybersecurity',
+    tags: ['Sécurité réseau', 'Tests d\'intrusion'],
+    text: "Sécurité réseau, tests d'intrusion, analyse de vulnérabilités.",
   },
   {
-    date: 'Avril 2025 - Novembre 2025',
-    icon: 'fa-solid fa-graduation-cap',
-    title: 'Développeur d\'Application Mobile · M2i Formation Lyon',
-    stack: 'Flutter, Kotlin, Firebase',
-    items: null,
-    text: 'Formation professionnalisante orientée mobile et application.',
+    date: 'Avr – Nov 2025',
+    title: "Développeur d'application mobile",
+    org: 'M2i Formation, Lyon',
+    tags: ['Flutter', 'Kotlin', 'Firebase'],
+    text: 'Formation professionnalisante orientée mobile.',
   },
   {
-    date: 'Début 2024 - Aujourd\'hui',
-    icon: 'fa-solid fa-book-open',
+    date: 'Depuis 2024',
     title: 'Autodidacte',
-    stack: 'Flutter, Angular, React',
-    items: null,
-    text: 'Je me forme aussi en autodidacte depuis début 2024.',
+    tags: ['Flutter', 'Angular', 'React'],
+    text: null,
   },
+]
+
+const competences = [
+  { domain: 'Mobile', tags: ['Flutter', 'Dart'] },
+  { domain: 'Front-end', tags: ['React', 'Angular', 'Vue.js', 'Tailwind'] },
+  { domain: 'Back-end', tags: ['Node.js', 'Express.js', 'FastAPI', 'Python', 'Symfony'] },
+  { domain: 'Données', tags: ['MongoDB', 'SQL'] },
+  { domain: 'Outils', tags: ['GitHub Actions', 'Docker', 'Git', 'Linux', 'Vitest', 'Jest', 'Figma'] },
 ]
 </script>
 
 <template>
   <main>
-    <section class="page-section exp-hero">
-      <div class="section-wrap">
-        <div class="section-header reveal">
-          <div class="section-title-block">
-            <p class="section-label">Formation & Experience</p>
-            <h2 class="section-title">
-              Mon <em>Parcours</em>
-            </h2>
-          </div>
+    <section class="page-section exp-page">
+      <div class="exp-wrap">
+        <h1 class="exp-title reveal">Parcours</h1>
+
+        <div class="group reveal">
+          <h2 class="group-title">Expérience</h2>
+          <ul class="entries">
+            <li v-for="e in experience" :key="e.org + e.date" class="entry">
+              <p class="entry-date">{{ e.date }}</p>
+              <div class="entry-body">
+                <h3 class="entry-title">{{ e.title }} <span class="entry-org">· {{ e.org }}</span></h3>
+                <ul class="entry-list">
+                  <li v-for="li in e.items" :key="li">{{ li }}</li>
+                </ul>
+                <div class="entry-tags">
+                  <span v-for="t in e.tags" :key="t" class="entry-tag">{{ t }}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
 
-        <div class="skills-timeline reveal">
-          <div v-for="item in timeline" :key="item.title" class="skills-timeline-item">
-            <span class="skills-timeline-date">{{ item.date }}</span>
-            <h3 class="skills-timeline-title">
-              <i :class="item.icon" aria-hidden="true"></i>
-              {{ item.title }}
-            </h3>
-            <p class="skills-timeline-text">
-              <i class="fa-solid fa-code" aria-hidden="true"></i> Stack: {{ item.stack }}
-            </p>
-            <p v-if="item.text" class="skills-timeline-text">{{ item.text }}</p>
-            <ul v-if="item.items" class="skills-timeline-list">
-              <li v-for="li in item.items" :key="li">{{ li }}</li>
-            </ul>
-          </div>
+        <div class="group reveal">
+          <h2 class="group-title">Formation</h2>
+          <ul class="entries">
+            <li v-for="f in formation" :key="f.title" class="entry">
+              <p class="entry-date">{{ f.date }}</p>
+              <div class="entry-body">
+                <h3 class="entry-title">
+                  {{ f.title }}
+                  <span v-if="f.org" class="entry-org">· {{ f.org }}</span>
+                </h3>
+                <p v-if="f.text" class="entry-text">{{ f.text }}</p>
+                <div class="entry-tags">
+                  <span v-for="t in f.tags" :key="t" class="entry-tag">{{ t }}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="group reveal">
+          <h2 class="group-title">Compétences</h2>
+          <ul class="entries">
+            <li v-for="c in competences" :key="c.domain" class="entry entry--skills">
+              <p class="entry-date">{{ c.domain }}</p>
+              <div class="entry-tags entry-tags--flat">
+                <span v-for="t in c.tags" :key="t" class="entry-tag">{{ t }}</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
@@ -107,115 +128,148 @@ const timeline = [
 </template>
 
 <style scoped>
-.exp-hero {
-  background: var(--bg);
+.exp-page {
   min-height: 100vh;
+  background: var(--bg);
 }
 
-.skills-timeline {
-  position: relative;
-  padding-left: 28px;
-  display: grid;
-  gap: 16px;
+.exp-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 110px 48px 100px;
 }
 
-.skills-timeline::before {
-  content: '';
-  position: absolute;
-  left: 11px;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: var(--border-md);
+.exp-title {
+  margin-bottom: 56px;
+  font-family: var(--ff-head);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--hero-name-color);
 }
 
-.skills-timeline-item {
-  position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px 18px 24px;
+.group+.group {
+  margin-top: 72px;
 }
 
-.skills-timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -21px;
-  top: 20px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-subtle);
-}
-
-.skills-timeline-date {
-  display: block;
-  font-family: var(--ff-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.group-title {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--accent);
-  margin-bottom: 6px;
 }
 
-.skills-timeline-title {
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Date à gauche, contenu à droite, un simple filet entre les lignes */
+.entry {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 32px;
+  padding: 26px 0;
+  border-top: 1px solid var(--border-md);
+}
+
+.entries .entry:last-child {
+  border-bottom: 1px solid var(--border-md);
+}
+
+.entry-date {
+  padding-top: 3px;
   font-family: var(--ff-mono);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 6px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skills-timeline-text {
-  margin: 0 0 4px;
+  font-size: 0.78rem;
   color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
 }
 
-.skills-timeline-list {
+.entry-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.entry-org {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.entry-text {
+  margin-top: 8px;
+  max-width: 60ch;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.entry-list {
   list-style: none;
   margin: 10px 0 0;
   padding: 0;
   display: grid;
   gap: 6px;
+  max-width: 64ch;
 }
 
-.skills-timeline-list li {
-  display: flex;
-  gap: 8px;
-  font-size: 0.84rem;
+.entry-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.6;
   color: var(--muted);
-  line-height: 1.5;
 }
 
-.skills-timeline-list li::before {
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  content: '\f061';
+.entry-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
   color: var(--accent);
-  font-size: 0.65rem;
-  margin-top: 4px;
-  flex-shrink: 0;
 }
 
-.section-wrap {
-  width: 100%;
-  max-width: none;
-  padding: 80px 48px;
+.entry-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
 }
 
-@media (max-width: 1024px) {
-  .section-wrap {
-    padding: 80px 24px;
+.entry-tag {
+  padding: 3px 10px;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+.entry--skills {
+  padding: 16px 0;
+}
+
+.entry--skills .entry-date {
+  padding-top: 0;
+  align-self: center;
+}
+
+.entry-tags--flat {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .exp-wrap {
+    padding: 96px 24px 80px;
   }
 
-  .skills-timeline {
-    padding-left: 22px;
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .entry-date {
+    padding-top: 0;
   }
 }
 </style>
