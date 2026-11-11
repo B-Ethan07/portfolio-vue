@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { HERO_PROJECTS } from '../types/projects'
+import SkillsTerminal from '@/components/SkillsTerminal.vue'
 
 // ── Ce que je fais : un titre + des tags, rien d'autre ──
 const skills = [
-  { title: 'Apps multiplateformes', icon: 'fa-solid fa-mobile-screen-button' },
-  { title: 'Full-stack', icon: 'fa-solid fa-layer-group' },
-  { title: 'CI/CD et tests', icon: 'fa-solid fa-code-branch' },
-  { title: 'Bots et automatisation', icon: 'fa-solid fa-robot' },
+  { title: 'Apps multiplateformes', detail: 'iOS & Android avec une seule base de code' },
+  { title: 'Full-stack', detail: 'Front, back et base de données' },
+  { title: 'CI/CD et tests', detail: 'Livraisons automatisées et fiables' },
+  { title: 'Bots et automatisation', detail: 'Des scripts qui font le travail répétitif' },
 ]
 
 // ── Aperçu des projets (à droite) ──
@@ -72,12 +73,7 @@ onUnmounted(stop)
         <h1 class="hero-name">Ethan Boulard</h1>
         <p class="hero-pitch">Développeur Web &amp; Mobile.</p>
 
-        <ul class="skills" aria-label="Ce que je fais">
-          <li v-for="s in skills" :key="s.title" class="skill">
-            <span class="skill-icon"><i :class="s.icon" aria-hidden="true"></i></span>
-            <h2 class="skill-title">{{ s.title }}</h2>
-          </li>
-        </ul>
+        <SkillsTerminal :skills="skills" />
 
         <div class="hero-cta">
           <RouterLink to="/projects" class="btn-primary-custom">

@@ -10,78 +10,69 @@
   font-display: swap;
 }
 
-/* ─── DARK MODE (default) ──────────────────────────────────────── */
+/* ─── DARK (défaut) : nuit spatiale ─── */
 :root,
 [data-theme='dark'] {
-  --bg:        #0e0e12;
-  --surface:   #16161d;
-  --surface2:  #19191d;
+  --bg:        #070a1c;
+  --surface:   #0e1330;
+  --surface2:  #141a40;
 
-  --border:    rgba(255, 255, 255, 0.07);
-  --border-md: rgba(255, 255, 255, 0.12);
+  --border:    rgba(160, 185, 255, 0.09);
+  --border-md: rgba(160, 185, 255, 0.16);
 
-  --text:      #dcdce6;
-  --muted:     #6a6a7a;
+  --text:      #e8ecff;
+  --muted:     #8790bd;
 
-  --accent:         #d4c84a;
-  --accent-glow:    rgba(212, 200, 74, 0.18);
-  --accent-subtle:  rgba(212, 200, 74, 0.07);
+  --accent:         #8fb0ff;
+  --accent-glow:    rgba(143, 176, 255, 0.28);
+  --accent-subtle:  rgba(143, 176, 255, 0.08);
 
   --accent2:        #8b5cf6;
-  --accent2-glow:   rgba(139, 92, 246, 0.18);
-  --accent2-subtle: rgba(139, 92, 246, 0.08);
+  --accent2-glow:   rgba(139, 92, 246, 0.2);
+  --accent2-subtle: rgba(139, 92, 246, 0.1);
 
-  --lavender:  #c4b5fd;
+  --lavender:  #b8c4ff;
   --danger:    #f87171;
 
-  --dark-purple:   #14012a;
-  --light-purple:  #3f1274;
-  --accent-purple: #7348a3;
-
   --scrollbar-bg: var(--bg);
-  --nav-scrolled-bg: rgba(14, 14, 18, 0.88);
+  --nav-scrolled-bg: rgba(7, 10, 28, 0.85);
   --hero-name-color: #fff;
-  --selection-bg: var(--accent);
-  --selection-color: #0e0e12;
-  --modal-bg: #16161d;
-  --modal-header-bg: #1c1c24;
+  --selection-bg: #8fb0ff;
+  --selection-color: #070a1c;
+  --modal-bg: #0e1330;
+  --modal-header-bg: #141a40;
 }
 
-/* ─── LIGHT MODE ───────────────────────────────────────────────── */
+/* ─── LIGHT : station blanche ─── */
 [data-theme='light'] {
-  --bg:        #f4f4f0;
+  --bg:        #f4f6ff;
   --surface:   #ffffff;
-  --surface2:  #ececea;
+  --surface2:  #e9edfb;
 
-  --border:    rgba(0, 0, 0, 0.07);
-  --border-md: rgba(0, 0, 0, 0.12);
+  --border:    rgba(20, 30, 90, 0.08);
+  --border-md: rgba(20, 30, 90, 0.16);
 
-  /* TEXTE -> NOIR OK */
-  --text:      #0e0e12;
-  --muted:     #5a5a66;
+  --text:      #0d1130;
+  --muted:     #566090;
 
-  /* 🔥 JAUNE → VIOLET FONCÉ */
-  --accent:         #4c2aa8;
-  --accent-glow:    rgba(76, 42, 168, 0.18);
-  --accent-subtle:  rgba(76, 42, 168, 0.08);
+  --accent:         #3447c9;
+  --accent-glow:    rgba(52, 71, 201, 0.2);
+  --accent-subtle:  rgba(52, 71, 201, 0.08);
 
   --accent2:        #6d28d9;
   --accent2-glow:   rgba(109, 40, 217, 0.18);
   --accent2-subtle: rgba(109, 40, 217, 0.08);
 
-  --lavender:  #5b21b6;
+  --lavender:  #4338ca;
   --danger:    #dc2626;
 
   --scrollbar-bg: var(--bg);
-  --nav-scrolled-bg: rgba(244, 244, 240, 0.9);
-
+  --nav-scrolled-bg: rgba(244, 246, 255, 0.9);
   --hero-name-color: var(--text);
-
-  --selection-bg: var(--accent);
-  --selection-color: #ffffff;
-
+  --selection-bg: #3447c9;
+  --selection-color: #fff;
   --modal-bg: #ffffff;
-  --modal-header-bg: #f4f4f0;
+  --modal-header-bg: #f4f6ff;
 }
 
 /* ─── FONTS ────────────────────────────────────────────────────── */
@@ -133,6 +124,12 @@ body {
   width: 100%;
   margin: 0;
   padding: 80px 0;
+}
+
+/* Laisse apparaître les braises (EmberField) derrière les pages */
+.page-section,
+#hero-section-outer {
+  background: transparent !important;
 }
 
 .section-wrap {
@@ -200,6 +197,9 @@ body {
   box-shadow: 0 8px 32px var(--accent-glow);
 }
 
+/* Mode clair : bouton jaune du logo, texte foncé */
+[data-theme='light'] .btn-primary-custom { color: #fff; }
+
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;
   background: transparent;
@@ -219,6 +219,10 @@ body {
   border-color: rgba(255, 255, 255, 0.28);
   color: var(--text);
   transform: translateY(-2px);
+}
+
+[data-theme='light'] .btn-ghost:hover {
+  border-color: rgba(40, 30, 10, 0.4);
 }
 
 /* Card action buttons */

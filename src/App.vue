@@ -1,13 +1,33 @@
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import Navbar from './components/Navbar.vue'
 import AppFooter from './components/AppFooter.vue'
+import StarField from './components/StarField.vue'
+import BootScreen from './components/BootScreen.vue'
+import { useSound } from '@/composables/useSound'
+
+// Le boot ne s'affiche qu'une fois par session
+const booting = ref(!sessionStorage.getItem('booted'))
+const { click } = useSound()
+
+// Petit clic sonore sur tous les liens et boutons (rien si le son est coupé)
+function onClick(e: MouseEvent) {
+  const el = e.target as HTMLElement
+  // Le terminal gère déjà son propre son
+  if (el.closest('a, button') && !el.closest('.term')) click()
+}
+
+onMounted(() => document.addEventListener('click', onClick))
+onBeforeUnmount(() => document.removeEventListener('click', onClick))
 </script>
 
 <template>
+  <BootScreen v-if="booting" @done="booting = false" />
+  <StarField />
   <Navbar />
-    <div class="app-content">
-      <RouterView />
-    </div>
+  <div class="app-content">
+    <RouterView />
+  </div>
   <AppFooter />
 </template>
 

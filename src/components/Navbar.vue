@@ -2,7 +2,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useTheme } from '@/composables/useTheme'
+import { useSound } from '@/composables/useSound'
 
+const { enabled: soundOn, toggle: toggleSound } = useSound()
 const { theme, toggleTheme } = useTheme()
 const route = useRoute()
 const scrolled = ref(false)
@@ -21,16 +23,29 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
     <RouterLink to="/" class="nav-logo">EB.</RouterLink>
 
     <ul class="nav-links" :class="{ 'is-open': menuOpen }">
-      <li><RouterLink to="/" @click="menuOpen = false">Accueil</RouterLink></li>
-      <li><RouterLink to="/experience" @click="menuOpen = false">Expérience</RouterLink></li>
-      <li><RouterLink to="/projects" @click="menuOpen = false">Projets</RouterLink></li>
-      <li><RouterLink to="/contact" @click="menuOpen = false">Contact</RouterLink></li>
+      <li>
+        <RouterLink to="/" @click="menuOpen = false">Accueil</RouterLink>
+      </li>
+      <li>
+        <RouterLink to="/experience" @click="menuOpen = false">Expérience</RouterLink>
+      </li>
+      <li>
+        <RouterLink to="/projects" @click="menuOpen = false">Projets</RouterLink>
+      </li>
+      <li>
+        <RouterLink to="/contact" @click="menuOpen = false">Contact</RouterLink>
+      </li>
     </ul>
 
     <div class="nav-actions">
-      <button class="theme-toggle" @click="toggleTheme" :aria-label="theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre'">
-        <i v-if="theme === 'dark'" class="fa-solid fa-sun"></i>
-        <i v-else class="fa-solid fa-moon"></i>
+      <button class="theme-toggle" @click="toggleTheme"
+        :aria-label="theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'"
+        :aria-pressed="theme === 'dark'">
+        <i :class="theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+      </button>
+      <button class="theme-toggle" @click="toggleSound" :aria-label="soundOn ? 'Couper le son' : 'Activer le son'"
+        :aria-pressed="soundOn">
+        <i :class="soundOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark'"></i>
       </button>
       <button class="burger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -42,7 +57,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 <style scoped>
 nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   padding: 20px 48px;
   display: flex;
@@ -88,16 +105,23 @@ nav.scrolled {
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 1px;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
   background: var(--accent);
   transition: width 0.3s;
 }
 
 .nav-links a:hover,
-.nav-links a.router-link-active { color: var(--text); }
+.nav-links a.router-link-active {
+  color: var(--text);
+}
+
 .nav-links a:hover::after,
-.nav-links a.router-link-active::after { width: 100%; }
+.nav-links a.router-link-active::after {
+  width: 100%;
+}
 
 .nav-actions {
   display: flex;
@@ -109,9 +133,12 @@ nav.scrolled {
   background: var(--surface);
   border: 1px solid var(--border-md);
   color: var(--muted);
-  width: 36px; height: 36px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   font-size: 0.85rem;
   transition: color 0.2s, border-color 0.2s;
@@ -119,7 +146,7 @@ nav.scrolled {
 
 .theme-toggle:hover {
   color: var(--accent);
-  border-color: rgba(212, 200, 74, 0.3);
+  border-color: var(--accent);
 }
 
 .burger {
@@ -141,14 +168,23 @@ nav.scrolled {
 }
 
 @media (max-width: 768px) {
-  nav { padding: 16px 24px; }
-  nav.scrolled { padding: 12px 24px; }
+  nav {
+    padding: 16px 24px;
+  }
 
-  .burger { display: flex; }
+  nav.scrolled {
+    padding: 12px 24px;
+  }
+
+  .burger {
+    display: flex;
+  }
 
   .nav-links {
     position: fixed;
-    top: 0; right: 0; bottom: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
     width: 260px;
     background: var(--surface);
     border-left: 1px solid var(--border-md);
@@ -160,9 +196,17 @@ nav.scrolled {
     z-index: 200;
   }
 
-  .nav-links.is-open { transform: translateX(0); }
+  .nav-links.is-open {
+    transform: translateX(0);
+  }
 
-  .nav-links li { padding: 14px 0; border-bottom: 1px solid var(--border); }
-  .nav-links a { font-size: 0.9rem; }
+  .nav-links li {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+  }
 }
 </style>
