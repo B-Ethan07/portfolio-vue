@@ -1,91 +1,75 @@
 <script setup>
-import { useReveal } from '../composables/useReveal'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useReveal } from '@/composables/useReveal'
+import { useMessages } from '@/composables/useMessages'
 
 useReveal()
 
-// Contenu volontairement court : 1 titre, 1 lieu, des tags, 3 points max.
-const experience = [
-  {
-    date: 'Fév – Avr 2026',
-    title: 'Développeur full-stack',
-    org: 'INSIDE RUNWAY',
-    tags: ['Flutter', 'React', 'FastAPI', 'Next.js'],
-    items: [
-      "App mobile Flutter développée de A à Z, en autonomie : architecture, navigation, état, AWS S3.",
-      'Landing page Next.js : design et UI/UX.',
-      'CRM React : contribution et traduction FR/EN.',
-    ],
-  },
-  {
-    date: 'Nov 2025 – Jan 2026',
-    title: 'Développeur mobile, front-end',
-    org: "IT'S ME TIME",
-    tags: ['Flutter', 'React'],
-    items: [
-      'Nouvelles fonctionnalités Flutter, dont un module de dessin libre.',
-      'Refonte UI/UX : écrans, ergonomie, fluidité de navigation.',
-      "Intégration d'API REST avec le développeur backend.",
-    ],
-  },
-  // TODO : ajoute ici ton parcours d'éducateur (poste, structure, dates)
-  // { date: '…', title: 'Éducateur', org: '…', tags: [], items: ['…'] },
+const { t } = useI18n()
+const { raw, str, strs } = useMessages()
+
+// ── Parties non traduisibles ; les textes sont dans experience.* ──
+const JOB_BASES = [
+  { id: 'insideRunway', org: 'INSIDE RUNWAY', tags: ['Flutter', 'React', 'FastAPI', 'Next.js'] },
+  { id: 'itsMeTime', org: "IT'S ME TIME", tags: ['Flutter', 'React'] },
 ]
 
-const formation = [
-  {
-    date: 'Oct 2026',
-    title: 'Diplôme Développeur Web et Web Mobile',
-    tags: ['Front-End', 'Back-End', 'API REST', 'Bases de données', 'CI/CD', 'Tests'],
-    text: "Projets concrets et collaboratifs, modélisation de bases de données, création d'API REST.",
-  },
-  {
-    date: 'Août 2026',
-    title: 'Certification Cisco · Cybersecurity',
-    tags: ['Sécurité réseau', 'Tests d\'intrusion'],
-    text: "Sécurité réseau, tests d'intrusion, analyse de vulnérabilités.",
-  },
-  {
-    date: 'Avr – Nov 2025',
-    title: "Développeur d'application mobile",
-    org: 'M2i Formation, Lyon',
-    tags: ['Flutter', 'Kotlin', 'Firebase'],
-    text: 'Formation professionnalisante orientée mobile.',
-  },
-  {
-    date: 'Depuis 2024',
-    title: 'Autodidacte',
-    tags: ['Flutter', 'Angular', 'React'],
-    text: null,
-  },
+const EDU_IDS = ['diploma', 'cisco', 'm2i', 'self']
+const EDU_ORGS = { m2i: 'M2i Formation, Lyon' }
+
+const SKILL_BASES = [
+  { id: 'mobile', tags: ['Flutter', 'Dart'] },
+  { id: 'frontend', tags: ['React', 'Angular', 'Vue.js', 'Tailwind'] },
+  { id: 'backend', tags: ['Node.js', 'Express.js', 'FastAPI', 'Python', 'Symfony'] },
+  { id: 'data', tags: ['MongoDB', 'SQL'] },
+  { id: 'tools', tags: ['GitHub Actions', 'Docker', 'Git', 'Linux', 'Vitest', 'Jest', 'Figma'] },
 ]
 
-const competences = [
-  { domain: 'Mobile', tags: ['Flutter', 'Dart'] },
-  { domain: 'Front-end', tags: ['React', 'Angular', 'Vue.js', 'Tailwind'] },
-  { domain: 'Back-end', tags: ['Node.js', 'Express.js', 'FastAPI', 'Python', 'Symfony'] },
-  { domain: 'Données', tags: ['MongoDB', 'SQL'] },
-  { domain: 'Outils', tags: ['GitHub Actions', 'Docker', 'Git', 'Linux', 'Vitest', 'Jest', 'Figma'] },
-]
+const experience = computed(() =>
+  JOB_BASES.map(b => {
+    const m = raw(`experience.jobs.${b.id}`)
+    return { ...b, date: str(m.date), title: str(m.title), items: strs(m.items) }
+  }),
+)
+
+const formation = computed(() =>
+  EDU_IDS.map(id => {
+    const m = raw(`experience.education.${id}`)
+    return {
+      id,
+      org: EDU_ORGS[id] ?? null,
+      date: str(m.date),
+      title: str(m.title),
+      tags: m.tags ? strs(m.tags) : [],
+      text: m.text ? str(m.text) : null,
+    }
+  }),
+)
+
+const competences = computed(() =>
+  SKILL_BASES.map(s => ({ ...s, domain: t(`experience.domains.${s.id}`) })),
+)
 </script>
 
 <template>
   <main>
     <section class="page-section exp-page">
       <div class="exp-wrap">
-        <h1 class="exp-title reveal">Parcours</h1>
+        <h1 class="exp-title reveal">{{ t('experience.title') }}</h1>
 
         <div class="group reveal">
-          <h2 class="group-title">Expérience</h2>
+          <h2 class="group-title">{{ t('experience.jobsTitle') }}</h2>
           <ul class="entries">
-            <li v-for="e in experience" :key="e.org + e.date" class="entry">
+            <li v-for="e in experience" :key="e.id" class="entry">
               <p class="entry-date">{{ e.date }}</p>
               <div class="entry-body">
                 <h3 class="entry-title">{{ e.title }} <span class="entry-org">· {{ e.org }}</span></h3>
                 <ul class="entry-list">
-                  <li v-for="li in e.items" :key="li">{{ li }}</li>
+                  <li v-for="item in e.items" :key="item">{{ item }}</li>
                 </ul>
                 <div class="entry-tags">
-                  <span v-for="t in e.tags" :key="t" class="entry-tag">{{ t }}</span>
+                  <span v-for="tag in e.tags" :key="tag" class="entry-tag">{{ tag }}</span>
                 </div>
               </div>
             </li>
@@ -93,9 +77,9 @@ const competences = [
         </div>
 
         <div class="group reveal">
-          <h2 class="group-title">Formation</h2>
+          <h2 class="group-title">{{ t('experience.educationTitle') }}</h2>
           <ul class="entries">
-            <li v-for="f in formation" :key="f.title" class="entry">
+            <li v-for="f in formation" :key="f.id" class="entry">
               <p class="entry-date">{{ f.date }}</p>
               <div class="entry-body">
                 <h3 class="entry-title">
@@ -104,7 +88,7 @@ const competences = [
                 </h3>
                 <p v-if="f.text" class="entry-text">{{ f.text }}</p>
                 <div class="entry-tags">
-                  <span v-for="t in f.tags" :key="t" class="entry-tag">{{ t }}</span>
+                  <span v-for="tag in f.tags" :key="tag" class="entry-tag">{{ tag }}</span>
                 </div>
               </div>
             </li>
@@ -112,12 +96,12 @@ const competences = [
         </div>
 
         <div class="group reveal">
-          <h2 class="group-title">Compétences</h2>
+          <h2 class="group-title">{{ t('experience.skillsTitle') }}</h2>
           <ul class="entries">
-            <li v-for="c in competences" :key="c.domain" class="entry entry--skills">
+            <li v-for="c in competences" :key="c.id" class="entry entry--skills">
               <p class="entry-date">{{ c.domain }}</p>
               <div class="entry-tags entry-tags--flat">
-                <span v-for="t in c.tags" :key="t" class="entry-tag">{{ t }}</span>
+                <span v-for="tag in c.tags" :key="tag" class="entry-tag">{{ tag }}</span>
               </div>
             </li>
           </ul>

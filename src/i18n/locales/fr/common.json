@@ -1,0 +1,380 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "contact": "Contact",
+    "menu": "Menu",
+    "themeToLight": "Activer le mode clair",
+    "themeToDark": "Activer le mode sombre",
+    "soundOff": "Couper le son",
+    "soundOn": "Activer le son",
+    "switchLang": "Passer le site en anglais"
+  },
+
+  "boot": {
+    "aria": "Chargement",
+    "skip": "cliquer pour passer",
+    "lines": [
+      "EB-OS v1.0 — initialisation",
+      "Vérification des systèmes ........ OK",
+      "Chargement des modules ........... OK",
+      "Calibrage des étoiles ............ OK",
+      "Liaison établie · Lyon"
+    ]
+  },
+
+  "hero": {
+    "tag": "Disponible · Lyon",
+    "pitch": "Développeur Web & Mobile.",
+    "ctaProjects": "Voir mes projets",
+    "ctaContact": "Me contacter",
+    "pickProject": "Choisir un projet",
+    "reviewsAria": "Avis",
+    "reviewsLabel": "Ils en parlent",
+    "rating": "Note : {n} sur 5",
+    "readFull": "Lire l'avis complet",
+    "prev": "Avis précédent",
+    "next": "Avis suivant",
+    "modalAria": "Avis de {name}",
+    "close": "Fermer",
+    "seeOn": "Voir sur {source}",
+    "skills": [
+      {
+        "title": "Apps multiplateformes",
+        "detail": "iOS & Android avec une seule base de code"
+      },
+      { "title": "Full-stack", "detail": "Front, back et base de données" },
+      {
+        "title": "CI/CD et tests",
+        "detail": "Livraisons automatisées et fiables"
+      },
+      {
+        "title": "Bots et automatisation",
+        "detail": "Des scripts qui font le travail répétitif"
+      }
+    ]
+  },
+  "reviews": {
+    "adonis": {
+      "status": "Maître de stage",
+      "highlights": ["Autonomie", "Vision full-stack", "Esprit d’équipe"],
+      "excerpt": "Ethan se distingue par une autonomie remarquable et une capacité rare à analyser des pans très larges de code, du mobile au backend jusqu’au front-end. […] Je le recommande sans la moindre hésitation.",
+      "text": "J’ai eu la chance de travailler avec Ethan Boulard au sein de mon équipe, et je peux dire sans hésiter qu’il s’agit d’un élément exceptionnel. Ethan se distingue par une autonomie remarquable et une capacité rare à analyser des pans très larges de code, du mobile au backend jusqu’au front-end. Il apporte toujours une expertise précise et pertinente, aussi bien sur des problématiques techniques complexes que sur des détails visuels, ce qui est assez rare. Au-delà de ses compétences techniques, Ethan possède un excellent sens du travail en équipe. Il sait s’adapter à différents profils, collaborer efficacement et contribuer à une dynamique saine et productive. Durant toute notre collaboration, nous n’avons jamais entendu une seule plainte de sa part mais il saura vous faire des retour si vous lui en demander. Nous devons aujourd’hui nous séparer de lui uniquement pour des raisons financières, faute de fonds au sein de la structure une décision difficile au vu de la qualité de son travail. C’est avec regret que je le laisse partir, et j’espère sincèrement avoir l’opportunité de retravailler avec Ethan très prochainement. Je le recommande sans la moindre hésitation."
+    },
+    "prescillia": {
+      "status": "Supérieure directe",
+      "highlights": ["Créatif", "À l’écoute", "Flexible"],
+      "excerpt": "Créatif, flexible et à l'écoute, il a su intégrer chaque retour pour livrer un travail de qualité, un véritable atout pour l'équipe. […] Il sera une vraie valeur ajoutée pour toute équipe qui aura la chance de l'avoir.",
+      "text": "J'ai eu le plaisir de travailler avec Ethan lors de son stage chez Inside Runway, où il a assisté notre CTO et contribué au développement de notre plateforme, notamment sur l'application mobile. Créatif, flexible et à l'écoute, il a su intégrer chaque retour pour livrer un travail de qualité, un véritable atout pour l'équipe. Je recommande vivement Ethan à quiconque recherche un développeur alliant compétences solides et excellent état d'esprit. Il sera une vraie valeur ajoutée pour toute équipe qui aura la chance de l'avoir."
+    }
+  },
+
+  "terminal": {
+    "aria": "Terminal des compétences",
+    "host": "vaisseau",
+    "placeholder": "tape une commande…",
+    "welcome": "Bienvenue à bord.",
+    "available": "Commandes disponibles :",
+    "unknown": "commande inconnue : {cmd} (essaie « help »)",
+    "hireMe": [
+      "Permission accordée.",
+      "Tu sais où me trouver : bouton « Me contacter »."
+    ],
+    "commands": {
+      "skills": "skills",
+      "about": "about",
+      "stack": "stack",
+      "journey": "parcours",
+      "projects": "projets",
+      "clear": "clear"
+    },
+    "help": {
+      "skills": "ce que je fais",
+      "about": "qui suis-je ?",
+      "stack": "mes technologies",
+      "journey": "formations et expériences",
+      "projects": "ce que j’ai réalisé",
+      "clear": "effacer le terminal"
+    },
+    "about": [
+      { "k": "Nom", "v": "Ethan Boulard" },
+      { "k": "Métier", "v": "Développeur Web & Mobile" },
+      { "k": "Lieu", "v": "Lyon" },
+      { "k": "Statut", "v": "Disponible" },
+      { "k": "Recherche", "v": "CDI / CDD" }
+    ],
+    "stack": [
+      { "k": "Mobile", "v": "Flutter, Kotlin" },
+      { "k": "Front-end", "v": "React, Angular, Vue.js, JavaScript, Tailwind" },
+      {
+        "k": "Back-end",
+        "v": "Python, FastAPI, Node.js, Express.js, PHP, Symfony"
+      },
+      { "k": "Base de Données", "v": "MongoDB, Bases de Données SQL" },
+      {
+        "k": "Outils",
+        "v": "GitHub Actions, Docker, Git, Linux, Vitest, Jest, Figma"
+      }
+    ],
+    "journey": [
+      {
+        "k": "Oct 2026",
+        "v": "Diplôme RNCP de Développeur Web et Web Mobile, Bac+2"
+      },
+      { "k": "Août 2026", "v": "Certification Cisco · Cybersecurity" },
+      { "k": "Fév - Avr 2026", "v": "Développeur Full-Stack · INSIDE RUNWAY" },
+      {
+        "k": "Nov 2025 - Jan 2026",
+        "v": "Développeur Mobile, Front-end · IT'S ME TIME"
+      },
+      {
+        "k": "Avr - Nov 2025",
+        "v": "Formation de Développeur d'Application Mobile · M2i Formation Lyon"
+      },
+      { "k": "Depuis 2024", "v": "Autodidacte · Flutter, Angular, React" }
+    ]
+  },
+
+  "projectTypes": {
+    "mobile": "Mobile",
+    "fullstack": "Web full-stack",
+    "desktop": "Desktop & mobile",
+    "game": "Jeu",
+    "bot": "Bot"
+  },
+
+  "projectLinks": {
+    "landing": "Voir la landing",
+    "repoPrivate": "Repo (privé)",
+    "code": "Voir le code"
+  },
+
+  "projectsPage": {
+    "title": "Projets",
+    "all": "Tous",
+    "filterAria": "Filtrer les projets",
+    "view": "Voir le projet"
+  },
+
+  "experience": {
+    "title": "Parcours",
+    "jobsTitle": "Expérience",
+    "educationTitle": "Formation",
+    "skillsTitle": "Compétences",
+    "jobs": {
+      "insideRunway": {
+        "date": "Fév – Avr 2026",
+        "title": "Développeur full-stack",
+        "items": [
+          "App mobile Flutter développée de A à Z, en autonomie : architecture, navigation, état, AWS S3.",
+          "Landing page Next.js : design et UI/UX.",
+          "CRM React : contribution et traduction FR/EN."
+        ]
+      },
+      "itsMeTime": {
+        "date": "Nov 2025 – Jan 2026",
+        "title": "Développeur mobile, front-end",
+        "items": [
+          "Nouvelles fonctionnalités Flutter, dont un module de dessin libre.",
+          "Refonte UI/UX : écrans, ergonomie, fluidité de navigation.",
+          "Intégration d'API REST avec le développeur backend."
+        ]
+      }
+    },
+    "education": {
+      "diploma": {
+        "date": "Oct 2026",
+        "title": "Diplôme Développeur Web et Web Mobile",
+        "tags": [
+          "Front-End",
+          "Back-End",
+          "API REST",
+          "Bases de données",
+          "CI/CD",
+          "Tests"
+        ],
+        "text": "Projets concrets et collaboratifs, modélisation de bases de données, création d'API REST."
+      },
+      "cisco": {
+        "date": "Août 2026",
+        "title": "Certification Cisco · Cybersecurity",
+        "tags": ["Sécurité réseau", "Tests d'intrusion"],
+        "text": "Sécurité réseau, tests d'intrusion, analyse de vulnérabilités."
+      },
+      "m2i": {
+        "date": "Avr – Nov 2025",
+        "title": "Développeur d'application mobile",
+        "tags": ["Flutter", "Kotlin", "Firebase"],
+        "text": "Formation professionnalisante orientée mobile."
+      },
+      "self": {
+        "date": "Depuis 2024",
+        "title": "Autodidacte",
+        "tags": ["Flutter", "Angular", "React"]
+      }
+    },
+    "domains": {
+      "mobile": "Mobile",
+      "frontend": "Front-end",
+      "backend": "Back-end",
+      "data": "Données",
+      "tools": "Outils"
+    }
+  },
+
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Ouvert aux opportunités et collaborations.",
+    "mailSubject": "Contact depuis le portfolio d'Ethan",
+    "mailGreeting": "Bonjour Ethan,"
+  },
+
+  "projects": {
+    "botTwitch": {
+      "subtitle": "Bot pour streamer Twitch",
+      "badgeStage": "Novembre 2026",
+      "year": "Nov 2026",
+      "description": "BotTwitch qui permet aux viewers de proposer des musiques dans le chat.",
+      "longDescription": "Bot Twitch développé en Node.js qui permet aux viewers de proposer des musiques dans le chat, avec gestion des commandes et interactions.",
+      "features": [
+        "Gestion des commandes et des interactions",
+        "Gestion des utilisateurs et des permissions",
+        "Automatisation des musiques grâce à l'API Twitch et YouTube",
+        "Overlay OBS pour afficher les musiques en cours",
+        "Gestion des playlists et des musiques",
+        "Database locale avec SQLite pour stocker les données"
+      ]
+    },
+    "arcasolisApp": {
+      "subtitle": "App mobile & Desktop Flutter",
+      "badgeStage": "Oct 2026",
+      "year": "Oct 2026",
+      "description": "Application Flutter pour tracker ses films et ses séries",
+      "longDescription": "Application Flutter B2B pour tracker ses films et ses séries, avec interface mobile et desktop, notifications push et synchronisation cloud.",
+      "features": [
+        "Intégration de l'API TMDB pour importer les films et séries",
+        "Ajout et suivi de films et séries",
+        "Notifications push pour les sorties et rappels",
+        "Synchronisation cloud et multi-plateforme",
+        "Interface mobile et desktop responsive",
+        "Exportation des données et statistiques d'utilisation"
+      ]
+    },
+    "insideRunwayApp": {
+      "subtitle": "App mobile Flutter B2B",
+      "badgeStage": "B2B · 2026",
+      "year": "Oct 2025 – Jan 2026",
+      "description": "Application Flutter B2B pour styliste, gestion de projets, livraisons et communication entre stylistes et marques.",
+      "longDescription": "Application Flutter B2B reliant stylistes et marques pour faciliter la gestion de projets, livraisons et communications au quotidien.",
+      "features": [
+        "Posts, collections et flux média",
+        "Logique métier avancée : projet, livraison, agenda",
+        "Notifications push, messagerie et authentification",
+        "Stockage média cloud (AWS S3)",
+        "Architecture scalable et navigation fluide"
+      ]
+    },
+    "insideRunwayLanding": {
+      "subtitle": "Refonte landing page B2B",
+      "badgeStage": "B2B · 2026",
+      "year": "Fév 2026 – Avr 2026",
+      "description": "Refonte complète de la landing page B2B. CRM reliant stylistes et marques fashion.",
+      "longDescription": "Refonte complète de la landing page du CRM INSIDE RUNWAY. Conception UI/UX, intégration et déploiement sur Vercel.",
+      "features": [
+        "Design UI/UX from scratch",
+        "Animations et micro-interactions",
+        "Intégration avec le backend FastAPI",
+        "Déploiement Vercel + optimisation SEO"
+      ]
+    },
+    "insideRunwayCrm": {
+      "subtitle": "CRM React B2B",
+      "badgeStage": "B2B · 2026",
+      "year": "Fév 2026 – Avr 2026",
+      "description": "CRM React/FastAPI B2B pour styliste, gestion de projets, livraisons et communication entre stylistes et marques.",
+      "longDescription": "CRM React/FastAPI B2B reliant stylistes et marques pour faciliter la gestion de projets, livraisons et communications au quotidien.",
+      "features": [
+        "Posts, collections et flux média",
+        "Logique métier avancée : projet, livraison, agenda",
+        "Notifications push, messagerie et authentification",
+        "Stockage média cloud (AWS S3)",
+        "Architecture scalable et navigation fluide"
+      ]
+    },
+    "zenquest": {
+      "subtitle": "Site web de suivi quotidien",
+      "badgeStage": "React/TS · Express.js",
+      "year": "Oct 2025",
+      "description": "SPA de suivi quotidien sport, alimentation, sommeil et humeur, avec espace utilisateur et interface d'administration dédiés.",
+      "longDescription": "Application React TypeScript de suivi bien-être avec dashboard utilisateur, historique, et interface admin complète.",
+      "features": [
+        "Front user et admin en React + TypeScript",
+        "API REST Express.js pour la gestion des données",
+        "Tableaux de bord et historique des entrées quotidiennes",
+        "Authentification et gestion des rôles"
+      ]
+    },
+    "itsmetime": {
+      "subtitle": "App de coloriage Flutter",
+      "badgeStage": "Stage · 2026",
+      "year": "Nov 2025 – Jan 2026",
+      "description": "Application de coloriage Flutter, refonte visuelle complète et nouvelles fonctionnalités de dessin.",
+      "longDescription": "Stage de développement mobile Flutter sur une application de coloriage existante. Refonte UI complète, nouvelles fonctionnalités et back-office analytics.",
+      "features": [
+        "Refonte visuelle complète de l'UI",
+        "Dessin libre (pinceau) et gomme",
+        "Analytics et back-office de suivi",
+        "Intégration API REST asynchrone"
+      ]
+    },
+    "cinezone": {
+      "subtitle": "Plateforme fullstack de films",
+      "badgeStage": "Projet fullstack",
+      "year": "Août 2025",
+      "description": "Plateforme fullstack de gestion et notation de films avec authentification et interface responsive.",
+      "longDescription": "Projet fullstack Angular + Express.js avec système d'authentification, catalogue dynamique de films et interface d'administration.",
+      "features": [
+        "Catalogue avec filtres dynamiques",
+        "Système de notation et avis",
+        "CRUD complet côté admin",
+        "Authentification JWT"
+      ]
+    },
+    "factuzen": {
+      "subtitle": "App de gestion de facturation",
+      "badgeStage": "Projet Symfony",
+      "year": "Juil 2025",
+      "description": "Application Symfony de gestion de facturation avec architecture MVC robuste et interface claire.",
+      "longDescription": "Projet Symfony MVC complet avec gestion des clients, création de factures, et affichage des lignes de facturation.",
+      "features": [
+        "Gestion complète des clients (CRUD)",
+        "Création et édition de factures",
+        "Affichage des lignes de facturation",
+        "Architecture MVC Symfony"
+      ]
+    },
+    "educeasy": {
+      "subtitle": "Blog pour parents",
+      "badgeStage": "Blog web",
+      "year": "Juin 2025",
+      "description": "Blog pour parents avec articles, conseils et activités pour enfants et système de publication.",
+      "longDescription": "Blog PHP full-stack avec système d'articles, inscription, profil utilisateur, et newsletter intégrée.",
+      "features": [
+        "Articles avec recherche et filtres",
+        "Inscription, connexion et profil",
+        "Newsletter avec popup intégré",
+        "Système de publication d'articles"
+      ]
+    }
+  },
+  "detail": {
+    "allProjects": "Tous les projets",
+    "features": "Fonctionnalités",
+    "stack": "Stack technique",
+    "back": "Retour",
+    "others": "Autres projets",
+    "prev": "Précédent",
+    "next": "Suivant"
+  }
+}

@@ -1,103 +1,95 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter, RouterLink } from 'vue-router'
-import { PROJECTS } from '../types/projects'
+import { useI18n } from 'vue-i18n'
+import { useProjects } from '@/composables/useProjects'
 
+const { t } = useI18n()
 const route = useRoute()
 const router = useRouter()
+const { projects, getProject, typeLabel } = useProjects()
 
-const project = computed(() => PROJECTS.find((p) => p.id === route.params.id))
+const project = computed(() => getProject(String(route.params.id)))
+const others = computed(() =>
+  projects.value.filter(p => p.id !== project.value?.id).slice(0, 3),
+)
 
 const activeSlide = ref(0)
+watch(() => route.params.id, () => { activeSlide.value = 0 })
+watch(project, p => { if (!p) router.replace('/projects') }, { immediate: true })
 
-function isVideo(source) {
-  return /\.(mp4|webm|ogg)$/i.test(source)
-}
+// Images + vidéo éventuelle
+const medias = computed(() => {
+  const p = project.value
+  if (!p) return []
+  return p.video ? [...p.images, p.video] : p.images
+})
+
+const isVideo = source => /\.(mp4|webm|ogg)$/i.test(source)
 
 function prevSlide() {
-  if (!project.value) return
-  activeSlide.value = (activeSlide.value - 1 + project.value.images.length) % project.value.images.length
+  const n = medias.value.length
+  if (n) activeSlide.value = (activeSlide.value - 1 + n) % n
 }
 function nextSlide() {
-  if (!project.value) return
-  activeSlide.value = (activeSlide.value + 1) % project.value.images.length
+  const n = medias.value.length
+  if (n) activeSlide.value = (activeSlide.value + 1) % n
 }
-
-onMounted(() => {
-  if (!project.value) router.push('/projects')
-})
 </script>
 
 <template>
   <main v-if="project" class="detail-page">
-    <!-- Back -->
     <RouterLink to="/projects" class="back-link">
-      <i class="fa-solid fa-arrow-left"></i> Tous les projets
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ t('detail.allProjects') }}
     </RouterLink>
 
     <article class="detail-wrap">
-      <!-- Media carousel -->
+      <!-- Carrousel -->
       <div class="detail-carousel" :class="project.type === 'mobile' ? 'portrait' : 'landscape'">
         <div class="detail-slides">
-          <template v-for="(media, i) in project.images" :key="i">
+          <template v-for="(media, i) in medias" :key="media">
             <div v-show="i === activeSlide" class="detail-slide">
-              <video
-                v-if="isVideo(media)"
-                :src="media"
-                class="detail-media"
-                controls
-                playsinline
-              ></video>
-              <img
-                v-else
-                :src="media"
-                :alt="project.title"
-                class="detail-media"
-              />
+              <video v-if="isVideo(media)" :src="media" class="detail-media" controls playsinline></video>
+              <img v-else :src="media" :alt="project.title" class="detail-media" />
             </div>
           </template>
         </div>
-        <button v-if="project.images.length > 1" class="det-ctrl prev" @click="prevSlide" aria-label="Précédent">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <button v-if="project.images.length > 1" class="det-ctrl next" @click="nextSlide" aria-label="Suivant">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
-        <!-- Dots -->
-        <div class="det-dots">
-          <button
-            v-for="(_, i) in project.images"
-            :key="i"
-            class="det-dot"
-            :class="{ active: i === activeSlide }"
-            @click="activeSlide = i"
-          ></button>
-        </div>
+
+        <template v-if="medias.length > 1">
+          <button class="det-ctrl prev" :aria-label="t('detail.prev')" @click="prevSlide">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button class="det-ctrl next" :aria-label="t('detail.next')" @click="nextSlide">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+          <div class="det-dots">
+            <button v-for="(_, i) in medias" :key="i" class="det-dot" :class="{ active: i === activeSlide }"
+              :aria-label="`${i + 1} / ${medias.length}`" @click="activeSlide = i"></button>
+          </div>
+        </template>
       </div>
 
-      <!-- Info -->
+      <!-- Infos -->
       <div class="detail-info">
         <div :class="project.type === 'mobile' ? 'mobile-card-meta' : 'web-card-meta'" style="margin-bottom:16px">
-          <span :class="project.type === 'mobile' ? 'mobile-badge' : 'web-badge'">{{ project.badge }}</span>
-          <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.badgeStage }}</span>
+          <span :class="project.type === 'mobile' ? 'mobile-badge' : 'web-badge'">{{ typeLabel(project) }}</span>
+          <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.badgeStage
+            }}</span>
         </div>
 
-        <h1 class="detail-title">
-          <i :class="project.icon" aria-hidden="true"></i>
-          {{ project.title }}
-        </h1>
+        <h1 class="detail-title">{{ project.title }}</h1>
         <p class="detail-subtitle">{{ project.subtitle }}</p>
         <p class="detail-desc">{{ project.longDescription }}</p>
 
         <div class="detail-grid">
           <div>
-            <p class="detail-section-label">Fonctionnalités</p>
+            <p class="detail-section-label">{{ t('detail.features') }}</p>
             <ul class="detail-features">
               <li v-for="f in project.features" :key="f">{{ f }}</li>
             </ul>
           </div>
           <div>
-            <p class="detail-section-label">Stack technique</p>
+            <p class="detail-section-label">{{ t('detail.stack') }}</p>
             <div class="detail-tags">
               <span v-for="tag in project.tags" :key="tag" class="detail-tag">{{ tag }}</span>
             </div>
@@ -105,39 +97,28 @@ onMounted(() => {
         </div>
 
         <div class="detail-actions">
-          <template v-for="link in project.links" :key="link.url">
-            <a
-              :href="link.url"
-              :class="`btn-card-${link.variant === 'primary' ? 'violet' : 'ghost'}`"
-              target="_blank"
-              rel="noopener"
-            >
-              <i :class="link.icon"></i> {{ link.label }}
-            </a>
-          </template>
+          <a v-for="link in project.links" :key="link.url" :href="link.url"
+            :class="link.variant === 'primary' ? 'btn-card-violet' : 'btn-card-ghost'" target="_blank"
+            rel="noopener noreferrer">
+            <i :class="link.icon" aria-hidden="true"></i> {{ link.label }}
+          </a>
           <RouterLink to="/projects" class="btn-card-ghost">
-            <i class="fa-solid fa-arrow-left"></i> Retour
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> {{ t('detail.back') }}
           </RouterLink>
         </div>
       </div>
     </article>
 
-    <!-- Other projects -->
+    <!-- Autres projets -->
     <section class="other-projects">
-      <p class="section-label" style="text-align:center;margin-bottom:32px">Autres projets</p>
+      <p class="section-label" style="text-align:center;margin-bottom:32px">{{ t('detail.others') }}</p>
       <div class="other-grid">
-        <RouterLink
-          v-for="p in PROJECTS.filter(p => p.id !== project.id).slice(0, 3)"
-          :key="p.id"
-          :to="`/projects/${p.id}`"
-          class="other-card"
-        >
-          <div class="other-card-icon"><i :class="p.icon"></i></div>
+        <RouterLink v-for="p in others" :key="p.id" :to="`/projects/${p.id}`" class="other-card">
           <div>
             <p class="other-card-title">{{ p.title }}</p>
             <p class="other-card-sub">{{ p.subtitle }}</p>
           </div>
-          <i class="fa-solid fa-arrow-right other-arrow"></i>
+          <i class="fa-solid fa-arrow-right other-arrow" aria-hidden="true"></i>
         </RouterLink>
       </div>
     </section>
@@ -151,14 +132,22 @@ onMounted(() => {
 }
 
 .back-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--ff-mono); font-size: 0.78rem;
-  color: var(--muted); text-decoration: none;
-  letter-spacing: 0.08em; text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin-bottom: 48px;
   transition: color 0.2s;
 }
-.back-link:hover { color: var(--accent); }
+
+.back-link:hover {
+  color: var(--accent);
+}
 
 /* Layout */
 .detail-wrap {
@@ -176,32 +165,90 @@ onMounted(() => {
   overflow: hidden;
   background: #0a0a0d;
 }
-.detail-carousel.landscape { aspect-ratio: 16/9; }
-.detail-carousel.portrait  { aspect-ratio: 9/16; max-width: 340px; margin: 0 auto; }
 
-.detail-slides { width: 100%; height: 100%; }
-.detail-slide  { width: 100%; height: 100%; }
-.detail-media  { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
+.detail-carousel.landscape {
+  aspect-ratio: 16/9;
+}
+
+.detail-carousel.portrait {
+  aspect-ratio: 9/16;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.detail-slides {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
 
 .det-ctrl {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px;
-  background: var(--bg); border: 1px solid rgba(255,255,255,.15);
-  border-radius: 50%; color: var(--text); font-size: 0.9rem;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
   transition: background 0.2s;
 }
-.det-ctrl:hover { background: var(--surface2); }
-.det-ctrl.prev { left: 14px; }
-.det-ctrl.next { right: 14px; }
+
+.det-ctrl:hover {
+  background: var(--surface2);
+}
+
+.det-ctrl.prev {
+  left: 14px;
+}
+
+.det-ctrl.next {
+  right: 14px;
+}
 
 .det-dots {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 6px;
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
 }
-.det-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.3); border: none; cursor: pointer; transition: background 0.2s, width 0.2s, border-radius 0.2s; }
-.det-dot.active { background: var(--accent); width: 20px; border-radius: 3px; }
+
+.det-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .3);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, width 0.2s, border-radius 0.2s;
+}
+
+.det-dot.active {
+  background: var(--accent);
+  width: 20px;
+  border-radius: 3px;
+}
 
 /* Info */
 .detail-title {
@@ -211,7 +258,9 @@ onMounted(() => {
   color: var(--text);
   letter-spacing: -0.03em;
   margin-bottom: 8px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .detail-subtitle {
@@ -246,24 +295,52 @@ onMounted(() => {
   margin-bottom: 12px;
 }
 
-.detail-features { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.detail-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--muted); }
+.detail-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
 .detail-features li::before {
-  font-family: 'Font Awesome 6 Free'; font-weight: 900;
-  content: '\f061'; color: var(--accent); font-size: 0.7rem;
-  flex-shrink: 0; margin-top: 3px;
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f061';
+  color: var(--accent);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+  margin-top: 3px;
 }
 
-.detail-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
 .detail-tag {
-  font-family: var(--ff-mono); font-size: 0.72rem;
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
   padding: 5px 12px;
-  background: rgba(255,255,255,.05);
+  background: rgba(255, 255, 255, .05);
   border: 1px solid var(--border-md);
-  border-radius: 6px; color: var(--lavender);
+  border-radius: 6px;
+  color: var(--lavender);
 }
 
-.detail-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.detail-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
 /* Other projects */
 .other-projects {
@@ -271,66 +348,191 @@ onMounted(() => {
   padding-top: 56px;
 }
 
-.other-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.other-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
 .other-card {
-  display: flex; align-items: center; gap: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 18px 20px;
-  text-decoration: none; color: inherit;
+  text-decoration: none;
+  color: inherit;
   transition: border-color 0.2s, transform 0.2s;
 }
-.other-card:hover { border-color: var(--accent); transform: translateX(4px); }
-.other-card-icon { font-size: 1.4rem; color: var(--accent); flex-shrink: 0; }
-.other-card-title { font-family: var(--ff-mono); font-size: 0.9rem; font-weight: 700; color: var(--text); }
-.other-card-sub { font-family: var(--ff-mono); font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
-.other-arrow { margin-left: auto; color: var(--muted); font-size: 0.8rem; transition: color 0.2s; }
-.other-card:hover .other-arrow { color: var(--accent); }
+
+.other-card:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.other-card-icon {
+  font-size: 1.4rem;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.other-card-title {
+  font-family: var(--ff-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.other-card-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.other-arrow {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.other-card:hover .other-arrow {
+  color: var(--accent);
+}
 
 /* Buttons */
 .btn-card-violet {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--accent2-subtle); color: var(--lavender);
-  font-family: var(--ff-body); font-weight: 700; font-size: 0.78rem;
-  padding: 9px 18px; border-radius: 8px; border: 1px solid rgba(139,92,246,.25);
-  text-decoration: none; transition: background 0.2s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent2-subtle);
+  color: var(--lavender);
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, .25);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
 }
-.btn-card-violet:hover { background: rgba(139,92,246,.16); transform: translateY(-1px); color: var(--lavender); }
+
+.btn-card-violet:hover {
+  background: rgba(139, 92, 246, .16);
+  transform: translateY(-1px);
+  color: var(--lavender);
+}
 
 .btn-card-ghost {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: transparent; color: var(--text);
-  font-family: var(--ff-body); font-weight: 600; font-size: 0.78rem;
-  padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border-md);
-  text-decoration: none; transition: border-color 0.2s, transform 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border-md);
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s, color 0.2s;
 }
-.btn-card-ghost:hover { border-color: rgba(255,255,255,.28); transform: translateY(-1px); color: var(--text); }
+
+.btn-card-ghost:hover {
+  border-color: rgba(255, 255, 255, .28);
+  transform: translateY(-1px);
+  color: var(--text);
+}
 
 /* Badges */
-.web-card-meta, .mobile-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.web-card-meta,
+.mobile-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .web-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--lavender); background: var(--accent2-subtle); border: 1px solid rgba(139,92,246,.25);
-  padding: 3px 9px; border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  background: var(--accent2-subtle);
+  border: 1px solid rgba(139, 92, 246, .25);
+  padding: 3px 9px;
+  border-radius: 100px;
 }
-.web-badge::before { font-family: 'Font Awesome 6 Free'; font-weight: 900; content: '\f0ac'; font-size: 0.55rem; }
-.web-badge-stage { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lavender); }
+
+.web-badge::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f0ac';
+  font-size: 0.55rem;
+}
+
+.web-badge-stage {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lavender);
+}
+
 .mobile-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--ff-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--accent); background: var(--accent-subtle); border: 1px solid rgba(212,200,74,.22);
-  padding: 3px 9px; border-radius: 100px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-subtle);
+  border: 1px solid rgba(212, 200, 74, .22);
+  padding: 3px 9px;
+  border-radius: 100px;
 }
-.mobile-badge::before { font-family: 'Font Awesome 6 Free'; font-weight: 900; content: '\f3cd'; font-size: 0.55rem; }
-.mobile-badge-stage { font-family: var(--ff-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.mobile-badge::before {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  content: '\f3cd';
+  font-size: 0.55rem;
+}
+
+.mobile-badge-stage {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
 
 @media (max-width: 1024px) {
-  .detail-page { padding: 100px 24px 60px; }
-  .detail-wrap { grid-template-columns: 1fr; gap: 32px; }
-  .detail-grid { grid-template-columns: 1fr; }
-  .other-grid { grid-template-columns: 1fr; }
+  .detail-page {
+    padding: 100px 24px 60px;
+  }
+
+  .detail-wrap {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .other-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

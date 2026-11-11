@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useSound } from '@/composables/useSound'
-import { PROJECTS } from '@/types/projects'
+import { useProjects } from '@/composables/useProject'
+import { useMessages } from '@/composables/useMessages'
 
 const props = defineProps<{ skills: { title: string; detail?: string }[] }>()
+
+const { t, locale } = useI18n()
+const { raw, str, strs } = useMessages()
+const { projects } = useProjects()
 const { click, beep } = useSound()
 
 /**
- * Un seul format d'affichage pour tout le terminal :
  *  cmd  : commande tapée          (a = commande)
  *  row  : « clé : valeur »        (a = clé, b = valeur)
  *  text : texte simple            (a = texte)
@@ -27,77 +32,53 @@ let timers: number[] = []
 
 const row = (a: string, b: string): Line => ({ kind: 'row', a, b })
 
-// ─────────────────────────────────────────────
-// CONTENU (modifie ici ce qui s’affiche dans le terminal)
-// ─────────────────────────────────────────────
-const ABOUT: Line[] = [
-    row('Nom', 'Ethan Boulard'),
-    row('Métier', 'Développeur Web & Mobile'),
-    row('Lieu', 'Lyon'),
-    row('Statut', 'Disponible'),
-    row('Recherche', 'CDI / CDD'),
+// Identifiants internes des commandes (boutons + aide)
+const COMMANDS = ['skills', 'about', 'stack', 'journey', 'projects', 'clear'] as const
+type CommandId = (typeof COMMANDS)[number]
+
+// Ce que l'utilisateur peut taper (FR + EN) -> identifiant interne
+const ALIASES: Record<string, CommandId | 'help' | 'hire'> = {
+    skills: 'skills',
+    about: 'about',
+    stack: 'stack',
+    journey: 'journey',
+    parcours: 'journey',
+    projects: 'projects',
+    projets: 'projects',
+    clear: 'clear',
+    help: 'help',
+    aide: 'help',
+    'sudo hire-me': 'hire',
+}
+
+// Liste { k, v } des fichiers de langue -> lignes
+const pairs = (key: string): Line[] =>
+    raw(key).map((o: any) => row(str(o.k), str(o.v)))
+
+const help = (): Line[] => [
+    { kind: 'text', a: t('terminal.available') },
+    ...COMMANDS.map(c => row(t(`terminal.commands.${c}`), t(`terminal.help.${c}`))),
 ]
 
-const STACK: Line[] = [
-    row('Mobile', 'Flutter, Kotlin'),
-    row('Front-end', 'React, Angular, Vue.js, JavaScript, Tailwind'),
-    row('Back-end', 'Python, FastAPI, Node.js, Express.js, PHP, Symfony'),
-    row('Base de Données', 'MongoDB, Bases de Données SQL'),
-    row('Outils', 'GitHub Actions, Docker, Git, Linux, Vitest, Jest, Figma'),
-]
-
-// Du plus récent au plus ancien
-const PARCOURS: Line[] = [
-    row('Oct 2026', 'Diplôme RNCP de Développeur Web et Web Mobile, Bac+2'),
-    row('Août 2026', 'Certification Cisco · Cybersecurity'),
-    row('Fév - Avr 2026', 'Développeur Full-Stack · INSIDE RUNWAY'),
-    row('Nov 2025 - Jan 2026', "Développeur Mobile, Front-end · IT'S ME TIME"),
-    row('Avr - Nov 2025', "Formation de Développeur d'Application Mobile · M2i Formation Lyon"),
-    row('Depuis 2024', 'Autodidacte · Flutter, Angular, React'),
-]
-
-// Généré depuis ta liste de projets : rien à maintenir ici
-const PROJETS: Line[] = PROJECTS.map(p => row(p.title, p.subtitle))
-
-const HELP_ROWS: [string, string][] = [
-    ['skills', 'ce que je fais'],
-    ['about', 'qui suis-je ?'],
-    ['stack', 'mes technologies'],
-    ['parcours', 'formations et expériences'],
-    ['projets', 'ce que j’ai réalisé'],
-    ['clear', 'effacer le terminal'],
-]
-
-// Commandes proposées en boutons
-const COMMANDS = ['skills', 'about', 'stack', 'parcours', 'projets', 'clear']
-
-const HELP: Line[] = [
-    { kind: 'text', a: 'Commandes disponibles :' },
-    ...HELP_ROWS.map(([a, b]) => row(a, b)),
-]
-
-function output(cmd: string): Line[] {
-    switch (cmd) {
+function output(id: CommandId | 'help' | 'hire' | undefined, cmd: string): Line[] {
+    switch (id) {
         case 'skills':
             return props.skills.map(s => row(s.title, s.detail ?? ''))
         case 'about':
-            return ABOUT
+            return pairs('terminal.about')
         case 'stack':
-            return STACK
-        case 'parcours':
-            return PARCOURS
-        case 'projets':
-            return PROJETS
+            return pairs('terminal.stack')
+        case 'journey':
+            return pairs('terminal.journey')
+        case 'projects':
+            // Lu à l'exécution : suit la langue active
+            return projects.value.map(p => row(p.title, p.subtitle))
         case 'help':
-            return HELP
-        // Easter egg : jamais listé dans l'aide
-        case 'sudo hire-me':
-            return [
-                { kind: 'text', a: 'Permission accordée.' },
-                { kind: 'text', a: 'Tu sais où me trouver : bouton « Me contacter ».' },
-            ]
+            return help()
+        case 'hire': // Easter egg : jamais listé dans l'aide
+            return strs(raw('terminal.hireMe')).map(a => ({ kind: 'text', a }) as Line)
         default:
-            return [{ kind: 'text', a: `commande inconnue : ${cmd} (essaie « help »)` }]
+            return [{ kind: 'text', a: t('terminal.unknown', { cmd }) }]
     }
 }
 
@@ -122,16 +103,17 @@ function print(out: Line[]) {
     })
 }
 
-function run(raw: string) {
-    const cmd = raw.trim().toLowerCase().replace(/\s+/g, ' ')
+function run(rawCmd: string) {
+    const cmd = rawCmd.trim().toLowerCase().replace(/\s+/g, ' ')
     if (!cmd || busy.value) return
     click()
-    if (cmd === 'clear') {
+    const id = ALIASES[cmd]
+    if (id === 'clear') {
         lines.value = []
         return
     }
     lines.value.push({ kind: 'cmd', a: cmd })
-    print([{ kind: 'gap' }, ...output(cmd)])
+    print([{ kind: 'gap' }, ...output(id, cmd)])
     scrollDown()
 }
 
@@ -140,18 +122,29 @@ function submit() {
     input.value = ''
 }
 
-// Au départ : accueil + liste des commandes, sans rien exécuter
-onMounted(() =>
-    print([{ kind: 'text', a: 'Bienvenue à bord.' }, { kind: 'gap' }, ...HELP]),
-)
+function welcome() {
+    print([{ kind: 'text', a: t('terminal.welcome') }, { kind: 'gap' }, ...help()])
+}
+
+function reset() {
+    timers.forEach(clearTimeout)
+    timers = []
+    busy.value = false
+    lines.value = []
+    welcome()
+}
+
+onMounted(welcome)
+// Changement de langue : on repart d'un terminal propre dans la nouvelle langue
+watch(locale, reset)
 onBeforeUnmount(() => timers.forEach(clearTimeout))
 </script>
 
 <template>
-    <div class="term" aria-label="Terminal des compétences">
+    <div class="term" :aria-label="t('terminal.aria')">
         <div class="term-head">
             <span></span><span></span><span></span>
-            <em>eb@vaisseau ~</em>
+            <em>eb@{{ t('terminal.host') }} ~</em>
         </div>
 
         <div ref="body" class="term-body" aria-live="polite">
@@ -166,13 +159,15 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
         </div>
 
         <div class="term-actions">
-            <button v-for="c in COMMANDS" :key="c" type="button" @click="run(c)">{{ c }}</button>
+            <button v-for="c in COMMANDS" :key="c" type="button" @click="run(t(`terminal.commands.${c}`))">
+                {{ t(`terminal.commands.${c}`) }}
+            </button>
         </div>
 
         <form class="term-input" @submit.prevent="submit">
             <label for="term-cmd">&gt;</label>
-            <input id="term-cmd" v-model="input" placeholder="tape une commande…" maxlength="60" autocomplete="off"
-                spellcheck="false" />
+            <input id="term-cmd" v-model="input" :placeholder="t('terminal.placeholder')" maxlength="60"
+                autocomplete="off" spellcheck="false" />
         </form>
     </div>
 </template>

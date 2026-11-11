@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useTheme } from '@/composables/useTheme'
 import { useSound } from '@/composables/useSound'
 
+const { t, locale } = useI18n()
 const { enabled: soundOn, toggle: toggleSound } = useSound()
 const { theme, toggleTheme } = useTheme()
-const route = useRoute()
 const scrolled = ref(false)
 const menuOpen = ref(false)
+
+// Bascule FR <-> EN (i18n.ts s'occupe de <html lang> et du localStorage)
+function toggleLang() {
+  locale.value = locale.value === 'fr' ? 'en' : 'fr'
+}
 
 function onScroll() {
   scrolled.value = window.scrollY > 40
@@ -24,30 +29,33 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
     <ul class="nav-links" :class="{ 'is-open': menuOpen }">
       <li>
-        <RouterLink to="/" @click="menuOpen = false">Accueil</RouterLink>
+        <RouterLink to="/" @click="menuOpen = false">{{ t('nav.home') }}</RouterLink>
       </li>
       <li>
-        <RouterLink to="/experience" @click="menuOpen = false">Expérience</RouterLink>
+        <RouterLink to="/experience" @click="menuOpen = false">{{ t('nav.experience') }}</RouterLink>
       </li>
       <li>
-        <RouterLink to="/projects" @click="menuOpen = false">Projets</RouterLink>
+        <RouterLink to="/projects" @click="menuOpen = false">{{ t('nav.projects') }}</RouterLink>
       </li>
       <li>
-        <RouterLink to="/contact" @click="menuOpen = false">Contact</RouterLink>
+        <RouterLink to="/contact" @click="menuOpen = false">{{ t('nav.contact') }}</RouterLink>
       </li>
     </ul>
 
     <div class="nav-actions">
+      <button class="theme-toggle lang-toggle" @click="toggleLang" :aria-label="t('nav.switchLang')"
+        :title="t('nav.switchLang')">
+        {{ locale === 'fr' ? 'EN' : 'FR' }}
+      </button>
       <button class="theme-toggle" @click="toggleTheme"
-        :aria-label="theme === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'"
-        :aria-pressed="theme === 'dark'">
+        :aria-label="theme === 'dark' ? t('nav.themeToLight') : t('nav.themeToDark')" :aria-pressed="theme === 'dark'">
         <i :class="theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
       </button>
-      <button class="theme-toggle" @click="toggleSound" :aria-label="soundOn ? 'Couper le son' : 'Activer le son'"
+      <button class="theme-toggle" @click="toggleSound" :aria-label="soundOn ? t('nav.soundOff') : t('nav.soundOn')"
         :aria-pressed="soundOn">
         <i :class="soundOn ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark'"></i>
       </button>
-      <button class="burger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Menu">
+      <button class="burger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" :aria-label="t('nav.menu')">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -147,6 +155,14 @@ nav.scrolled {
 .theme-toggle:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+/* Variante texte (EN / FR) : même cercle, police mono */
+.lang-toggle {
+  font-family: var(--ff-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .burger {

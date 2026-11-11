@@ -1,30 +1,26 @@
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import { HERO_PROJECTS } from '@/types/projects'
+import { useI18n } from 'vue-i18n'
+import { useProjects } from '@/composables/useProject'
+import { useMessages } from '@/composables/useMessages'
 import SkillsTerminal from '@/components/SkillsTerminal.vue'
 
+const { t } = useI18n()
+const { raw, str, strs } = useMessages()
+
 // ── Skills (affichés par le terminal avec la commande « skills ») ──
-const skills = [
-    { title: 'Apps multiplateformes', detail: 'iOS & Android avec une seule base de code' },
-    { title: 'Full-stack', detail: 'Front, back et base de données' },
-    { title: 'CI/CD et tests', detail: 'Livraisons automatisées et fiables' },
-    { title: 'Bots et automatisation', detail: 'Des scripts qui font le travail répétitif' },
-]
+// Traduits : la liste suit la langue active
+const skills = computed(() =>
+    raw('hero.skills').map(s => ({ title: str(s.title), detail: str(s.detail) })),
+)
 
 // ── Aperçu des projets ──
-const projects = HERO_PROJECTS
+const { heroProjects: projects, typeLabel } = useProjects()
 const current = ref(0)
 const DELAY = 4500
 let timer = null
 
-const LABELS = {
-    mobile: 'Mobile',
-    web: 'Web',
-    fullstack: 'Full-stack',
-    'bot/script': 'Bot',
-    'desktop/mobile': 'Desktop & mobile',
-}
-const label = p => LABELS[p.type] ?? p.type
+const label = p => typeLabel(p)
 
 // Captures d'apps mobiles : image entière sur fond noir
 const isMobile = p => p.type === 'mobile'
@@ -41,7 +37,9 @@ function cover(p) {
 }
 
 function goTo(i) {
-    current.value = (i + projects.length) % projects.length
+    const n = projects.value.length
+    if (!n) return
+    current.value = (i + n) % n
 }
 
 function stop() {
@@ -60,40 +58,47 @@ function pick(i) {
 }
 
 // ── Avis ──
-// excerpt    : extrait affiché dans la card (optionnel, […] = passage coupé)
-// text       : avis complet, affiché dans la fenêtre
-// highlights : mots-clés tirés de l'avis (optionnel)
-// rating     : note sur 5, UNIQUEMENT si la personne l'a donnée (optionnel)
-const reviews = [
+// Partie non traduisible ici ; status / highlights / excerpt / text
+// viennent des fichiers de langue (clé `reviews.<id>`).
+// rating : note sur 5, UNIQUEMENT si la personne l'a donnée (optionnel)
+const REVIEW_BASES = [
     {
+        id: 'adonis',
         name: 'Adonis Pesic',
-        status: 'Maître de stage',
         source: 'LinkedIn',
         url: 'https://www.linkedin.com/in/adonis-pesic-15694b236/',
-        highlights: ['Autonomie', 'Vision full-stack', 'Esprit d’équipe'],
-        excerpt:
-            'Ethan se distingue par une autonomie remarquable et une capacité rare à analyser des pans très larges de code, du mobile au backend jusqu’au front-end. […] Je le recommande sans la moindre hésitation.',
-        text: "J’ai eu la chance de travailler avec Ethan Boulard au sein de mon équipe, et je peux dire sans hésiter qu’il s’agit d’un élément exceptionnel. Ethan se distingue par une autonomie remarquable et une capacité rare à analyser des pans très larges de code, du mobile au backend jusqu’au front-end. Il apporte toujours une expertise précise et pertinente, aussi bien sur des problématiques techniques complexes que sur des détails visuels, ce qui est assez rare. Au-delà de ses compétences techniques, Ethan possède un excellent sens du travail en équipe. Il sait s’adapter à différents profils, collaborer efficacement et contribuer à une dynamique saine et productive. Durant toute notre collaboration, nous n’avons jamais entendu une seule plainte de sa part mais il saura vous faire des retour si vous lui en demander. Nous devons aujourd’hui nous séparer de lui uniquement pour des raisons financières, faute de fonds au sein de la structure une décision difficile au vu de la qualité de son travail. C’est avec regret que je le laisse partir, et j’espère sincèrement avoir l’opportunité de retravailler avec Ethan très prochainement. Je le recommande sans la moindre hésitation.",
     },
     {
+        id: 'prescillia',
         name: 'Prescillia Grah',
-        status: 'Supérieure directe',
         source: 'LinkedIn',
         url: 'https://www.linkedin.com/in/prescillia-grah/',
-        highlights: ['Créatif', 'À l’écoute', 'Flexible'],
-        excerpt:
-            "Créatif, flexible et à l'écoute, il a su intégrer chaque retour pour livrer un travail de qualité, un véritable atout pour l'équipe. […] Il sera une vraie valeur ajoutée pour toute équipe qui aura la chance de l'avoir.",
-        text: "J'ai eu le plaisir de travailler avec Ethan lors de son stage chez Inside Runway, où il a assisté notre CTO et contribué au développement de notre plateforme, notamment sur l'application mobile. Créatif, flexible et à l'écoute, il a su intégrer chaque retour pour livrer un travail de qualité, un véritable atout pour l'équipe. Je recommande vivement Ethan à quiconque recherche un développeur alliant compétences solides et excellent état d'esprit. Il sera une vraie valeur ajoutée pour toute équipe qui aura la chance de l'avoir.",
     },
 ]
 
+const reviews = computed(() =>
+    REVIEW_BASES.map(base => {
+        const m = raw(`reviews.${base.id}`)
+        return {
+            ...base,
+            status: str(m.status),
+            highlights: strs(m.highlights),
+            excerpt: str(m.excerpt),
+            text: str(m.text),
+        }
+    }),
+)
+
 const rev = ref(0)
-const review = computed(() => reviews[rev.value])
+const review = computed(() => reviews.value[rev.value])
 const initials = n => n.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
-const goRev = i => { rev.value = (i + reviews.length) % reviews.length }
+const goRev = i => {
+    const n = reviews.value.length
+    rev.value = (i + n) % n
+}
 
 // Extrait dans la card, texte complet dans la fenêtre
-const shownText = computed(() => review.value.excerpt ?? review.value.text)
+const shownText = computed(() => review.value.excerpt || review.value.text)
 const hasMore = computed(() => !!review.value.excerpt || review.value.text.length > 220)
 
 const open = ref(false)
@@ -120,26 +125,27 @@ onUnmounted(() => {
         <section id="hero" class="page-section">
             <!-- Gauche : qui je suis, ce que je fais -->
             <div class="hero-left">
-                <p class="hero-tag">Disponible · Lyon</p>
+                <p class="hero-tag">{{ t('hero.tag') }}</p>
 
                 <h1 class="hero-name">Ethan Boulard</h1>
-                <p class="hero-pitch">Développeur Web &amp; Mobile.</p>
+                <p class="hero-pitch">{{ t('hero.pitch') }}</p>
 
                 <SkillsTerminal :skills="skills" />
 
                 <div class="hero-cta">
                     <RouterLink to="/projects" class="btn-primary-custom">
-                        Voir mes projets <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        {{ t('hero.ctaProjects') }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </RouterLink>
                     <RouterLink to="/contact" class="btn-ghost">
-                        <i class="fa-regular fa-envelope" aria-hidden="true"></i> Me contacter
+                        <i class="fa-regular fa-envelope" aria-hidden="true"></i> {{ t('hero.ctaContact') }}
                     </RouterLink>
                 </div>
             </div>
 
             <!-- Droite : aperçu des projets + avis -->
             <div class="preview">
-                <div class="preview-media" @mouseenter="stop" @mouseleave="start" @focusin="stop" @focusout="start">
+                <div v-if="projects.length" class="preview-media" @mouseenter="stop" @mouseleave="start" @focusin="stop"
+                    @focusout="start">
                     <Transition name="fade" mode="out-in">
                         <RouterLink :key="projects[current].id" :to="`/projects/${projects[current].id}`"
                             class="preview-card" :aria-label="projects[current].title">
@@ -152,25 +158,26 @@ onUnmounted(() => {
                         </RouterLink>
                     </Transition>
 
-                    <div class="dots" role="group" aria-label="Choisir un projet">
+                    <div class="dots" role="group" :aria-label="t('hero.pickProject')">
                         <button v-for="(p, i) in projects" :key="p.id" class="dot" :class="{ active: i === current }"
                             :aria-label="p.title" :aria-pressed="i === current" @click="pick(i)"></button>
                     </div>
                 </div>
 
                 <!-- Avis -->
-                <section v-if="review" class="reviews" aria-label="Avis">
+                <section v-if="review" class="reviews" :aria-label="t('hero.reviewsAria')">
                     <div class="reviews-head">
-                        <p class="reviews-label">Ils en parlent</p>
+                        <p class="reviews-label">{{ t('hero.reviewsLabel') }}</p>
 
-                        <span v-if="review.rating" class="review-rating" :aria-label="`Note : ${review.rating} sur 5`">
+                        <span v-if="review.rating" class="review-rating"
+                            :aria-label="t('hero.rating', { n: review.rating })">
                             <i v-for="n in 5" :key="n"
                                 :class="n <= review.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'"
                                 aria-hidden="true"></i>
                         </span>
 
                         <button v-if="hasMore" type="button" class="review-more" @click="open = true">
-                            Lire l'avis complet
+                            {{ t('hero.readFull') }}
                         </button>
                     </div>
 
@@ -198,15 +205,15 @@ onUnmounted(() => {
 
                     <div class="review-foot">
                         <ul class="review-tags">
-                            <li v-for="t in review.highlights" :key="t">{{ t }}</li>
+                            <li v-for="tag in review.highlights" :key="tag">{{ tag }}</li>
                         </ul>
 
                         <div v-if="reviews.length > 1" class="review-nav">
-                            <button type="button" aria-label="Avis précédent" @click="goRev(rev - 1)">
+                            <button type="button" :aria-label="t('hero.prev')" @click="goRev(rev - 1)">
                                 <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                             </button>
                             <span>{{ rev + 1 }} / {{ reviews.length }}</span>
-                            <button type="button" aria-label="Avis suivant" @click="goRev(rev + 1)">
+                            <button type="button" :aria-label="t('hero.next')" @click="goRev(rev + 1)">
                                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -218,9 +225,10 @@ onUnmounted(() => {
 
     <!-- Fenêtre : avis complet -->
     <Teleport to="body">
-        <div v-if="open" class="modal" @click.self="open = false">
-            <div class="modal-box" role="dialog" aria-modal="true" :aria-label="`Avis de ${review.name}`">
-                <button type="button" class="modal-close" aria-label="Fermer" @click="open = false">
+        <div v-if="open && review" class="modal" @click.self="open = false">
+            <div class="modal-box" role="dialog" aria-modal="true"
+                :aria-label="t('hero.modalAria', { name: review.name })">
+                <button type="button" class="modal-close" :aria-label="t('hero.close')" @click="open = false">
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
 
@@ -229,7 +237,7 @@ onUnmounted(() => {
                 <p class="modal-who">
                     <strong>{{ review.name }}</strong> · {{ review.status }}
                     <a v-if="review.url" :href="review.url" target="_blank" rel="noopener noreferrer">
-                        Voir sur {{ review.source }}
+                        {{ t('hero.seeOn', { source: review.source }) }}
                     </a>
                 </p>
             </div>

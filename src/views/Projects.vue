@@ -1,31 +1,25 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { useReveal } from '../composables/useReveal.ts'
-import { PROJECTS } from '../types/projects.ts'
+import { useI18n } from 'vue-i18n'
+import { useReveal } from '@/composables/useReveal'
+import { useProjects } from '@/composables/useProject'
 
 useReveal()
 
-// `type` dans projects.ts : mobile, web, fullstack, bot/script, desktop/mobile
-const LABELS = {
-  mobile: 'Mobile',
-  web: 'Web',
-  fullstack: 'Full-stack',
-  'bot/script': 'Bot',
-  'desktop/mobile': 'Desktop & mobile',
-}
-const label = p => LABELS[p.type] ?? p.type
+const { t } = useI18n()
+const { projects, typeLabel } = useProjects()
 
-// Filtre par catégorie, construit à partir des données
-const ALL = 'Tous'
-const categories = [ALL, ...new Set(PROJECTS.map(label))]
+// Clé interne stable : le texte affiché change avec la langue, pas la clé
+const ALL = '__all__'
+const categories = computed(() => [ALL, ...new Set(projects.value.map(typeLabel))])
 const active = ref(ALL)
 
 const visible = computed(() =>
-  active.value === ALL ? PROJECTS : PROJECTS.filter(p => label(p) === active.value)
+  active.value === ALL
+    ? projects.value
+    : projects.value.filter(p => typeLabel(p) === active.value),
 )
 
-// Les captures d'apps mobiles sont verticales : on les affiche en entier
-// (contain) sur fond noir, avec des bandes noires à gauche et à droite.
 const isMobile = p => p.type === 'mobile'
 
 function cover(p) {
@@ -45,12 +39,12 @@ function cover(p) {
     <section id="projects" class="page-section">
       <div class="projects-wrap">
         <div class="projects-top reveal">
-          <h1 class="projects-title">Projets</h1>
+          <h1 class="projects-title">{{ t('projectsPage.title') }}</h1>
 
-          <div v-if="categories.length > 2" class="filters" role="group" aria-label="Filtrer les projets">
+          <div v-if="categories.length > 2" class="filters" role="group" :aria-label="t('projectsPage.filterAria')">
             <button v-for="c in categories" :key="c" class="filter" :class="{ active: c === active }"
               :aria-pressed="c === active" @click="active = c">
-              {{ c }}
+              {{ c === ALL ? t('projectsPage.all') : c }}
             </button>
           </div>
         </div>
@@ -61,7 +55,7 @@ function cover(p) {
               <div class="row-img" :style="cover(p)"></div>
 
               <div class="row-body">
-                <p class="row-meta">{{ label(p) }} · {{ p.year }}</p>
+                <p class="row-meta">{{ typeLabel(p) }} · {{ p.year }}</p>
                 <h2 class="row-name">{{ p.title }}</h2>
                 <p class="row-desc">{{ p.description }}</p>
 
@@ -70,7 +64,7 @@ function cover(p) {
                     <span v-for="tag in p.tags" :key="tag" class="row-tag">{{ tag }}</span>
                   </div>
                   <span class="row-link">
-                    Voir le projet <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    {{ t('projectsPage.view') }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                   </span>
                 </div>
               </div>

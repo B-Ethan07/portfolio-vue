@@ -1,0 +1,380 @@
+{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "menu": "Menu",
+    "themeToLight": "Switch to light mode",
+    "themeToDark": "Switch to dark mode",
+    "soundOff": "Mute sound",
+    "soundOn": "Turn sound on",
+    "switchLang": "Switch the site to French"
+  },
+
+  "boot": {
+    "aria": "Loading",
+    "skip": "click to skip",
+    "lines": [
+      "EB-OS v1.0 — initializing",
+      "Checking systems ................. OK",
+      "Loading modules .................. OK",
+      "Calibrating stars ................ OK",
+      "Link established · Lyon"
+    ]
+  },
+
+  "hero": {
+    "tag": "Available · Lyon",
+    "pitch": "Web & Mobile Developer.",
+    "ctaProjects": "See my projects",
+    "ctaContact": "Contact me",
+    "pickProject": "Choose a project",
+    "reviewsAria": "Reviews",
+    "reviewsLabel": "What they say",
+    "rating": "Rating: {n} out of 5",
+    "readFull": "Read the full review",
+    "prev": "Previous review",
+    "next": "Next review",
+    "modalAria": "Review by {name}",
+    "close": "Close",
+    "seeOn": "View on {source}",
+    "skills": [
+      {
+        "title": "Cross-platform apps",
+        "detail": "iOS & Android from a single codebase"
+      },
+      { "title": "Full-stack", "detail": "Front end, back end and database" },
+      {
+        "title": "CI/CD and testing",
+        "detail": "Automated, reliable deliveries"
+      },
+      {
+        "title": "Bots and automation",
+        "detail": "Scripts that handle the repetitive work"
+      }
+    ]
+  },
+  "reviews": {
+    "adonis": {
+      "status": "Internship supervisor",
+      "highlights": ["Autonomy", "Full-stack vision", "Team spirit"],
+      "excerpt": "Ethan stands out for his remarkable autonomy and a rare ability to analyze very large areas of code, from mobile to backend to front end. […] I recommend him without the slightest hesitation.",
+      "text": "I had the chance to work with Ethan Boulard on my team, and I can say without hesitation that he is an exceptional asset. Ethan stands out for his remarkable autonomy and a rare ability to analyze very large areas of code, from mobile to backend to front end. He always brings precise and relevant expertise, both on complex technical issues and on visual details, which is quite rare. Beyond his technical skills, Ethan has an excellent sense of teamwork. He adapts to different profiles, collaborates effectively and contributes to a healthy, productive dynamic. Throughout our collaboration, we never heard a single complaint from him, though he will give you feedback if you ask for it. We now have to part ways with him solely for financial reasons, due to a lack of funds within the company, a difficult decision given the quality of his work. It is with regret that I let him go, and I sincerely hope to have the opportunity to work with Ethan again very soon. I recommend him without the slightest hesitation."
+    },
+    "prescillia": {
+      "status": "Direct manager",
+      "highlights": ["Creative", "Attentive", "Flexible"],
+      "excerpt": "Creative, flexible and attentive, he took every piece of feedback on board to deliver quality work, a real asset to the team. […] He will be a true added value to any team lucky enough to have him.",
+      "text": "I had the pleasure of working with Ethan during his internship at Inside Runway, where he assisted our CTO and contributed to the development of our platform, notably the mobile app. Creative, flexible and attentive, he took every piece of feedback on board to deliver quality work, a real asset to the team. I highly recommend Ethan to anyone looking for a developer who combines solid skills with an excellent mindset. He will be a true added value to any team lucky enough to have him."
+    }
+  },
+
+  "terminal": {
+    "aria": "Skills terminal",
+    "host": "ship",
+    "placeholder": "type a command…",
+    "welcome": "Welcome aboard.",
+    "available": "Available commands:",
+    "unknown": "unknown command: {cmd} (try “help”)",
+    "hireMe": [
+      "Permission granted.",
+      "You know where to find me: the “Contact me” button."
+    ],
+    "commands": {
+      "skills": "skills",
+      "about": "about",
+      "stack": "stack",
+      "journey": "journey",
+      "projects": "projects",
+      "clear": "clear"
+    },
+    "help": {
+      "skills": "what I do",
+      "about": "who am I?",
+      "stack": "my technologies",
+      "journey": "education and experience",
+      "projects": "what I've built",
+      "clear": "clear the terminal"
+    },
+    "about": [
+      { "k": "Name", "v": "Ethan Boulard" },
+      { "k": "Role", "v": "Web & Mobile Developer" },
+      { "k": "Location", "v": "Lyon" },
+      { "k": "Status", "v": "Available" },
+      { "k": "Looking for", "v": "Permanent / fixed-term contract" }
+    ],
+    "stack": [
+      { "k": "Mobile", "v": "Flutter, Kotlin" },
+      { "k": "Front-end", "v": "React, Angular, Vue.js, JavaScript, Tailwind" },
+      {
+        "k": "Back-end",
+        "v": "Python, FastAPI, Node.js, Express.js, PHP, Symfony"
+      },
+      { "k": "Databases", "v": "MongoDB, SQL Databases" },
+      {
+        "k": "Tools",
+        "v": "GitHub Actions, Docker, Git, Linux, Vitest, Jest, Figma"
+      }
+    ],
+    "journey": [
+      {
+        "k": "Oct 2026",
+        "v": "RNCP Web & Mobile Web Developer Degree, 2-year level (Bac+2)"
+      },
+      { "k": "Aug 2026", "v": "Cisco Certification · Cybersecurity" },
+      { "k": "Feb - Apr 2026", "v": "Full-Stack Developer · INSIDE RUNWAY" },
+      {
+        "k": "Nov 2025 - Jan 2026",
+        "v": "Mobile & Front-end Developer · IT'S ME TIME"
+      },
+      {
+        "k": "Apr - Nov 2025",
+        "v": "Mobile Application Developer Training · M2i Formation Lyon"
+      },
+      { "k": "Since 2024", "v": "Self-taught · Flutter, Angular, React" }
+    ]
+  },
+
+  "projectTypes": {
+    "mobile": "Mobile",
+    "fullstack": "Full-stack web",
+    "desktop": "Desktop & mobile",
+    "game": "Game",
+    "bot": "Bot"
+  },
+
+  "projectLinks": {
+    "landing": "View the landing page",
+    "repoPrivate": "Repo (private)",
+    "code": "View the code"
+  },
+
+  "projectsPage": {
+    "title": "Projects",
+    "all": "All",
+    "filterAria": "Filter projects",
+    "view": "View project"
+  },
+
+  "experience": {
+    "title": "Journey",
+    "jobsTitle": "Experience",
+    "educationTitle": "Education",
+    "skillsTitle": "Skills",
+    "jobs": {
+      "insideRunway": {
+        "date": "Feb – Apr 2026",
+        "title": "Full-stack developer",
+        "items": [
+          "Flutter mobile app built from scratch, independently: architecture, navigation, state management, AWS S3.",
+          "Next.js landing page: design and UI/UX.",
+          "React CRM: contributions and FR/EN translation."
+        ]
+      },
+      "itsMeTime": {
+        "date": "Nov 2025 – Jan 2026",
+        "title": "Mobile & front-end developer",
+        "items": [
+          "New Flutter features, including a freehand drawing module.",
+          "UI/UX redesign: screens, ergonomics, navigation fluidity.",
+          "REST API integration with the backend developer."
+        ]
+      }
+    },
+    "education": {
+      "diploma": {
+        "date": "Oct 2026",
+        "title": "Web & Mobile Web Developer Degree",
+        "tags": [
+          "Front-End",
+          "Back-End",
+          "REST API",
+          "Databases",
+          "CI/CD",
+          "Testing"
+        ],
+        "text": "Real-world collaborative projects, database modeling, REST API design."
+      },
+      "cisco": {
+        "date": "Aug 2026",
+        "title": "Cisco Certification · Cybersecurity",
+        "tags": ["Network security", "Penetration testing"],
+        "text": "Network security, penetration testing, vulnerability analysis."
+      },
+      "m2i": {
+        "date": "Apr – Nov 2025",
+        "title": "Mobile application developer",
+        "tags": ["Flutter", "Kotlin", "Firebase"],
+        "text": "Professional training program focused on mobile development."
+      },
+      "self": {
+        "date": "Since 2024",
+        "title": "Self-taught",
+        "tags": ["Flutter", "Angular", "React"]
+      }
+    },
+    "domains": {
+      "mobile": "Mobile",
+      "frontend": "Front-end",
+      "backend": "Back-end",
+      "data": "Data",
+      "tools": "Tools"
+    }
+  },
+
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Open to opportunities and collaborations.",
+    "mailSubject": "Contact from Ethan's portfolio",
+    "mailGreeting": "Hello Ethan,"
+  },
+
+  "projects": {
+    "botTwitch": {
+      "subtitle": "Bot for Twitch streamers",
+      "badgeStage": "November 2026",
+      "year": "Nov 2026",
+      "description": "Twitch bot that lets viewers suggest songs in the chat.",
+      "longDescription": "Twitch bot built with Node.js that lets viewers suggest songs in the chat, with command handling and interactions.",
+      "features": [
+        "Command and interaction handling",
+        "User and permission management",
+        "Music automation via the Twitch and YouTube APIs",
+        "OBS overlay to display the current songs",
+        "Playlist and song management",
+        "Local SQLite database to store data"
+      ]
+    },
+    "arcasolisApp": {
+      "subtitle": "Flutter mobile & desktop app",
+      "badgeStage": "Oct 2026",
+      "year": "Oct 2026",
+      "description": "Flutter app to track your movies and TV shows",
+      "longDescription": "B2B Flutter app to track your movies and TV shows, with mobile and desktop interfaces, push notifications and cloud sync.",
+      "features": [
+        "TMDB API integration to import movies and TV shows",
+        "Add and track movies and TV shows",
+        "Push notifications for releases and reminders",
+        "Cloud sync and cross-platform support",
+        "Responsive mobile and desktop interface",
+        "Data export and usage statistics"
+      ]
+    },
+    "insideRunwayApp": {
+      "subtitle": "B2B Flutter mobile app",
+      "badgeStage": "B2B · 2026",
+      "year": "Oct 2025 – Jan 2026",
+      "description": "B2B Flutter app for fashion designers: project management, deliveries and communication between designers and brands.",
+      "longDescription": "B2B Flutter app connecting fashion designers and brands to streamline day-to-day project management, deliveries and communication.",
+      "features": [
+        "Posts, collections and media feeds",
+        "Advanced business logic: projects, deliveries, calendar",
+        "Push notifications, messaging and authentication",
+        "Cloud media storage (AWS S3)",
+        "Scalable architecture and smooth navigation"
+      ]
+    },
+    "insideRunwayLanding": {
+      "subtitle": "B2B landing page redesign",
+      "badgeStage": "B2B · 2026",
+      "year": "Feb 2026 – Apr 2026",
+      "description": "Complete redesign of the B2B landing page. CRM connecting fashion designers and brands.",
+      "longDescription": "Complete redesign of the INSIDE RUNWAY CRM landing page. UI/UX design, integration and deployment on Vercel.",
+      "features": [
+        "UI/UX design from scratch",
+        "Animations and micro-interactions",
+        "Integration with the FastAPI backend",
+        "Vercel deployment + SEO optimization"
+      ]
+    },
+    "insideRunwayCrm": {
+      "subtitle": "B2B React CRM",
+      "badgeStage": "B2B · 2026",
+      "year": "Feb 2026 – Apr 2026",
+      "description": "B2B React/FastAPI CRM for fashion designers: project management, deliveries and communication between designers and brands.",
+      "longDescription": "B2B React/FastAPI CRM connecting fashion designers and brands to streamline day-to-day project management, deliveries and communication.",
+      "features": [
+        "Posts, collections and media feeds",
+        "Advanced business logic: projects, deliveries, calendar",
+        "Push notifications, messaging and authentication",
+        "Cloud media storage (AWS S3)",
+        "Scalable architecture and smooth navigation"
+      ]
+    },
+    "zenquest": {
+      "subtitle": "Daily tracking website",
+      "badgeStage": "React/TS · Express.js",
+      "year": "Oct 2025",
+      "description": "SPA for daily tracking of exercise, nutrition, sleep and mood, with dedicated user area and admin interface.",
+      "longDescription": "React TypeScript wellness-tracking app with a user dashboard, history, and a complete admin interface.",
+      "features": [
+        "User and admin front ends in React + TypeScript",
+        "Express.js REST API for data management",
+        "Dashboards and history of daily entries",
+        "Authentication and role management"
+      ]
+    },
+    "itsmetime": {
+      "subtitle": "Flutter coloring app",
+      "badgeStage": "Internship · 2026",
+      "year": "Nov 2025 – Jan 2026",
+      "description": "Flutter coloring app: complete visual redesign and new drawing features.",
+      "longDescription": "Flutter mobile development internship on an existing coloring app. Complete UI redesign, new features and an analytics back office.",
+      "features": [
+        "Complete visual redesign of the UI",
+        "Freehand drawing (brush) and eraser",
+        "Analytics and tracking back office",
+        "Asynchronous REST API integration"
+      ]
+    },
+    "cinezone": {
+      "subtitle": "Full-stack movie platform",
+      "badgeStage": "Full-stack project",
+      "year": "Aug 2025",
+      "description": "Full-stack platform for managing and rating movies, with authentication and a responsive interface.",
+      "longDescription": "Angular + Express.js full-stack project with an authentication system, a dynamic movie catalog and an admin interface.",
+      "features": [
+        "Catalog with dynamic filters",
+        "Rating and review system",
+        "Full admin-side CRUD",
+        "JWT authentication"
+      ]
+    },
+    "factuzen": {
+      "subtitle": "Invoicing management app",
+      "badgeStage": "Symfony project",
+      "year": "Jul 2025",
+      "description": "Symfony invoicing management app with a robust MVC architecture and a clean interface.",
+      "longDescription": "Complete Symfony MVC project with client management, invoice creation, and display of invoice line items.",
+      "features": [
+        "Complete client management (CRUD)",
+        "Invoice creation and editing",
+        "Display of invoice line items",
+        "Symfony MVC architecture"
+      ]
+    },
+    "educeasy": {
+      "subtitle": "Blog for parents",
+      "badgeStage": "Web blog",
+      "year": "Jun 2025",
+      "description": "Blog for parents with articles, tips and activities for kids, plus a publishing system.",
+      "longDescription": "Full-stack PHP blog with an article system, sign-up, user profile, and a built-in newsletter.",
+      "features": [
+        "Articles with search and filters",
+        "Sign-up, login and profile",
+        "Newsletter with built-in popup",
+        "Article publishing system"
+      ]
+    }
+  },
+  "detail": {
+    "allProjects": "All projects",
+    "features": "Features",
+    "stack": "Tech stack",
+    "back": "Back",
+    "others": "Other projects",
+    "prev": "Previous",
+    "next": "Next"
+  }
+}
