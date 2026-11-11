@@ -170,7 +170,7 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
 
         <form class="term-input" @submit.prevent="submit">
             <label for="term-cmd">&gt;</label>
-            <input id="term-cmd" v-model="input" placeholder="tape une commande…" autocomplete="off"
+            <input id="term-cmd" v-model="input" placeholder="tape une commande…" maxlength="60" autocomplete="off"
                 spellcheck="false" />
         </form>
     </div>
