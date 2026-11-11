@@ -7,7 +7,7 @@ import BootScreen from './components/BootScreen.vue'
 import { useSound } from '@/composables/useSound'
 
 // Le boot ne s'affiche qu'une fois par session
-const booting = ref(true) // TEMP : toujours afficher pendant les tests
+const booting = ref(!sessionStorage.getItem('booted'))
 const { click } = useSound()
 
 // Petit clic sonore sur tous les liens et boutons (rien si le son est coupé)
