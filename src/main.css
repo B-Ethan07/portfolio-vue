@@ -10,69 +10,69 @@
   font-display: swap;
 }
 
-/* ─── DARK (défaut) : nuit spatiale ─── */
+/* ─── DARK (défaut) : violet nuit ─── */
 :root,
 [data-theme='dark'] {
-  --bg:        #070a1c;
-  --surface:   #0e1330;
-  --surface2:  #141a40;
+  --bg:        #0f0720;
+  --surface:   #1a0f33;
+  --surface2:  #231545;
 
-  --border:    rgba(160, 185, 255, 0.09);
-  --border-md: rgba(160, 185, 255, 0.16);
+  --border:    rgba(244, 244, 240, 0.08);
+  --border-md: rgba(244, 244, 240, 0.15);
 
-  --text:      #e8ecff;
-  --muted:     #8790bd;
+  --text:      #F4F4F0;
+  --muted:     #9d93b8;
 
-  --accent:         #8fb0ff;
-  --accent-glow:    rgba(143, 176, 255, 0.28);
-  --accent-subtle:  rgba(143, 176, 255, 0.08);
+  --accent:         #b79cff;
+  --accent-glow:    rgba(183, 156, 255, 0.28);
+  --accent-subtle:  rgba(183, 156, 255, 0.08);
 
   --accent2:        #8b5cf6;
   --accent2-glow:   rgba(139, 92, 246, 0.2);
   --accent2-subtle: rgba(139, 92, 246, 0.1);
 
-  --lavender:  #b8c4ff;
+  --lavender:  #d6c8ff;
   --danger:    #f87171;
 
   --scrollbar-bg: var(--bg);
-  --nav-scrolled-bg: rgba(7, 10, 28, 0.85);
-  --hero-name-color: #fff;
-  --selection-bg: #8fb0ff;
-  --selection-color: #070a1c;
-  --modal-bg: #0e1330;
-  --modal-header-bg: #141a40;
+  --nav-scrolled-bg: rgba(15, 7, 32, 0.85);
+  --hero-name-color: #F4F4F0;
+  --selection-bg: #b79cff;
+  --selection-color: #0f0720;
+  --modal-bg: #1a0f33;
+  --modal-header-bg: #231545;
 }
 
-/* ─── LIGHT : station blanche ─── */
+/* ─── LIGHT : blanc cassé + violet ─── */
 [data-theme='light'] {
-  --bg:        #f4f6ff;
+  --bg:        #F4F4F0;
   --surface:   #ffffff;
-  --surface2:  #e9edfb;
+  --surface2:  #eae8e2;
 
-  --border:    rgba(20, 30, 90, 0.08);
-  --border-md: rgba(20, 30, 90, 0.16);
+  --border:    rgba(40, 15, 80, 0.08);
+  --border-md: rgba(40, 15, 80, 0.16);
 
-  --text:      #0d1130;
-  --muted:     #566090;
+  --text:      #1a0b33;
+  --muted:     #5f5578;
 
-  --accent:         #3447c9;
-  --accent-glow:    rgba(52, 71, 201, 0.2);
-  --accent-subtle:  rgba(52, 71, 201, 0.08);
+  --accent:         #5b2db0;
+  --accent-glow:    rgba(91, 45, 176, 0.2);
+  --accent-subtle:  rgba(91, 45, 176, 0.08);
 
-  --accent2:        #6d28d9;
-  --accent2-glow:   rgba(109, 40, 217, 0.18);
-  --accent2-subtle: rgba(109, 40, 217, 0.08);
+  --accent2:        #7c3aed;
+  --accent2-glow:   rgba(124, 58, 237, 0.18);
+  --accent2-subtle: rgba(124, 58, 237, 0.08);
 
-  --lavender:  #4338ca;
+  --lavender:  #5b21b6;
   --danger:    #dc2626;
 
   --scrollbar-bg: var(--bg);
-  --nav-scrolled-bg: rgba(244, 246, 255, 0.9);
+  --nav-scrolled-bg: rgba(244, 244, 240, 0.9);
   --hero-name-color: var(--text);
-  --selection-bg: #3447c9;
-  --selection-color: #fff;
+  --selection-bg: #5b2db0;
+  --selection-color: #F4F4F0;
   --modal-bg: #ffffff;
-  --modal-header-bg: #f4f6ff;
+  --modal-header-bg: #F4F4F0;
 }
 
 /* ─── FONTS ────────────────────────────────────────────────────── */
@@ -198,7 +198,7 @@ body {
 }
 
 /* Mode clair : bouton jaune du logo, texte foncé */
-[data-theme='light'] .btn-primary-custom { color: #fff; }
+[data-theme='light'] .btn-primary-custom { color: #F4F4F0; }
 
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;

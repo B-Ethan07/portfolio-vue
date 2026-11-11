@@ -61,8 +61,8 @@ onBeforeUnmount(() => { clearInterval(timer); window.removeEventListener('keydow
     align-items: center;
     justify-content: center;
     gap: 28px;
-    background: #05071a;
-    color: #9db8ff;
+    background: #0a0416;
+    color: #d6c8ff;
     font-family: var(--ff-mono);
     font-size: 0.85rem;
     cursor: pointer;
@@ -87,13 +87,13 @@ onBeforeUnmount(() => { clearInterval(timer); window.removeEventListener('keydow
 .bar {
     width: min(440px, 86vw);
     height: 2px;
-    background: rgba(157, 184, 255, 0.15);
+    background: rgba(214, 200, 255, 0.15);
 }
 
 .bar i {
     display: block;
     height: 100%;
-    background: #9db8ff;
+    background: #d6c8ff;
     transition: width 0.3s;
 }
 

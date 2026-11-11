@@ -36,9 +36,16 @@ footer {
   transition: color 0.2s;
 }
 
-.footer-back:hover { color: var(--accent); }
+.footer-back:hover {
+  color: var(--accent);
+}
 
 @media (max-width: 1024px) {
-  footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  footer {
+    padding: 24px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
 }
 </style>

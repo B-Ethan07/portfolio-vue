@@ -43,7 +43,7 @@ function draw(t: number) {
         const x = wrap(s.x * w + t * 6 * s.z, w)
         const y = wrap(s.y * h - scroll * 0.3 * s.z, h)
         const twinkle = 0.6 + 0.4 * Math.sin(t * 1.5 + s.phase)
-        ctx.fillStyle = `rgba(200, 215, 255, ${twinkle * s.z})`
+        ctx.fillStyle = `rgba(244, 244, 240, ${twinkle * s.z})`
         ctx.beginPath()
         ctx.arc(x, y, s.r * s.z + 0.2, 0, Math.PI * 2)
         ctx.fill()
