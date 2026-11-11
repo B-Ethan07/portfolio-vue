@@ -40,18 +40,19 @@ const ABOUT: Line[] = [
 
 const STACK: Line[] = [
     row('Mobile', 'Flutter, Kotlin'),
-    row('Front-end', 'React, Angular, JavaScript, Tailwind'),
-    row('Back-end', 'FastAPI, Express.js, PHP, Symfony'),
-    row('Data & outils', 'MongoDB, SQL, Docker, Git'),
+    row('Front-end', 'React, Angular, Vue.js, JavaScript, Tailwind'),
+    row('Back-end', 'Python, FastAPI, Node.js, Express.js, PHP, Symfony'),
+    row('Base de Données', 'MongoDB, Bases de Données SQL'),
+    row('Outils', 'GitHub Actions, Docker, Git, Linux, Vitest, Jest, Figma'),
 ]
 
 // Du plus récent au plus ancien
 const PARCOURS: Line[] = [
-    row('Oct 2026', 'Diplôme Développeur·se Web et Web Mobile'),
+    row('Oct 2026', 'Diplôme Développeur·se Web et Web Mobile Bac+2'),
     row('Août 2026', 'Certification Cisco · Cybersecurity'),
-    row('Fév – Avr 2026', 'Développeur Full-Stack · INSIDE RUNWAY'),
-    row('Nov 2025 – Jan 2026', "Développeur Mobile, Front-end · IT'S ME TIME"),
-    row('Avr – Nov 2025', "Développeur d'Application Mobile · M2i Formation Lyon"),
+    row('Fév - Avr 2026', 'Développeur Full-Stack · INSIDE RUNWAY'),
+    row('Nov 2025 - Jan 2026', "Développeur Mobile, Front-end · IT'S ME TIME"),
+    row('Avr - Nov 2025', "Formation de Développeur d'Application Mobile · M2i Formation Lyon"),
     row('Depuis 2024', 'Autodidacte · Flutter, Angular, React'),
 ]
 
