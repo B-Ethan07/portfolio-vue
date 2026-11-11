@@ -114,6 +114,7 @@ function cover(p) {
 .filters {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .filter {
@@ -124,6 +125,7 @@ function cover(p) {
   border: 1px solid var(--border-md);
   border-radius: 100px;
   cursor: pointer;
+  white-space: nowrap;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 

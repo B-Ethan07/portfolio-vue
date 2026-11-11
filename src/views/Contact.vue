@@ -3,21 +3,35 @@ import { useReveal } from '../composables/useReveal'
 
 useReveal()
 
+const EMAIL = 'ethan.boulard.dev+portfolio@gmail.com'
+const subject = 'Contact depuis le portfolio d\'Ethan'
+const body = 'Bonjour Ethan,\n\n'
+
+const mailtoHref =
+  `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
 const links = [
   {
     name: 'LinkedIn',
     handle: 'Ethan Boulard',
     href: 'https://www.linkedin.com/in/ethan-boulard-4b1112364/',
     icon: 'fa-brands fa-linkedin-in',
+    external: true,
   },
   {
     name: 'GitHub',
     handle: 'B-Ethan07',
     href: 'https://github.com/B-Ethan07',
     icon: 'fa-brands fa-github',
+    external: true,
   },
-  // TODO : ajoute ton email, c'est le moyen de contact le plus direct
-  // { name: 'Email', handle: 'ton@email.fr', href: 'mailto:ton@email.fr', icon: 'fa-regular fa-envelope' },
+  {
+    name: 'Email',
+    handle: EMAIL,
+    href: mailtoHref,
+    icon: 'fa-regular fa-envelope',
+    external: false,
+  },
 ]
 </script>
 
@@ -31,11 +45,13 @@ const links = [
 
           <ul class="links">
             <li v-for="l in links" :key="l.name">
-              <a :href="l.href" class="link" target="_blank" rel="noopener noreferrer">
+              <a :href="l.href" class="link" :target="l.external ? '_blank' : undefined"
+                :rel="l.external ? 'noopener noreferrer' : undefined">
                 <span class="link-icon"><i :class="l.icon" aria-hidden="true"></i></span>
                 <span class="link-name">{{ l.name }}</span>
-                <span class="link-handle">{{ l.handle }}</span>
-                <i class="fa-solid fa-arrow-up-right-from-square link-arrow" aria-hidden="true"></i>
+                <span class="link-handle"></span>
+                <i :class="l.external ? 'fa-solid fa-arrow-up-right-from-square' : 'fa-solid fa-arrow-right'"
+                  class="link-arrow" aria-hidden="true"></i>
               </a>
             </li>
           </ul>

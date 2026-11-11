@@ -8,9 +8,8 @@ export const PROJECTS: Project[] = [
     subtitle: "Bot pour streamer Twitch",
     type: "bot/script",
     badgeStage: "Novembre 2026",
-    icon: "fa-brands fa-twitch",
     description:
-      "Bot Twitch qui permet aux viewers de proposer des musiques dans le chat.",
+      "BotTwitch qui permet aux viewers de proposer des musiques dans le chat.",
     longDescription:
       "Bot Twitch développé en Node.js qui permet aux viewers de proposer des musiques dans le chat, avec gestion des commandes et interactions.",
     features: [
@@ -21,21 +20,14 @@ export const PROJECTS: Project[] = [
       "Gestion des playlists et des musiques",
       "Database locale avec SQLite pour stocker les données",
     ],
-    tags: [
-      "Node.js",
-      "Twitch API",
-      "YouTube API",
-      "WebSocket",
-      "Express",
-      "SQLite",
-    ],
+    tags: ["Node.js", "Twitch/Youtube API", "SQLite"],
     images: [
       "/assets/img/twitchbot7.png",
       "/assets/img/twitchbot8.png",
       "/assets/img/twitchbot6.png",
     ],
     links: [],
-    year: "2026",
+    year: "Nov 2026",
     color: "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)",
   },
   {
@@ -45,7 +37,6 @@ export const PROJECTS: Project[] = [
     subtitle: "App mobile & Desktop Flutter",
     type: "desktop/mobile",
     badgeStage: "Oct 2026",
-    icon: "fa-solid fa-mobile-screen-button",
     description: "Application Flutter pour tracker ses films et ses séries",
     longDescription:
       "Application Flutter B2B pour tracker ses films et ses séries, avec interface mobile et desktop, notifications push et synchronisation cloud.",
@@ -57,7 +48,7 @@ export const PROJECTS: Project[] = [
       "Interface mobile et desktop responsive",
       "Exportation des données et statistiques d'utilisation",
     ],
-    tags: ["Flutter", "Node.js", "Express", "Firebase"],
+    tags: ["Flutter", "Node.js", "Express", "MySQL"],
     images: [
       "/assets/img/arcasolis.png",
       "/assets/img/arcasolis-1.png",
@@ -75,7 +66,6 @@ export const PROJECTS: Project[] = [
     subtitle: "App mobile Flutter B2B",
     type: "mobile",
     badgeStage: "B2B · 2026",
-    icon: "fa-solid fa-shirt",
     description:
       "Application Flutter B2B pour styliste, gestion de projets, livraisons et communication entre stylistes et marques.",
     longDescription:
@@ -103,9 +93,8 @@ export const PROJECTS: Project[] = [
     slug: "inside-runway-landing",
     title: "INSIDE RUNWAY · Landing",
     subtitle: "Refonte landing page B2B",
-    type: "web",
+    type: "web fullstack",
     badgeStage: "B2B · 2026",
-    icon: "fa-solid fa-globe",
     description:
       "Refonte complète de la landing page B2B. CRM reliant stylistes et marques fashion.",
     longDescription:
@@ -138,9 +127,8 @@ export const PROJECTS: Project[] = [
     slug: "inside-runway-crm",
     title: "INSIDE RUNWAY",
     subtitle: "CRM React B2B",
-    type: "fullstack",
+    type: "web fullstack",
     badgeStage: "B2B · 2026",
-    icon: "fa-solid fa-shirt",
     description:
       "CRM React/FastAPI B2B pour styliste, gestion de projets, livraisons et communication entre stylistes et marques.",
     longDescription:
@@ -168,10 +156,9 @@ export const PROJECTS: Project[] = [
     id: "zenquest",
     slug: "zenquest",
     title: "ZenQuest",
-    subtitle: "SPA suivi quotidien",
-    type: "fullstack",
+    subtitle: "Site web de suivi quotidien",
+    type: "web fullstack",
     badgeStage: "React/TS · Express.js",
-    icon: "fa-solid fa-heart-pulse",
     description:
       "SPA de suivi quotidien sport, alimentation, sommeil et humeur, avec espace utilisateur et interface d'administration dédiés.",
     longDescription:
@@ -191,19 +178,13 @@ export const PROJECTS: Project[] = [
     ],
     links: [
       {
-        label: "Voir le site",
-        url: "https://app-zenquest.vercel.app",
-        icon: "fa-solid fa-arrow-up-right-from-square",
-        variant: "primary",
-      },
-      {
         label: "Repo (privé)",
         url: "https://github.com/B-Ethan07/zenquest",
         icon: "fa-brands fa-github",
         variant: "ghost",
       },
     ],
-    year: "2025",
+    year: "Oct 2025",
     color: "linear-gradient(135deg, #071014 0%, #0b2018 100%)",
   },
   {
@@ -213,7 +194,6 @@ export const PROJECTS: Project[] = [
     subtitle: "App de coloriage Flutter",
     type: "mobile",
     badgeStage: "Stage · 2026",
-    icon: "fa-solid fa-palette",
     description:
       "Application de coloriage Flutter, refonte visuelle complète et nouvelles fonctionnalités de dessin.",
     longDescription:
@@ -239,9 +219,8 @@ export const PROJECTS: Project[] = [
     slug: "cinezone",
     title: "CineZone",
     subtitle: "Plateforme fullstack de films",
-    type: "fullstack",
+    type: "web fullstack",
     badgeStage: "Projet fullstack",
-    icon: "fa-solid fa-film",
     description:
       "Plateforme fullstack de gestion et notation de films avec authentification et interface responsive.",
     longDescription:
@@ -259,21 +238,8 @@ export const PROJECTS: Project[] = [
       "/assets/img/cinezone_3.png",
       "/assets/img/cinezone_4.png",
     ],
-    links: [
-      {
-        label: "Frontend",
-        url: "https://github.com/B-Ethan07/cinezone_front_angular",
-        icon: "fa-brands fa-github",
-        variant: "primary",
-      },
-      {
-        label: "Backend",
-        url: "https://github.com/B-Ethan07/cinezone_back_express",
-        icon: "fa-brands fa-github",
-        variant: "ghost",
-      },
-    ],
-    year: "2024",
+    links: [],
+    year: "Aout 2025",
     color: "linear-gradient(135deg, #140a0a 0%, #1c0c20 100%)",
   },
   {
@@ -281,9 +247,8 @@ export const PROJECTS: Project[] = [
     slug: "factuzen",
     title: "FactuZen",
     subtitle: "App de gestion de facturation",
-    type: "fullstack",
+    type: "web fullstack",
     badgeStage: "Projet Symfony",
-    icon: "fa-solid fa-file-invoice",
     description:
       "Application Symfony de gestion de facturation avec architecture MVC robuste et interface claire.",
     longDescription:
@@ -308,7 +273,7 @@ export const PROJECTS: Project[] = [
         variant: "primary",
       },
     ],
-    year: "2024",
+    year: "Juil 2025",
     color: "linear-gradient(135deg, #0a0e18 0%, #0d1a30 100%)",
   },
   {
@@ -316,9 +281,8 @@ export const PROJECTS: Project[] = [
     slug: "educeasy",
     title: "Educ'Easy",
     subtitle: "Blog pour parents",
-    type: "fullstack",
+    type: "web fullstack",
     badgeStage: "Blog web",
-    icon: "fa-solid fa-newspaper",
     description:
       "Blog pour parents avec articles, conseils et activités pour enfants et système de publication.",
     longDescription:
@@ -343,7 +307,7 @@ export const PROJECTS: Project[] = [
         variant: "primary",
       },
     ],
-    year: "2024",
+    year: "Juin 2025",
     color: "linear-gradient(135deg, #0e0e12 0%, #1a1a20 100%)",
   },
 ];

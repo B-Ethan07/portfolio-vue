@@ -3,15 +3,8 @@ export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  type:
-    | "mobile"
-    | "web"
-    | "fullstack"
-    | "desktop/mobile"
-    | "game"
-    | "bot/script";
+  type: "mobile" | "web fullstack" | "desktop/mobile" | "game" | "bot/script";
   badgeStage: string;
-  icon: string;
   description: string;
   longDescription: string;
   features: string[];
