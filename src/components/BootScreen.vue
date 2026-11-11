@@ -32,7 +32,7 @@ onMounted(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return finish()
     let i = 0
     timer = window.setInterval(() => {
-        shown.value.push(LINES[i]); beep(); i++
+        shown.value.push(LINES[i] ?? ''); beep(); i++
         if (i >= LINES.length) { clearInterval(timer); setTimeout(finish, 450) }
     }, 340)
     window.addEventListener('keydown', finish)
