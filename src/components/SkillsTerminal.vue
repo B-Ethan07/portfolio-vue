@@ -48,7 +48,7 @@ const STACK: Line[] = [
 
 // Du plus récent au plus ancien
 const PARCOURS: Line[] = [
-    row('Oct 2026', 'Diplôme Développeur·se Web et Web Mobile Bac+2'),
+    row('Oct 2026', 'Diplôme RNCP de Développeur Web et Web Mobile, Bac+2'),
     row('Août 2026', 'Certification Cisco · Cybersecurity'),
     row('Fév - Avr 2026', 'Développeur Full-Stack · INSIDE RUNWAY'),
     row('Nov 2025 - Jan 2026', "Développeur Mobile, Front-end · IT'S ME TIME"),

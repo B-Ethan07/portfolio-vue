@@ -3,7 +3,7 @@ import type { TimelineItem, StackCard } from "@/types";
 export const TIMELINE: TimelineItem[] = [
   {
     date: "Octobre 2026",
-    title: "Diplome Développeur·se Web et Web Mobile",
+    title: "Diplome de Développeur Web et Web Mobile",
     icon: "fa-solid fa-graduation-cap",
     stack:
       "Développement Web, Développement Mobile, Front-End, Back-End, Bases de Données, API REST, UI/UX, Responsive Design, Accessibilité, Performance Web, CI/CD, Git, Agile, Scrum, Déploiement, Cloud, Sécurité, Tests, Optimisation, SEO",
