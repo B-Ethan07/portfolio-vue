@@ -2,7 +2,7 @@
 import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { useProjects } from '@/composables/useProjects'
+import { useProjects } from '@/composables/useProject'
 
 const { t } = useI18n()
 const route = useRoute()
@@ -74,7 +74,7 @@ function nextSlide() {
         <div :class="project.type === 'mobile' ? 'mobile-card-meta' : 'web-card-meta'" style="margin-bottom:16px">
           <span :class="project.type === 'mobile' ? 'mobile-badge' : 'web-badge'">{{ typeLabel(project) }}</span>
           <span :class="project.type === 'mobile' ? 'mobile-badge-stage' : 'web-badge-stage'">{{ project.badgeStage
-            }}</span>
+          }}</span>
         </div>
 
         <h1 class="detail-title">{{ project.title }}</h1>

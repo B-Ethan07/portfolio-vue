@@ -112,6 +112,8 @@ function run(rawCmd: string) {
         lines.value = []
         return
     }
+    // Saute une ligne par rapport à la sortie précédente
+    if (lines.value.length) lines.value.push({ kind: 'gap' })
     lines.value.push({ kind: 'cmd', a: cmd })
     print([{ kind: 'gap' }, ...output(id, cmd)])
     scrollDown()
@@ -142,7 +144,7 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
 
 <template>
     <div class="term" :aria-label="t('terminal.aria')">
-        <div class="term-head">
+        <div class="term-head force-dark">
             <span></span><span></span><span></span>
             <em>eb@{{ t('terminal.host') }} ~</em>
         </div>
@@ -174,10 +176,12 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
 
 <style scoped>
 .term {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     background: var(--surface);
     border: 1px solid var(--border-md);
-    border-radius: 14px;
-    overflow: hidden;
+    border-radius: 16px;
     font-family: var(--ff-mono);
     font-size: 0.82rem;
 }
@@ -205,8 +209,10 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
     color: var(--muted);
 }
 
+/* 240px minimum, grandit si la colonne est plus haute, défile si le contenu dépasse */
 .term-body {
-    height: 240px;
+    flex: 1 1 240px;
+    min-height: 0;
     overflow-y: auto;
     padding: 14px 16px;
     line-height: 1.6;

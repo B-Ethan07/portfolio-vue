@@ -1,13 +1,13 @@
-<script setup>
-import { RouterLink } from 'vue-router'
-</script>
-
 <template>
   <footer>
     <p class="footer-copy">© 2026 Ethan Boulard · Tous droits réservés</p>
-    <RouterLink to="/" class="footer-back">
-      <i class="fa-solid fa-arrow-up"></i> Retour en haut
-    </RouterLink>
+
+    <p class="footer-built">
+      Fait avec
+      <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">Vue 3</a>
+      · hébergé sur
+      <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a>
+    </p>
   </footer>
 </template>
 
@@ -18,33 +18,36 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
-.footer-copy {
+.footer-copy,
+.footer-built {
+  margin: 0;
   font-family: var(--ff-mono);
   font-size: 0.72rem;
   color: var(--muted);
   letter-spacing: 0.05em;
 }
 
-.footer-back {
-  font-family: var(--ff-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
+.footer-built a {
+  color: var(--text);
   text-decoration: none;
-  letter-spacing: 0.05em;
-  transition: color 0.2s;
+  border-bottom: 1px solid var(--border-md);
+  transition: color 0.2s, border-color 0.2s;
 }
 
-.footer-back:hover {
+.footer-built a:hover,
+.footer-built a:focus-visible {
   color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 @media (max-width: 1024px) {
   footer {
     padding: 24px;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     text-align: center;
   }
 }

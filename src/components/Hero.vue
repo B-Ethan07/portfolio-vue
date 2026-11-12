@@ -4,6 +4,7 @@ import { useI18n } from 'vue-i18n'
 import { useProjects } from '@/composables/useProject'
 import { useMessages } from '@/composables/useMessages'
 import SkillsTerminal from '@/components/SkillsTerminal.vue'
+import ShipScreen from '@/components/ShipScreen.vue'
 
 const { t } = useI18n()
 const { raw, str, strs } = useMessages()
@@ -19,6 +20,11 @@ const { heroProjects: projects, typeLabel } = useProjects()
 const current = ref(0)
 const DELAY = 4500
 let timer = null
+
+// paused : met la barre de progression de l'écran en pause (survol, focus)
+// cycle  : relance la barre en même temps que le minuteur
+const paused = ref(true)
+const cycle = ref(0)
 
 const label = p => typeLabel(p)
 
@@ -44,11 +50,17 @@ function goTo(i) {
 
 function stop() {
     clearInterval(timer)
+    paused.value = true
 }
 
 function start() {
-    stop()
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    clearInterval(timer)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        paused.value = true
+        return
+    }
+    paused.value = false
+    cycle.value++
     timer = setInterval(() => goTo(current.value + 1), DELAY)
 }
 
@@ -64,13 +76,13 @@ function pick(i) {
 const REVIEW_BASES = [
     {
         id: 'adonis',
-        name: 'Adonis Pesic',
+        name: 'Adonis P',
         source: 'LinkedIn',
         url: 'https://www.linkedin.com/in/adonis-pesic-15694b236/',
     },
     {
         id: 'prescillia',
-        name: 'Prescillia Grah',
+        name: 'Prescillia G',
         source: 'LinkedIn',
         url: 'https://www.linkedin.com/in/prescillia-grah/',
     },
@@ -132,8 +144,8 @@ onUnmounted(() => {
 
                 <SkillsTerminal :skills="skills" />
 
-                <div class="hero-cta">
-                    <RouterLink to="/projects" class="btn-primary-custom">
+                <div class="hero-cta force-dark">
+                    <RouterLink to="/projects" class="btn-ghost">
                         {{ t('hero.ctaProjects') }} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     </RouterLink>
                     <RouterLink to="/contact" class="btn-ghost">
@@ -142,27 +154,19 @@ onUnmounted(() => {
                 </div>
             </div>
 
-            <!-- Droite : aperçu des projets + avis -->
+            <!-- Droite : écran des projets + avis -->
             <div class="preview">
-                <div v-if="projects.length" class="preview-media" @mouseenter="stop" @mouseleave="start" @focusin="stop"
-                    @focusout="start">
+                <ShipScreen v-if="projects.length" :projects="projects" :current="current"
+                    :label="label(projects[current])" :year="projects[current].year" :title="projects[current].title"
+                    :paused="paused" :cycle="cycle" :delay="DELAY" :pick-label="t('hero.pickProject')" @pick="pick"
+                    @mouseenter="stop" @mouseleave="start" @focusin="stop" @focusout="start">
                     <Transition name="fade" mode="out-in">
                         <RouterLink :key="projects[current].id" :to="`/projects/${projects[current].id}`"
                             class="preview-card" :aria-label="projects[current].title">
-                            <div class="preview-img" :style="cover(projects[current])">
-                                <div class="badges">
-                                    <span class="badge">{{ label(projects[current]) }}</span>
-                                    <span class="badge">{{ projects[current].year }}</span>
-                                </div>
-                            </div>
+                            <div class="preview-img" :style="cover(projects[current])"></div>
                         </RouterLink>
                     </Transition>
-
-                    <div class="dots" role="group" :aria-label="t('hero.pickProject')">
-                        <button v-for="(p, i) in projects" :key="p.id" class="dot" :class="{ active: i === current }"
-                            :aria-label="p.title" :aria-pressed="i === current" @click="pick(i)"></button>
-                    </div>
-                </div>
+                </ShipScreen>
 
                 <!-- Avis -->
                 <section v-if="review" class="reviews" :aria-label="t('hero.reviewsAria')">
@@ -232,14 +236,16 @@ onUnmounted(() => {
                     <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 </button>
 
-                <p class="modal-text">{{ review.text }}</p>
+                <div class="modal-scroll">
+                    <p class="modal-text">{{ review.text }}</p>
 
-                <p class="modal-who">
-                    <strong>{{ review.name }}</strong> · {{ review.status }}
-                    <a v-if="review.url" :href="review.url" target="_blank" rel="noopener noreferrer">
-                        {{ t('hero.seeOn', { source: review.source }) }}
-                    </a>
-                </p>
+                    <p class="modal-who">
+                        <strong>{{ review.name }}</strong> · {{ review.status }}
+                        <a v-if="review.url" :href="review.url" target="_blank" rel="noopener noreferrer">
+                            {{ t('hero.seeOn', { source: review.source }) }}
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </Teleport>
@@ -251,21 +257,34 @@ onUnmounted(() => {
     border-bottom: 1px solid var(--border);
 }
 
+/* Les deux colonnes ont la même hauteur : haut et bas alignés */
 #hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    align-items: end;
-    /* bas des CTA aligné avec le bas de la card des avis */
+    align-items: stretch;
+    align-content: start;
     gap: 80px;
     max-width: 1280px;
+    min-height: 100vh;
+    min-height: 100svh;
     margin: 0 auto;
     padding: 176px 48px 80px;
     background: var(--bg);
 }
 
 /* ─── Gauche ─────────────────────────────── */
+.hero-left {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Le terminal absorbe la différence de hauteur avec la colonne de droite */
+.hero-left :deep(.term) {
+    flex: 1 1 auto;
+}
+
 .hero-tag {
-    display: inline-block;
+    align-self: flex-start;
     margin-bottom: 18px;
     padding: 6px 14px;
     font-family: var(--ff-mono);
@@ -279,7 +298,7 @@ onUnmounted(() => {
 .hero-name {
     margin-bottom: 12px;
     font-family: var(--ff-head);
-    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.04em;
@@ -310,12 +329,19 @@ onUnmounted(() => {
     font-weight: 500;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    border-radius: 14px;
-    /* même arrondi que le terminal */
+    border-radius: 16px;
+}
+
+.hero-cta .btn-primary-custom {
+    background: var(--surface);
+    color: var(--accent);
+    border: 1px solid var(--accent);
 }
 
 .hero-cta .btn-primary-custom:hover {
-    box-shadow: 0 0 0 1px var(--accent), 0 8px 28px var(--accent-glow);
+    background: var(--surface);
+    color: var(--accent);
+    box-shadow: none;
 }
 
 .hero-cta .btn-ghost {
@@ -328,31 +354,23 @@ onUnmounted(() => {
     color: var(--accent);
 }
 
-/* ─── Droite : aperçu ────────────────────── */
+/* ─── Droite : écran + avis ──────────────── */
 .preview {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 20px;
-}
-
-.preview-media {
-    position: relative;
 }
 
 .preview-card {
     display: block;
-    overflow: hidden;
     text-decoration: none;
-    background: var(--surface);
-    border: 1px solid var(--border-md);
-    border-radius: 20px;
-    transition: border-color 0.2s;
 }
 
-.preview-card:hover,
-.preview-card:focus-visible {
-    border-color: var(--accent);
+.preview-card:hover .preview-img,
+.preview-card:focus-visible .preview-img {
+    filter: brightness(1.08);
 }
 
 /* Format 16:10 conservé : les captures sont prévues pour ce ratio */
@@ -360,56 +378,7 @@ onUnmounted(() => {
     position: relative;
     aspect-ratio: 16 / 10;
     background-color: var(--surface2);
-}
-
-.badges {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    display: flex;
-    gap: 6px;
-}
-
-.badge {
-    padding: 4px 10px;
-    font-family: var(--ff-mono);
-    font-size: 0.7rem;
-    line-height: 1.4;
-    color: #fff;
-    background: rgba(10, 10, 14, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 100px;
-    backdrop-filter: blur(6px);
-}
-
-.dots {
-    position: absolute;
-    left: 50%;
-    bottom: 14px;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    padding: 7px 10px;
-    background: rgba(10, 10, 14, 0.6);
-    border-radius: 100px;
-    backdrop-filter: blur(6px);
-}
-
-.dot {
-    width: 6px;
-    height: 6px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: width 0.25s, background 0.25s, border-radius 0.25s;
-}
-
-.dot.active {
-    width: 20px;
-    border-radius: 3px;
-    background: var(--accent);
+    transition: filter 0.2s;
 }
 
 .fade-enter-active,
@@ -622,18 +591,23 @@ a.review-source:focus-visible {
 .modal-box {
     position: relative;
     width: min(620px, 100%);
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: 36px 32px 28px;
+    overflow: hidden;
     background: var(--modal-bg);
     border: 1px solid var(--border-md);
-    border-radius: 18px;
+    border-radius: 16px;
+}
+
+.modal-scroll {
+    max-height: calc(85vh - 2px);
+    overflow-y: auto;
+    padding: 36px 32px 28px;
 }
 
 .modal-close {
     position: absolute;
     top: 12px;
     right: 12px;
+    z-index: 1;
     width: 32px;
     height: 32px;
     color: var(--muted);
@@ -711,7 +685,7 @@ a.review-source:focus-visible {
         display: none;
     }
 
-    .modal-box {
+    .modal-scroll {
         padding: 36px 20px 22px;
     }
 }

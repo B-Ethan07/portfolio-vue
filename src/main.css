@@ -86,6 +86,34 @@
   --radius-lg: 24px;
 }
 
+/* ─── Zones qui gardent les couleurs du dark mode, même en thème clair ─── */
+[data-theme='light'] .force-dark {
+  --bg:        #0f0720;
+  --surface:   #3d1e7e;
+  --surface2:  #3d1e7e;
+
+  --border:    rgba(244, 244, 240, 0.08);
+  --border-md: rgba(244, 244, 240, 0.15);
+
+  --text:      #F4F4F0;
+  --muted:     #9d93b8;
+
+  --accent:         #b79cff;
+  --accent-glow:    rgba(183, 156, 255, 0.28);
+  --accent-subtle:  rgba(183, 156, 255, 0.08);
+
+  --lavender:  #d6c8ff;
+}
+
+/* La nav est transparente en haut de page : en clair, le texte serait illisible
+   sur le fond blanc cassé, donc on lui donne toujours son fond sombre */
+[data-theme='light'] nav.force-dark {
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
 /* ─── RESET ───────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -179,26 +207,30 @@ body {
 /* ─── BUTTONS ─────────────────────────────────────────────────── */
 .btn-primary-custom {
   display: inline-flex; align-items: center; gap: 10px;
-  background: var(--accent);
-  color: var(--selection-color, #0e0e12);
+  background: var(--accent-subtle);
+  color: var(--accent);
   font-family: var(--ff-body);
   font-weight: 700;
   font-size: 0.9rem;
-  padding: 14px 28px;
+  padding: 13px 28px;
   border-radius: 100px;
   text-decoration: none;
-  border: none;
+  border: 1px solid var(--accent);
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .btn-primary-custom:hover {
+  background: var(--accent-glow);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px var(--accent-glow);
+  color: var(--accent);
 }
 
 /* Mode clair : bouton jaune du logo, texte foncé */
-[data-theme='light'] .btn-primary-custom { color: #F4F4F0; }
+[data-theme='light'] .hero-cta .btn-primary-custom {
+    background: var(--accent);
+    color: #fff;
+}
 
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 10px;

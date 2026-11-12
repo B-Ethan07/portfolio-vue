@@ -25,7 +25,9 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 <template>
   <nav :class="{ scrolled }">
-    <RouterLink to="/" class="nav-logo">EB.</RouterLink>
+    <RouterLink to="/" class="nav-logo" :aria-label="t('nav.home')">
+      <img src="/assets/icons/logo-full.png" alt="" width="40" height="40" />
+    </RouterLink>
 
     <ul class="nav-links" :class="{ 'is-open': menuOpen }">
       <li>
@@ -42,7 +44,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
       </li>
     </ul>
 
-    <div class="nav-actions">
+    <div class="nav-actions force-dark">
       <button class="theme-toggle lang-toggle" @click="toggleLang" :aria-label="t('nav.switchLang')"
         :title="t('nav.switchLang')">
         {{ locale === 'fr' ? 'EN' : 'FR' }}
@@ -85,12 +87,25 @@ nav.scrolled {
 }
 
 .nav-logo {
-  font-family: var(--ff-mono);
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--accent);
-  text-decoration: none;
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.nav-logo img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s, width 0.4s, height 0.4s;
+}
+
+.nav-logo:hover img,
+.nav-logo:focus-visible img {
+  transform: scale(1.06);
+}
+
+nav.scrolled .nav-logo img {
+  width: 34px;
+  height: 34px;
 }
 
 .nav-links {
