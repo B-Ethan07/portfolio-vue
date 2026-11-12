@@ -1,16 +1,21 @@
 <script setup>
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useReveal } from '../composables/useReveal'
 
 useReveal()
 
+const { t } = useI18n()
+
 const EMAIL = 'ethan.boulard.dev+portfolio@gmail.com'
-const subject = 'Contact depuis le portfolio d\'Ethan'
-const body = 'Bonjour Ethan,\n\n'
 
-const mailtoHref =
-  `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+// Recalculé à chaque changement de langue
+const mailtoHref = computed(
+  () =>
+    `mailto:${EMAIL}?subject=${encodeURIComponent(t('contact.emailSubject'))}&body=${encodeURIComponent(t('contact.emailBody'))}`,
+)
 
-const links = [
+const links = computed(() => [
   {
     name: 'LinkedIn',
     handle: 'Ethan Boulard',
@@ -28,11 +33,11 @@ const links = [
   {
     name: 'Email',
     handle: EMAIL,
-    href: mailtoHref,
+    href: mailtoHref.value,
     icon: 'fa-regular fa-envelope',
     external: false,
   },
-]
+])
 </script>
 
 <template>
@@ -40,8 +45,8 @@ const links = [
     <section id="contact" class="page-section contact-page">
       <div class="contact-wrap">
         <div class="reveal">
-          <h1 class="contact-title">Contact</h1>
-          <p class="contact-sub">Ouvert aux opportunités et collaborations.</p>
+          <h1 class="contact-title">{{ t('contact.title') }}</h1>
+          <p class="contact-sub">{{ t('contact.sub') }}</p>
 
           <ul class="links">
             <li v-for="l in links" :key="l.name">
@@ -49,7 +54,7 @@ const links = [
                 :rel="l.external ? 'noopener noreferrer' : undefined">
                 <span class="link-icon"><i :class="l.icon" aria-hidden="true"></i></span>
                 <span class="link-name">{{ l.name }}</span>
-                <span class="link-handle"></span>
+                <span class="link-handle">{{ l.handle }}</span>
                 <i :class="l.external ? 'fa-solid fa-arrow-up-right-from-square' : 'fa-solid fa-arrow-right'"
                   class="link-arrow" aria-hidden="true"></i>
               </a>

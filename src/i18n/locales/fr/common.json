@@ -225,9 +225,9 @@
 
   "contact": {
     "title": "Contact",
-    "subtitle": "Ouvert aux opportunités et collaborations.",
-    "mailSubject": "Contact depuis le portfolio d'Ethan",
-    "mailGreeting": "Bonjour Ethan,"
+    "sub": "Ouvert aux opportunités et collaborations.",
+    "emailSubject": "Contact depuis le portfolio d'Ethan",
+    "emailBody": "Bonjour Ethan,\n\n"
   },
 
   "projects": {
