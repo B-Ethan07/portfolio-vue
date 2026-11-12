@@ -376,5 +376,10 @@
     "others": "Autres projets",
     "prev": "Précédent",
     "next": "Suivant"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Cette page n'existe pas ou a été déplacée.",
+    "back": "Retour à l'accueil"
   }
 }

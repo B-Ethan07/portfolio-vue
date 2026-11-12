@@ -376,5 +376,10 @@
     "others": "Other projects",
     "prev": "Previous",
     "next": "Next"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "This page doesn't exist or has been moved.",
+    "back": "Back to home"
   }
 }
