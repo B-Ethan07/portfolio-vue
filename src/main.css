@@ -105,14 +105,7 @@
   --lavender:  #d6c8ff;
 }
 
-/* La nav est transparente en haut de page : en clair, le texte serait illisible
-   sur le fond blanc cassé, donc on lui donne toujours son fond sombre */
-[data-theme='light'] nav.force-dark {
-  background: var(--nav-scrolled-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
+
 
 /* ─── RESET ───────────────────────────────────────────────────── */
 *, *::before, *::after {
