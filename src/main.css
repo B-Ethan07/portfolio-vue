@@ -1,13 +1,13 @@
-/* ═══════════════════════════════════════════════════════════════
-   main.css — Ethan Boulard Portfolio · Vue 3
-   ═══════════════════════════════════════════════════════════════ */
-
 @font-face {
   font-family: 'BlissTwin';
   src: url('/assets/Blisstwin.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+
+html {
+  font-size: 90%; 
 }
 
 /* ─── DARK (défaut) : violet nuit ─── */
@@ -147,7 +147,6 @@ body {
   padding: 80px 0;
 }
 
-/* Laisse apparaître les braises (EmberField) derrière les pages */
 .page-section,
 #hero-section-outer {
   background: transparent !important;

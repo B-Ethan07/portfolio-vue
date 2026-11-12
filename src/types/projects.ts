@@ -1,9 +1,5 @@
 import type { ProjectBase } from "@/types";
 
-// Données non traduisibles. Les textes sont dans src/i18n/locales/{fr,en}.ts
-// sous la clé `projects.<id en camelCase>` (ex. "bot-twitch" -> projects.botTwitch).
-// Pour récupérer les projets traduits : useProjects() (src/composables/useProjects.ts).
-
 const COLOR = "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)";
 
 export const PROJECT_BASES: ProjectBase[] = [
@@ -183,7 +179,6 @@ export const PROJECT_BASES: ProjectBase[] = [
   },
 ];
 
-// Projets affichés dans le carrousel de la page d'accueil
 export const HERO_PROJECT_IDS = [
   "bot-twitch",
   "inside-runway-landing",

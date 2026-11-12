@@ -9,8 +9,6 @@ import ShipScreen from '@/components/ShipScreen.vue'
 const { t } = useI18n()
 const { raw, str, strs } = useMessages()
 
-// ── Skills (affichés par le terminal avec la commande « skills ») ──
-// Traduits : la liste suit la langue active
 const skills = computed(() =>
     raw('hero.skills').map(s => ({ title: str(s.title), detail: str(s.detail) })),
 )
@@ -20,15 +18,10 @@ const { heroProjects: projects, typeLabel } = useProjects()
 const current = ref(0)
 const DELAY = 4500
 let timer = null
-
-// paused : met la barre de progression de l'écran en pause (survol, focus)
-// cycle  : relance la barre en même temps que le minuteur
 const paused = ref(true)
 const cycle = ref(0)
 
 const label = p => typeLabel(p)
-
-// Captures d'apps mobiles : image entière sur fond noir
 const isMobile = p => p.type === 'mobile'
 
 function cover(p) {
@@ -69,10 +62,6 @@ function pick(i) {
     start()
 }
 
-// ── Avis ──
-// Partie non traduisible ici ; status / highlights / excerpt / text
-// viennent des fichiers de langue (clé `reviews.<id>`).
-// rating : note sur 5, UNIQUEMENT si la personne l'a donnée (optionnel)
 const REVIEW_BASES = [
     {
         id: 'adonis',
@@ -109,7 +98,6 @@ const goRev = i => {
     rev.value = (i + n) % n
 }
 
-// Extrait dans la card, texte complet dans la fenêtre
 const shownText = computed(() => review.value.excerpt || review.value.text)
 const hasMore = computed(() => !!review.value.excerpt || review.value.text.length > 220)
 

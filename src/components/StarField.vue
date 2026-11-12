@@ -16,7 +16,7 @@ function build() {
     stars = Array.from({ length: n }, () => ({
         x: Math.random(),
         y: Math.random(),
-        z: 0.15 + Math.random() * 0.85, // profondeur : 1 = proche
+        z: 0.15 + Math.random() * 0.85,
         r: 0.4 + Math.random() * 1.2,
         phase: Math.random() * Math.PI * 2,
     }))
@@ -36,10 +36,9 @@ function resize() {
     if (reduceMotion) draw(0)
 }
 
-/** Étoile à 4 branches effilées (losange concave) */
 function spark(x: number, y: number, r: number, rot: number) {
     if (!ctx) return
-    const k = r * 0.16 // épaisseur au centre : plus petit = branches plus fines
+    const k = r * 0.16
     ctx.save()
     ctx.translate(x, y)
     ctx.rotate(rot)

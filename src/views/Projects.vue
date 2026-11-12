@@ -8,8 +8,6 @@ useReveal()
 
 const { t } = useI18n()
 const { projects, typeLabel } = useProjects()
-
-// Clé interne stable : le texte affiché change avec la langue, pas la clé
 const ALL = '__all__'
 const categories = computed(() => [ALL, ...new Set(projects.value.map(typeLabel))])
 const active = ref(ALL)
@@ -134,7 +132,6 @@ function cover(p) {
   border-color: var(--accent);
 }
 
-/* Liste : une ligne par projet, image à gauche, infos à droite */
 .list {
   list-style: none;
   margin: 0;

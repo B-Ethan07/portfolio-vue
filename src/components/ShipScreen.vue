@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onBeforeUnmount } from 'vue'
 
-/**
- * Écran de vaisseau autour de l'aperçu des projets.
- *  - hublot : cadre arrondi sobre (même bordure que les autres cartes), voyant
- *  - barres de données : haut (FEED, type, année) et bas (titre, segments, progression)
- *  - effets d'écran : lignes de balayage, bords sombres, trait lumineux, parasite au changement
- * L'image elle-même est passée dans le slot.
- */
 const props = defineProps<{
     projects: { id: string | number; title: string }[]
     current: number
@@ -24,7 +17,6 @@ const emit = defineEmits<{ pick: [index: number] }>()
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-// Court « parasite » à chaque changement de projet
 const glitch = ref(false)
 let glitchTimer = 0
 watch(

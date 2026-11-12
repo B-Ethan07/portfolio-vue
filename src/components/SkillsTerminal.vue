@@ -32,11 +32,9 @@ let timers: number[] = []
 
 const row = (a: string, b: string): Line => ({ kind: 'row', a, b })
 
-// Identifiants internes des commandes (boutons + aide)
 const COMMANDS = ['skills', 'about', 'stack', 'journey', 'projects', 'clear'] as const
 type CommandId = (typeof COMMANDS)[number]
 
-// Ce que l'utilisateur peut taper (FR + EN) -> identifiant interne
 const ALIASES: Record<string, CommandId | 'help' | 'hire'> = {
     skills: 'skills',
     about: 'about',
@@ -51,7 +49,6 @@ const ALIASES: Record<string, CommandId | 'help' | 'hire'> = {
     'sudo hire-me': 'hire',
 }
 
-// Liste { k, v } des fichiers de langue -> lignes
 const pairs = (key: string): Line[] =>
     raw(key).map((o: any) => row(str(o.k), str(o.v)))
 
@@ -71,7 +68,6 @@ function output(id: CommandId | 'help' | 'hire' | undefined, cmd: string): Line[
         case 'journey':
             return pairs('terminal.journey')
         case 'projects':
-            // Lu à l'exécution : suit la langue active
             return projects.value.map(p => row(p.title, p.subtitle))
         case 'help':
             return help()
@@ -88,7 +84,6 @@ function scrollDown() {
     })
 }
 
-// Affiche les lignes une à une (un seul bip par commande)
 function print(out: Line[]) {
     busy.value = true
     out.forEach((line, i) => {
@@ -112,7 +107,6 @@ function run(rawCmd: string) {
         lines.value = []
         return
     }
-    // Saute une ligne par rapport à la sortie précédente
     if (lines.value.length) lines.value.push({ kind: 'gap' })
     lines.value.push({ kind: 'cmd', a: cmd })
     print([{ kind: 'gap' }, ...output(id, cmd)])
@@ -137,7 +131,6 @@ function reset() {
 }
 
 onMounted(welcome)
-// Changement de langue : on repart d'un terminal propre dans la nouvelle langue
 watch(locale, reset)
 onBeforeUnmount(() => timers.forEach(clearTimeout))
 </script>
@@ -209,7 +202,6 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
     color: var(--muted);
 }
 
-/* 240px minimum, grandit si la colonne est plus haute, défile si le contenu dépasse */
 .term-body {
     flex: 1 1 240px;
     min-height: 0;
@@ -226,7 +218,6 @@ onBeforeUnmount(() => timers.forEach(clearTimeout))
     height: 0.7em;
 }
 
-/* Deux styles seulement : la commande tapée (accent) et la réponse (texte) */
 .cmd {
     color: var(--accent);
 }

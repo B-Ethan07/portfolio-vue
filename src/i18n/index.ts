@@ -8,14 +8,11 @@ export type AppLocale = (typeof SUPPORTED_LOCALES)[number];
 
 const STORAGE_KEY = "locale";
 
-/** Langue sauvegardée > langue du navigateur > anglais. */
 function detectLocale(): AppLocale {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === "fr" || saved === "en") return saved;
-  } catch {
-    /* localStorage indisponible (navigation privée, etc.) */
-  }
+  } catch {}
   return navigator.language?.toLowerCase().startsWith("fr") ? "fr" : "en";
 }
 
@@ -26,14 +23,11 @@ export const i18n = createI18n({
   messages: { fr, en },
 });
 
-// Garde <html lang> et le localStorage synchronisés avec la langue active
 function apply(locale: string) {
   document.documentElement.lang = locale;
   try {
     localStorage.setItem(STORAGE_KEY, locale);
-  } catch {
-    /* ignoré */
-  }
+  } catch {}
 }
 apply(i18n.global.locale.value);
 watch(i18n.global.locale, apply);
