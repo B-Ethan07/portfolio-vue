@@ -10,7 +10,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     type: "bot/script",
     tags: ["Node.js", "Twitch/Youtube API", "SQLite"],
     images: [
-      "/assets/img/twitchbot7.png",
+      "/assets/img/twitchbot9.png",
       "/assets/img/twitchbot8.png",
       "/assets/img/twitchbot6.png",
     ],
