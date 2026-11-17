@@ -4,6 +4,20 @@ const COLOR = "linear-gradient(135deg, #0d0914 0%, #1a1030 100%)";
 
 export const PROJECT_BASES: ProjectBase[] = [
   {
+    id: "morphee",
+    slug: "morphee",
+    title: "Morphee",
+    type: "AI",
+    tags: ["Express.js", "Ollama", "SQLite", "Electron", "Vue.js"],
+    images: [
+      "/assets/img/morphee1.png",
+      "/assets/img/morphee.png",
+      "/assets/img/morphee2.png",
+    ],
+    links: [],
+    color: COLOR,
+  },
+  {
     id: "bot-twitch",
     slug: "bot-twitch",
     title: "Bot Twitch",
@@ -180,7 +194,8 @@ export const PROJECT_BASES: ProjectBase[] = [
 ];
 
 export const HERO_PROJECT_IDS = [
+  "morphee",
   "bot-twitch",
-  "inside-runway-landing",
   "arcasolis-app",
+  "inside-runway-app",
 ];

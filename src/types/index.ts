@@ -3,7 +3,13 @@ export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  type: "mobile" | "web fullstack" | "desktop/mobile" | "game" | "bot/script";
+  type:
+    | "mobile"
+    | "web fullstack"
+    | "AI"
+    | "desktop/mobile"
+    | "game"
+    | "bot/script";
   badgeStage: string;
   description: string;
   longDescription: string;

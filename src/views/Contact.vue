@@ -54,7 +54,7 @@ const links = computed(() => [
                 :rel="l.external ? 'noopener noreferrer' : undefined">
                 <span class="link-icon"><i :class="l.icon" aria-hidden="true"></i></span>
                 <span class="link-name">{{ l.name }}</span>
-                <span class="link-handle">{{ l.handle }}</span>
+                <span class="link-handle"></span>
                 <i :class="l.external ? 'fa-solid fa-arrow-up-right-from-square' : 'fa-solid fa-arrow-right'"
                   class="link-arrow" aria-hidden="true"></i>
               </a>

@@ -12,6 +12,7 @@ const camel = (s: string) =>
 const TYPE_KEYS: Record<Project["type"], string> = {
   mobile: "mobile",
   "web fullstack": "fullstack",
+  AI: "ai",
   "desktop/mobile": "desktop",
   game: "game",
   "bot/script": "bot",

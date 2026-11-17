@@ -139,6 +139,7 @@
   "projectTypes": {
     "mobile": "Mobile",
     "fullstack": "Web full-stack",
+    "ai": "Intelligence artificielle",
     "desktop": "Desktop & mobile",
     "game": "Jeu",
     "bot": "Bot"
@@ -231,6 +232,19 @@
   },
 
   "projects": {
+    "morphee": {
+      "subtitle": "Assistant IA de bureau",
+      "badgeStage": "Application desktop",
+      "year": "2026",
+      "description": "Assistant conversationnel local avec Ollama, développé avec Electron et Vue.js.",
+      "longDescription": "Application desktop d'assistance conversationnelle basée sur Ollama, avec une interface Vue.js, un backend Express.js et une base SQLite.",
+      "features": [
+        "Conversations avec des modèles locaux via Ollama",
+        "Interface desktop Electron et Vue.js",
+        "API backend Express.js",
+        "Stockage local des conversations avec SQLite"
+      ]
+    },
     "botTwitch": {
       "subtitle": "Bot pour streamer Twitch",
       "badgeStage": "Novembre 2026",

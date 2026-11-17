@@ -78,8 +78,8 @@ html {
 /* ─── FONTS ────────────────────────────────────────────────────── */
 :root {
   --ff-head: 'BlissTwin', sans-serif;
-  --ff-mono: 'DM Mono', monospace;
-  --ff-body: 'DM Sans', sans-serif;
+  --ff-body: 'Hanken Grotesk', sans-serif;
+  --font-mono: 600 'Red Hat Mono', monospace;
 
   --radius:    5px;
   --radius-sm: 8px;
