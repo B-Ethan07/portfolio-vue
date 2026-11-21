@@ -53,6 +53,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     type: "mobile",
     tags: ["Flutter", "FastAPI", "AWS S3", "Firebase"],
     images: [
+      "/assets/img/inside-app1.png",
       "/assets/img/inside-app.webp",
       "/assets/img/inside-app2.webp",
       "/assets/img/inside-app3.webp",
@@ -89,6 +90,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     type: "web fullstack",
     tags: ["React", "TypeScript", "FastAPI", "AWS S3", "Docker"],
     images: [
+      "/assets/img/IR1.png",
       "/assets/img/IR.webp",
       "/assets/img/IR2.webp",
       "/assets/img/IR3.webp",
@@ -105,6 +107,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     type: "web fullstack",
     tags: ["React", "TypeScript", "Express.js", "API REST"],
     images: [
+      "/assets/img/zenquest.png",
       "/assets/img/zenquest1.webp",
       "/assets/img/zenquest2.jpg",
       "/assets/img/zenquest3.jpg",
@@ -127,6 +130,7 @@ export const PROJECT_BASES: ProjectBase[] = [
     type: "mobile",
     tags: ["Flutter", "FastAPI", "Docker", "React"],
     images: [
+      "/assets/img/itsmetime.png",
       "/assets/img/itsmetime1.png",
       "/assets/img/itsmetime2.png",
       "/assets/img/itsmetime3.png",
